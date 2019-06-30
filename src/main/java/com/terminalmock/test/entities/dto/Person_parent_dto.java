@@ -1,7 +1,7 @@
 package com.terminalmock.test.entities.dto;
 
 
-import com.terminalmock.test.entities.dictionary.FamRelationShip;
+import com.terminalmock.test.entities.dictionary.FamRelationship;
 import com.terminalmock.test.entities.enums.Gender;
 import lombok.*;
 
@@ -19,7 +19,7 @@ public class Person_parent_dto {
     //TODO change
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "famRelationShip")
-    private FamRelationShip tab_parent_selectedFamRelationShip;
+    private FamRelationship tab_parent_selectedFamRelationship;
     private String tab_parent_lastname;
     private String tab_parent_firstname;
     private String tab_parent_middlename;
