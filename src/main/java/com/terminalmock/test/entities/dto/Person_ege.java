@@ -44,6 +44,6 @@ public class Person_ege {
     private String tab_ege_appelation;
 
     @ManyToOne
-    @JoinColumn
+    @JoinColumn(name="person_ege_id", nullable=false,insertable=false,updatable=false )
     Person person;
 }

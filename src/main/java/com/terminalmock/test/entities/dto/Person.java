@@ -7,7 +7,9 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 //@Data
@@ -20,7 +22,7 @@ import java.util.Set;
 public class Person {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    long id;
+    Long id;
 //from personal data tab
     private String tab_personal_lastname;
     private String tab_personal_firstname;
@@ -93,7 +95,8 @@ public class Person {
     private String tab_address_templateRegistrationAddress;
 
 //from evidence_ege tab
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "person",cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name="person_ege_id",nullable=false)
     private Set<Person_ege> ege_info;
 //from graduate_military tab
     @ManyToOne(fetch = FetchType.EAGER)
@@ -149,8 +152,8 @@ public class Person {
 //    private ???? extraInfosDescription4;
 
     //from parent tab
-//    @OneToMany(mappedBy="person_parent")
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "person",cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name="person_parent_id",nullable=false)
     private Set<Person_parent> parents_info;
 
     private String photo;
@@ -165,14 +168,14 @@ public class Person {
     @JoinColumn(name = "application_docType")
     private DocType application_selectedDocType;
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "person",cascade = CascadeType.ALL)
+
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name="application_condition_id",nullable=false)
     private Set<Application_condition> application_condition = new HashSet<>();
 
-//    @OneToMany(fetch = FetchType.EAGER, mappedBy = "person",cascade = CascadeType.ALL)
-    @OneToMany(mappedBy = "person", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private Set<Application_documents> application_documents = new HashSet<>();
+    //work
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name="application_documents_id",nullable=false)
+    private Set<Application_documents> application_documents;
 
-//    @OneToMany(fetch = FetchType.EAGER, mappedBy = "person",cascade = CascadeType.ALL)
-////    @OneToMany(mappedBy="person_application",cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-//    private Set<Application> applications;
 }

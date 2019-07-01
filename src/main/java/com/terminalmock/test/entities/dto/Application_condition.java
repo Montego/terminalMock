@@ -35,8 +35,8 @@ public class Application_condition {
 
     private String documentBase64;
 
-    @ManyToOne(optional = false)
-    @JoinColumn(name = "person_id")
+    @ManyToOne
+    @JoinColumn(name="application_condition_id", nullable=false,insertable=false,updatable=false )
     Person person;
 
 

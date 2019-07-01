@@ -46,26 +46,26 @@ public class ProfileController {
         personService.save(personFromDB);
     }
 
-    @GetMapping("/testSave")
-    public void doShit(){
-        Person person = new Person();
-        person.setId(1000);
-        person.setTab_personal_employDays(4);
-        person.setTab_personal_employMonths(1);
-        person.setTab_personal_employYears(4);
-        person.setTab_personal_isCompatriot(false);
-        person.setTab_personal_isEquatedForeign(false);
-        person.setTab_personal_isHostel(false);
-        person.setTab_personal_isForeignLikeRussian(true);
-        Set<Application_condition> conditions = new LinkedHashSet<>();
-        Application_condition ap = new Application_condition();
-        ap.setId(1001);
-        ap.setPerson(person);
-        ap.setSelected_agreement("TECT");
-        conditions.add(ap);
-
-
-        person.setApplication_condition(conditions);
-        personService.save(person);
-    }
+//    @GetMapping("/testSave")
+//    public void doShit(){
+//        Person person = new Person();
+//        person.setId(1000);
+//        person.setTab_personal_employDays(4);
+//        person.setTab_personal_employMonths(1);
+//        person.setTab_personal_employYears(4);
+//        person.setTab_personal_isCompatriot(false);
+//        person.setTab_personal_isEquatedForeign(false);
+//        person.setTab_personal_isHostel(false);
+//        person.setTab_personal_isForeignLikeRussian(true);
+//        Set<Application_condition> conditions = new LinkedHashSet<>();
+//        Application_condition ap = new Application_condition();
+//        ap.setId(1001);
+//        ap.setPerson(person);
+//        ap.setSelected_agreement("TECT");
+//        conditions.add(ap);
+//
+//
+//        person.setApplication_condition(conditions);
+//        personService.save(person);
+//    }
 }

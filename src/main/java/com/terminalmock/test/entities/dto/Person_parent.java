@@ -37,7 +37,7 @@ public class Person_parent {
     private String tab_parent_factAddress;
 
     @ManyToOne
-    @JoinColumn
+    @JoinColumn(name="person_parent_id", nullable=false,insertable=false,updatable=false )
     Person person;
 
 }

@@ -7,11 +7,13 @@ import javax.persistence.*;
 import java.time.LocalDate;
 @Getter
 @Setter
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 public class Application_documents {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    long id;
+    Long id;
 
     private String tab_document_selectedDocumentType;
     private int tab_document_count;
@@ -24,11 +26,9 @@ public class Application_documents {
     private String tab_document_issuedBy;
     private String fullName;
 
-//    @ManyToOne
-//    @JoinColumn(name = "person")
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "person_id")
-    Person person;
 
+    @ManyToOne
+    @JoinColumn(name="application_documents_id", nullable=false,insertable=false,updatable=false )
+    private Person person_documents;
 
 }
