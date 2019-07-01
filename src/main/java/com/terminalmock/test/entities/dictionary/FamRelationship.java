@@ -9,7 +9,7 @@ import javax.persistence.Table;
 
 @Entity
 @Data
-@Table(name = "\"D_FamRelationShip\"")
+@Table(name = "\"D_FamRelationship\"")
 public class FamRelationship {
 
 //    private Long id;

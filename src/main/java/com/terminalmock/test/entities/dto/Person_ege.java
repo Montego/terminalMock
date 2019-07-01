@@ -12,7 +12,7 @@ import java.time.LocalDate;
 
 @Data
 @Entity
-public class Person_ege_dto {
+public class Person_ege {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     long id;
@@ -21,6 +21,7 @@ public class Person_ege_dto {
     private String tab_ege_middlename;
     //TODO change
     @ManyToOne(fetch = FetchType.EAGER)
+
     @JoinColumn(name = "identityCardCode")
     private IdentityCardCode tab_ege_selectedIdentityCardCode;
 
@@ -44,5 +45,5 @@ public class Person_ege_dto {
 
     @ManyToOne
     @JoinColumn
-    Person_dto person_dto;
+    Person person;
 }

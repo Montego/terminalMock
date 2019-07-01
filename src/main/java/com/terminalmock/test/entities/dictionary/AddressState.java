@@ -11,9 +11,10 @@ import javax.persistence.Table;
 @Data
 @Table(name = "\"D_AddressState\"")
 public class AddressState {
-    @Id
+
     @Column(name = "\"CountryRegionId\"")
     private String countryRegionId;
+    @Id
     @Column(name = "\"StateId\"")
     private String stateId;
     @Column(name = "\"Name\"")

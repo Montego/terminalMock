@@ -13,7 +13,7 @@ import javax.persistence.Table;
 public class LangInfo {
     @Id
     @Column(name = "\"Id\"")
-    private Long id;
+    private int id;
     @Column(name = "\"Name\"")
     private String name;
 }

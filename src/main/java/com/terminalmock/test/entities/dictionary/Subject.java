@@ -20,7 +20,7 @@ public class Subject {
     private int orderBy;
     @Column(name = "\"MinScore\"")
     private int minScore;
-    @Column(name = "\"IsEGE\"")
+    @Column(name = "\"isEGE\"")
     private int isEGE;
     @Column(name = "\"Cipher\"")
     private String cipher;

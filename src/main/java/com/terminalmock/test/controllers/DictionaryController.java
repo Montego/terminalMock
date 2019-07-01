@@ -104,7 +104,7 @@ public class DictionaryController {
     public List<HighSchool> getListHighSchool() {
         return highSchoolService.getAll();
     }
-    @GetMapping("/identityCardCode")
+        @GetMapping("/identityCardCode")
     public List<IdentityCardCode> getListIdentityCardCode() {
         return identityCardCodeService.getAll();
     }

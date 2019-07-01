@@ -10,7 +10,7 @@ import java.time.LocalDate;
 
 @Data
 @Entity
-public class Person_parent_dto {
+public class Person_parent {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     long id;
@@ -38,6 +38,6 @@ public class Person_parent_dto {
 
     @ManyToOne
     @JoinColumn
-    Person_dto person_dto;
+    Person person;
 
 }

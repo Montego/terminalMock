@@ -25,7 +25,7 @@ public class Document {
     @Column(name = "\"DocNumberMandatory\"")
     private int docNumberMandatory;
     @Column(name = "\"RelatedDocument\"")
-    private int relatedDocument;
+    private String relatedDocument;
     @Column(name = "\"DocumentType\"")
     private int documentType;
     @Column(name = "\"IsDifferentEduCardAppl\"")
@@ -36,7 +36,7 @@ public class Document {
     private int isAllowEditing;
     @Column(name = "\"DocOrgMandatory\"")
     private int docOrgMandatory;
-    @Column(name = "\"IsDuplicatePermission\"")
+    @Column(name = "\"IsDublicatePermission\"")
     private int isDuplicatePermission;
     @Column(name = "\"DiplomCopy\"")
     private int diplomCopy;

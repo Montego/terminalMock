@@ -12,7 +12,7 @@ import java.util.Set;
 
 @Data
 @Entity
-public class Application_dto implements Serializable {
+public class Application implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     long id;
@@ -29,11 +29,11 @@ public class Application_dto implements Serializable {
 
     private String fullname;
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "application_dto",cascade = CascadeType.ALL)
-    Set<Application_condition_dto> application_condition_dto;
-
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "application_dto",cascade = CascadeType.ALL)
-    Set<Application_documents_dto> application_documents_dto;
+//    @OneToMany(fetch = FetchType.EAGER, mappedBy = "application",cascade = CascadeType.ALL)
+//    Set<Application_condition> application_condition;
+//
+//    @OneToMany(fetch = FetchType.EAGER, mappedBy = "application",cascade = CascadeType.ALL)
+//    Set<Application_documents> application_documents;
     //application_documents массив
 
     private int score_russian;
@@ -43,7 +43,7 @@ public class Application_dto implements Serializable {
     private int score_biology;
 
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn
-    Person_dto person_dto;
+//    @ManyToOne(fetch = FetchType.EAGER)
+//    @JoinColumn
+//    Person person;
 }

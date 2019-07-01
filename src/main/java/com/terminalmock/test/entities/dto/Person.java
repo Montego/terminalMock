@@ -7,13 +7,19 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.HashSet;
 import java.util.Set;
 
-@Data
+//@Data
 @Entity
-public class Person_dto {
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Table(name = "Person")
+public class Person {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     long id;
 //from personal data tab
     private String tab_personal_lastname;
@@ -87,8 +93,8 @@ public class Person_dto {
     private String tab_address_templateRegistrationAddress;
 
 //from evidence_ege tab
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "person_dto",cascade = CascadeType.ALL)
-    private Set<Person_ege_dto> ege_info;
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "person",cascade = CascadeType.ALL)
+    private Set<Person_ege> ege_info;
 //from graduate_military tab
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "educationLevel")
@@ -112,7 +118,7 @@ public class Person_dto {
     private String tab_edu_military_eduDocName;
     private String tab_edu_military_attachment_serial;
     private String tab_edu_military_attachment_number;
-    private String averageScore;
+    private String score_full;
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "soldiery")
     private Soldiery tab_edu_military_selectedSoldiery;
@@ -128,7 +134,7 @@ public class Person_dto {
     private String tab_edu_military_militaryIssueBy;
     private String tab_edu_military_militaryRank;
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "docType")
+    @JoinColumn(name = "military_docType")
     private DocType tab_edu_military_selectedDocType;
     private LocalDate tab_edu_military_docMilitaryShowDate;
     private LocalDate tab_edu_military_startMilitary;
@@ -144,12 +150,29 @@ public class Person_dto {
 
     //from parent tab
 //    @OneToMany(mappedBy="person_parent")
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "person_dto",cascade = CascadeType.ALL)
-    private Set<Person_parent_dto> parents_info;
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "person",cascade = CascadeType.ALL)
+    private Set<Person_parent> parents_info;
 
     private String photo;
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "person_dto",cascade = CascadeType.ALL)
-//    @OneToMany(mappedBy="person_application",cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private Set<Application_dto> application_dto;
+    private String application_number;
+
+    private LocalDate application_date;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "application_deliveryType")
+    private DeliveryType application_selectedDeliveryType;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "application_docType")
+    private DocType application_selectedDocType;
+
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "person",cascade = CascadeType.ALL)
+    private Set<Application_condition> application_condition = new HashSet<>();
+
+//    @OneToMany(fetch = FetchType.EAGER, mappedBy = "person",cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "person", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private Set<Application_documents> application_documents = new HashSet<>();
+
+//    @OneToMany(fetch = FetchType.EAGER, mappedBy = "person",cascade = CascadeType.ALL)
+////    @OneToMany(mappedBy="person_application",cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+//    private Set<Application> applications;
 }

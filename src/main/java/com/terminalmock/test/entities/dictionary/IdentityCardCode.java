@@ -20,11 +20,11 @@ public class IdentityCardCode {
     private String identityCardNameFull;
     @Column(name = "\"IdentityCardNameShort\"")
     private String identityCardNameShort;
-    @Column(name = "\"IsUniversity\"")
+    @Column(name = "\"isUniversity\"")
     private int isUniversity;
-    @Column(name = "\"IsMandatory_Number\"")
+    @Column(name = "\"isMandatory_Number\"")
     private int isMandatory_Number;
-    @Column(name = "\"IsMandatory_Series\"")
+    @Column(name = "\"isMandatory_Series\"")
     private int isMandatory_Series;
     @Column(name = "\"Sort\"")
     private int sort;

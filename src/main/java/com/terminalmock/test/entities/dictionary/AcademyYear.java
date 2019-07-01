@@ -13,7 +13,7 @@ import java.time.LocalDate;
 @Table(name = "\"D_AcadamyYear\"")
 public class AcademyYear {
     @Id
-    @Column(name = "\"AcademyYearId\"")
+    @Column(name = "\"AcadamyYearId\"")
     private String academyYearId;
     @Column(name = "\"Description\"")
     private String description;

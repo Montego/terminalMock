@@ -1,16 +1,21 @@
 package com.terminalmock.test.entities.dto;
 
 import com.terminalmock.test.entities.dictionary.Speciality;
-import lombok.Data;
+import lombok.*;
 
 import javax.persistence.*;
 import java.io.Serializable;
 
-@Data
+//@Data
+@Setter
+@Getter
+@NoArgsConstructor
+@AllArgsConstructor
+@Table(name = "Application_condition")
 @Entity
-public class Application_condition_dto implements Serializable {
+public class Application_condition {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     long id;
 
     //TODO переделать на данные из БД
@@ -18,7 +23,7 @@ public class Application_condition_dto implements Serializable {
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "speciality")
-    private Speciality selected_specialty;
+    private Speciality selected_speciality;
     //TODO переделать на объект
     private String selected_educationType;
 
@@ -30,9 +35,9 @@ public class Application_condition_dto implements Serializable {
 
     private String documentBase64;
 
-    @ManyToOne
-    @JoinColumn
-    Application_dto application_dto;
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "person_id")
+    Person person;
 
 
 }

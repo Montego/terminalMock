@@ -26,7 +26,7 @@ public class Speciality {
     private String descriptionEng;
     @Column(name = "\"DeparCodeForeign\"")
     private String deparCodeForeign;
-    @Column(name = "\"IsAdmissionComm\"")
+    @Column(name = "\"isAdmissionComm\"")
     private int isAdmissionComm;
     @Column(name = "\"EducationLevel\"")
     private int educationLevel;
