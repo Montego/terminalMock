@@ -1,21 +1,21 @@
-package com.terminalmock.test.entities.dto;
+package com.terminalmock.test.entities.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.terminalmock.test.entities.dictionary.Speciality;
 import lombok.*;
 
 import javax.persistence.*;
-import java.io.Serializable;
 
-//@Data
-@Setter
-@Getter
-@NoArgsConstructor
-@AllArgsConstructor
-@Table(name = "Application_condition")
+@Data
+//@Setter
+//@Getter
+//@NoArgsConstructor
+//@AllArgsConstructor
+//@Table(name = "ApplicationCondition")
 @Entity
-public class Application_condition {
+public class ApplicationCondition {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     long id;
 
     //TODO переделать на данные из БД
@@ -24,9 +24,9 @@ public class Application_condition {
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "speciality")
     private Speciality selected_speciality;
+
     //TODO переделать на объект
     private String selected_educationType;
-
 
     //TODO приходит "да/нет" в буль. переделать
     private String selected_agreement;
@@ -35,8 +35,10 @@ public class Application_condition {
 
     private String documentBase64;
 
-    @ManyToOne
-    @JoinColumn(name="application_condition_id", nullable=false,insertable=false,updatable=false )
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name="condition_person_id" )
+    @JsonBackReference
     Person person;
 
 

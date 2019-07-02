@@ -1,9 +1,11 @@
-package com.terminalmock.test.services.dtoServices;
+package com.terminalmock.test.services.entityServices;
 
-import com.terminalmock.test.entities.dto.Person_ege;
-import com.terminalmock.test.repositories.dtorepo.PersonEgeRepo;
+import com.terminalmock.test.dto.ResponseEgeInfo;
+import com.terminalmock.test.entities.entity.Person_ege;
+import com.terminalmock.test.repositories.entityrepo.PersonEgeRepo;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -12,6 +14,7 @@ public class PersonEgeService {
 
     public PersonEgeService(PersonEgeRepo person_ege_Repo) {
         this.person_ege_Repo = person_ege_Repo;
+
     }
 
     public Person_ege getOne(long id) {
@@ -29,4 +32,9 @@ public class PersonEgeService {
     public void delete(Long id) {
         person_ege_Repo.deleteById(id);
     }
+
+//    public List<ResponseEgeInfo> findAllByPerson_ege_id(Long id) {
+//        return person_ege_Repo.findAllByPerson_ege_id(id);
+//    }
+
 }

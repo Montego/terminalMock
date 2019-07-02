@@ -1,4 +1,4 @@
-package com.terminalmock.test.entities.dto;
+package com.terminalmock.test.entities.entity;
 
 
 import com.terminalmock.test.entities.enums.DeliveryType;
@@ -8,7 +8,6 @@ import lombok.*;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDate;
-import java.util.Set;
 
 @Data
 @Entity
@@ -30,10 +29,10 @@ public class Application implements Serializable {
     private String fullname;
 
 //    @OneToMany(fetch = FetchType.EAGER, mappedBy = "application",cascade = CascadeType.ALL)
-//    Set<Application_condition> application_condition;
+//    Set<ApplicationCondition> application_condition;
 //
 //    @OneToMany(fetch = FetchType.EAGER, mappedBy = "application",cascade = CascadeType.ALL)
-//    Set<Application_documents> application_documents;
+//    Set<ApplicationDocuments> application_documents;
     //application_documents массив
 
     private int score_russian;

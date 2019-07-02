@@ -10,7 +10,7 @@ import javax.persistence.Table;
 @Entity
 @Data
 @Table(name = "\"D_FamRelationship\"")
-public class FamRelationship {
+public class FamRelationShip {
 
 //    private Long id;
     @Id

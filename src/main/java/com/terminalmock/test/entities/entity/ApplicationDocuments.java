@@ -1,5 +1,6 @@
-package com.terminalmock.test.entities.dto;
+package com.terminalmock.test.entities.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.terminalmock.test.entities.enums.DocType;
 import lombok.*;
 
@@ -10,7 +11,7 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-public class Application_documents {
+public class ApplicationDocuments {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     Long id;
@@ -26,9 +27,9 @@ public class Application_documents {
     private String tab_document_issuedBy;
     private String fullName;
 
-
-    @ManyToOne
-    @JoinColumn(name="application_documents_id", nullable=false,insertable=false,updatable=false )
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name="document_person_id" )
+    @JsonBackReference
     private Person person_documents;
 
 }

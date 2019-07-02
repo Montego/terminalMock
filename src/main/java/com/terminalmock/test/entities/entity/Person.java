@@ -1,15 +1,14 @@
-package com.terminalmock.test.entities.dto;
+package com.terminalmock.test.entities.entity;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.terminalmock.test.entities.dictionary.*;
 import com.terminalmock.test.entities.enums.*;
 import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 //@Data
@@ -18,7 +17,7 @@ import java.util.Set;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "Person")
+//@Table(name = "Person")
 public class Person {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,6 +26,10 @@ public class Person {
     private String tab_personal_lastname;
     private String tab_personal_firstname;
     private String tab_personal_middlename;
+    private String tab_personal_lastname_genitive;
+    private String tab_personal_firstname_genitive;
+    private String tab_personal_middlename_genitive;
+
     private String tab_personal_contactPersonNameGenitive;
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "gender")
@@ -56,7 +59,7 @@ public class Person {
     private String tab_personal_homePhoneNumber;
     private String tab_personal_cellularPhone;
     private String tab_personal_email;
-    private String tab_personal_company;
+    private String tab_personal_company_name;
     private String tab_personal_company_address;
     private String tab_personal_seniority;
     private int tab_personal_employYears;
@@ -68,35 +71,36 @@ public class Person {
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "language1")
-    private Language tab_personal_selectedLanguage1;
+    private Language selected_foreignLanguageName1;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "languageLevel1")
-    private LanguageLevel tab_personal_selectedLanguageLevel1;
+    private LanguageLevel language_score1;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "language2")
-    private Language tab_personal_selectedLanguage2;
+    private Language selected_foreignLanguageName2;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "languageLevel2")
-    private LanguageLevel tab_personal_selectedLanguageLevel2;
+    private LanguageLevel language_score2;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "language3")
-    private Language tab_personal_selectedLanguage3;
+    private Language selected_foreignLanguageName3;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "languageLevel3")
-    private LanguageLevel tab_personal_selectedLanguageLevel3;
+    private LanguageLevel language_score3;
 //from address tab
     private String tab_address_registrationAddress;
     private String tab_address_factAddress;
     private String tab_address_templateRegistrationAddress;
 
 //from evidence_ege tab
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name="person_ege_id",nullable=false)
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinColumn(name="person_ege_id")
+    @JsonManagedReference
     private Set<Person_ege> ege_info;
 //from graduate_military tab
     @ManyToOne(fetch = FetchType.EAGER)
@@ -122,6 +126,9 @@ public class Person {
     private String tab_edu_military_attachment_serial;
     private String tab_edu_military_attachment_number;
     private String score_full;
+    private String score_five;
+    private String score_four;
+    private String score_three;
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "soldiery")
     private Soldiery tab_edu_military_selectedSoldiery;
@@ -153,7 +160,8 @@ public class Person {
 
     //from parent tab
     @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name="person_parent_id",nullable=false)
+    @JoinColumn(name="person_parent_id")
+    @JsonManagedReference
     private Set<Person_parent> parents_info;
 
     private String photo;
@@ -168,14 +176,15 @@ public class Person {
     @JoinColumn(name = "application_docType")
     private DocType application_selectedDocType;
 
-
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name="application_condition_id",nullable=false)
-    private Set<Application_condition> application_condition = new HashSet<>();
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+//    @JoinColumn(name="condition_person_id")
+    @JsonManagedReference
+    private Set<ApplicationCondition> application_condition;
 
     //work
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name="application_documents_id",nullable=false)
-    private Set<Application_documents> application_documents;
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+//    @JoinColumn(name="application_documents_id")
+    @JsonManagedReference
+    private Set<ApplicationDocuments> application_documents;
 
 }

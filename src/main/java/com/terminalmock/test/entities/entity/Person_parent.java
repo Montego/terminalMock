@@ -1,7 +1,8 @@
-package com.terminalmock.test.entities.dto;
+package com.terminalmock.test.entities.entity;
 
 
-import com.terminalmock.test.entities.dictionary.FamRelationship;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.terminalmock.test.entities.dictionary.FamRelationShip;
 import com.terminalmock.test.entities.enums.Gender;
 import lombok.*;
 
@@ -19,7 +20,7 @@ public class Person_parent {
     //TODO change
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "famRelationShip")
-    private FamRelationship tab_parent_selectedFamRelationship;
+    private FamRelationShip tab_parent_selectedFamRelationShip;
     private String tab_parent_lastname;
     private String tab_parent_firstname;
     private String tab_parent_middlename;
@@ -36,8 +37,9 @@ public class Person_parent {
     private String tab_parent_cellularPhone;
     private String tab_parent_factAddress;
 
-    @ManyToOne
-    @JoinColumn(name="person_parent_id", nullable=false,insertable=false,updatable=false )
+    @JoinColumn(name="person_parent_id")
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JsonBackReference
     Person person;
 
 }

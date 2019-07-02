@@ -1,6 +1,6 @@
-package com.terminalmock.test.repositories.dtorepo;
+package com.terminalmock.test.repositories.entityrepo;
 
-import com.terminalmock.test.entities.dto.Person;
+import com.terminalmock.test.entities.entity.Person;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface PersonRepo extends JpaRepository<Person, Long> {

@@ -28,6 +28,7 @@ public class EnumsController {
     private final LanguageLevelService languageLevelService;
 //    private final MilitaryDocTypeService militaryDocTypeService;
     private final MilitaryFormDocService militaryFormDocService;
+    private final PrefTypeService prefTypeService;
     private final SoldieryStatusService soldieryStatusService;
     private final TypeDiplomaService typeDiplomaService;
 
@@ -36,7 +37,7 @@ public class EnumsController {
                            DocTypeService docTypeService, EducationLevelService educationLevelService,
                            ExamFormService examFormService, GenderService genderService,
                            LangInfoService langInfoService, LanguageLevelService languageLevelService,
-                           MilitaryFormDocService militaryFormDocService, SoldieryStatusService soldieryStatusService, TypeDiplomaService typeDiplomaService) {
+                           MilitaryFormDocService militaryFormDocService, PrefTypeService prefTypeService, SoldieryStatusService soldieryStatusService, TypeDiplomaService typeDiplomaService) {
 
         this.deliveryTypeService = deliveryTypeService;
         this.docTypeService = docTypeService;
@@ -49,6 +50,7 @@ public class EnumsController {
         this.languageLevelService = languageLevelService;
 
         this.militaryFormDocService = militaryFormDocService;
+        this.prefTypeService = prefTypeService;
         this.soldieryStatusService = soldieryStatusService;
         this.typeDiplomaService = typeDiplomaService;
     }
@@ -117,6 +119,10 @@ public class EnumsController {
     @GetMapping("/militaryFormDoc")
     public List<MilitaryFormDoc> getListMilitaryFormDoc() {
         return militaryFormDocService.getAll();
+    }
+    @GetMapping("/prefType")
+    public List<PrefType> getListPrefType() {
+        return prefTypeService.getAll();
     }
     @GetMapping("/soldieryStatus")
     public List<SoldieryStatus> getListSoldieryStatus() {

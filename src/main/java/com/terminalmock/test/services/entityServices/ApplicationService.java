@@ -1,7 +1,7 @@
-package com.terminalmock.test.services.dtoServices;
+package com.terminalmock.test.services.entityServices;
 
-import com.terminalmock.test.entities.dto.Application;
-import com.terminalmock.test.repositories.dtorepo.ApplicationRepo;
+import com.terminalmock.test.entities.entity.Application;
+import com.terminalmock.test.repositories.entityrepo.ApplicationRepo;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

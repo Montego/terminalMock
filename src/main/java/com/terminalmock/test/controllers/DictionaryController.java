@@ -97,7 +97,7 @@ public class DictionaryController {
         return eduLevelService.getAll();
     }
     @GetMapping("/famRelationShip")
-    public List<FamRelationship> getListFamRelationShip() {
+    public List<FamRelationShip> getListFamRelationShip() {
         return famRelationShipService.getAll();
     }
     @GetMapping("/highSchool")
