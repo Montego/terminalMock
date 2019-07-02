@@ -1,8 +1,9 @@
 package com.terminalmock.test.controllers;
 
-import com.terminalmock.test.dto.ResponseEgeInfo;
+
+import com.terminalmock.test.dto.ApplicationTableDto;
+import com.terminalmock.test.dto.PersonTableDto;
 import com.terminalmock.test.entities.entity.Person;
-import com.terminalmock.test.services.entityServices.PersonEgeService;
 import com.terminalmock.test.services.entityServices.PersonService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,12 +15,10 @@ import java.util.List;
 @RequestMapping("api/profile")
 public class ProfileController {
     private final PersonService personService;
-    private final PersonEgeService personEgeService;
     @Autowired
-    public ProfileController(PersonService personService, PersonEgeService personEgeService) {
+    public ProfileController(PersonService personService) {
         this.personService = personService;
 
-        this.personEgeService = personEgeService;
     }
 
     @GetMapping("/persons")
@@ -27,11 +26,15 @@ public class ProfileController {
         System.out.println("return all profiles");
         return personService.getAll();
     }
-//    @GetMapping("/person_ege/{id}")
-//    public List<ResponseEgeInfo> findAllById(@PathVariable Long id) {
-//        System.out.println("return all ege");
-//        return personEgeService.findAllByPerson_ege_id(id);
-//    }
+    @GetMapping("/personsTable")
+    public List<PersonTableDto> getAllPersonTableDto() {
+        return personService.getAllPersonTableDto();
+    }
+    @GetMapping("/applicationsTable")
+    public List<ApplicationTableDto> getAllApplicationTableDto() {
+        return personService.getAllApplicationTableDto();
+    }
+
     @GetMapping("/person/{id}")
     public Person getPerson(@PathVariable Long id) {
         return personService.getOne(id);

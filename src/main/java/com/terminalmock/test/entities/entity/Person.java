@@ -26,6 +26,7 @@ public class Person {
     private String tab_personal_lastname;
     private String tab_personal_firstname;
     private String tab_personal_middlename;
+    private String tab_personal_name;
     private String tab_personal_lastname_genitive;
     private String tab_personal_firstname_genitive;
     private String tab_personal_middlename_genitive;
@@ -175,7 +176,7 @@ public class Person {
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "application_docType")
     private DocType application_selectedDocType;
-
+    private boolean budget = false;
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 //    @JoinColumn(name="condition_person_id")
     @JsonManagedReference
