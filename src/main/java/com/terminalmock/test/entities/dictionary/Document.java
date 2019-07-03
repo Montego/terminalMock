@@ -2,10 +2,8 @@ package com.terminalmock.test.entities.dictionary;
 
 import lombok.Data;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Data
@@ -16,7 +14,7 @@ public class Document {
     private String documentId;
     @Column(name = "\"Name\"")
     private String name;
-    @Column(name = "\"IsManual\"")
+    @Column(name = "\"isManual\"")
     private int isManual;
     @Column(name = "\"SerialNumberDocument\"")
     private int serialNumberDocument;
@@ -28,11 +26,11 @@ public class Document {
     private String relatedDocument;
     @Column(name = "\"DocumentType\"")
     private int documentType;
-    @Column(name = "\"IsDifferentEduCardAppl\"")
+    @Column(name = "\"isDifferentEduCardAppl\"")
     private int isDifferentEduCardAppl;
     @Column(name = "\"EducationLevel\"")
     private int educationLevel;
-    @Column(name = "\"IsAllowEditing\"")
+    @Column(name = "\"isAllowEditing\"")
     private int isAllowEditing;
     @Column(name = "\"DocOrgMandatory\"")
     private int docOrgMandatory;
@@ -40,4 +38,13 @@ public class Document {
     private int isDuplicatePermission;
     @Column(name = "\"DiplomCopy\"")
     private int diplomCopy;
+
+
+//    @ManyToMany
+//    @JoinTable(
+//            name = "\"D_PreferenceByDoc\"",
+//            joinColumns = { @JoinColumn(name = "\"DocumentId\"") },
+//            inverseJoinColumns = { @JoinColumn(name = "\"PreferenceId\"") }
+//    )
+//    private List<Preference> preferences;
 }

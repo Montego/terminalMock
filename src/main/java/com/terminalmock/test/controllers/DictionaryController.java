@@ -4,6 +4,7 @@ import com.terminalmock.test.entities.dictionary.*;
 import com.terminalmock.test.services.dictionaryServices.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -59,6 +60,12 @@ public class DictionaryController {
         this.specialityService = specialityService;
         this.subjectService = subjectService;
     }
+
+//    @GetMapping("/docByPreferenceId/{id}")
+//    public List<Document> getListDocByPreferenceId(@PathVariable String id) {
+//        return documentService.findAllByPreferences_PreferenceId(id);
+//    }
+
 
     @GetMapping("/academyYear")
     public List<AcademyYear> getListAcademyYear() {

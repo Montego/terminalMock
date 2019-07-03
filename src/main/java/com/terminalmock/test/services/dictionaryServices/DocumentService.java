@@ -23,4 +23,8 @@ public class DocumentService {
     public List<Document> getAll() {
         return documentRepo.findAll();
     }
+
+//    public List<Document> findAllByPreferences_PreferenceId(String id){
+//        return documentRepo.findAllByPreferences_PreferenceId(id);
+//    }
 }

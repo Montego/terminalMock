@@ -2,10 +2,9 @@ package com.terminalmock.test.entities.dictionary;
 
 import lombok.Data;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import javax.print.Doc;
+import java.util.List;
 
 @Entity
 @Data
@@ -28,12 +27,20 @@ public class Preference {
     private int educationLevel;
     @Column(name = "\"Points\"")
     private int points;
-    @Column(name = "\"IsMultipleSelect\"")
+    @Column(name = "\"isMultipleSelect\"")
     private int isMultipleSelect;
     @Column(name = "\"Priority\"")
     private int priority;
     @Column(name = "\"OlympYear\"")
     private String olympYear;
-    @Column(name = "\"IsManual\"")
+    @Column(name = "\"isManual\"")
     private int isManual;
+
+//    @ManyToMany
+//    @JoinTable(
+//            name = "\"D_PreferenceByDoc\"",
+//            joinColumns = { @JoinColumn(name = "\"PreferenceId\"") },
+//            inverseJoinColumns = { @JoinColumn(name = "\"DocumentId\"") }
+//    )
+//    private List<Document> documents;
 }

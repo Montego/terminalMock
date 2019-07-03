@@ -14,16 +14,12 @@ import java.util.List;
 public class EnumsController {
 
 //    private final AccreditationDocTypeService accreditationDocTypeService;
+    private final AttrTypeService attrTypeService;
     private final DeliveryTypeService deliveryTypeService;
     private final DocTypeService docTypeService;
     private final EducationLevelService educationLevelService;
-//    private final EduCrimeaService eduCrimeaService;
     private final ExamFormService examFormService;
     private final GenderService genderService;
-//    private final IsAccreditationLikeExamService isAccreditationLikeExamService;
-//    private final IsDublicateService isDublicateService;
-//    private final IsForeignersService isForeignersService;
-//    private final IsHotelService isHotelService;
     private final LangInfoService langInfoService;
     private final LanguageLevelService languageLevelService;
 //    private final MilitaryDocTypeService militaryDocTypeService;
@@ -33,22 +29,20 @@ public class EnumsController {
     private final TypeDiplomaService typeDiplomaService;
 
     @Autowired
-    public EnumsController(DeliveryTypeService deliveryTypeService,
+    public EnumsController(AttrTypeService attrTypeService, DeliveryTypeService deliveryTypeService,
                            DocTypeService docTypeService, EducationLevelService educationLevelService,
                            ExamFormService examFormService, GenderService genderService,
                            LangInfoService langInfoService, LanguageLevelService languageLevelService,
-                           MilitaryFormDocService militaryFormDocService, PrefTypeService prefTypeService, SoldieryStatusService soldieryStatusService, TypeDiplomaService typeDiplomaService) {
-
+                           MilitaryFormDocService militaryFormDocService, PrefTypeService prefTypeService,
+                           SoldieryStatusService soldieryStatusService, TypeDiplomaService typeDiplomaService) {
+        this.attrTypeService = attrTypeService;
         this.deliveryTypeService = deliveryTypeService;
         this.docTypeService = docTypeService;
         this.educationLevelService = educationLevelService;
-
         this.examFormService = examFormService;
         this.genderService = genderService;
-
         this.langInfoService = langInfoService;
         this.languageLevelService = languageLevelService;
-
         this.militaryFormDocService = militaryFormDocService;
         this.prefTypeService = prefTypeService;
         this.soldieryStatusService = soldieryStatusService;
@@ -63,6 +57,10 @@ public class EnumsController {
 //    public List<AccreditationDocType> getListAccreditationDocType() {
 //        return accreditationDocTypeService.getAll();
 //    }
+    @GetMapping("/attrType")
+    public List<AttrType> getListAttrType() {
+        return attrTypeService.getAll();
+    }
     @GetMapping("/deliveryType")
     public List<DeliveryType> getListDeliveryType() {
         return deliveryTypeService.getAll();
