@@ -47,11 +47,11 @@ public class PersonService {
         for(int i =0; i<persons.size(); i++){
             ApplicationTableDto applicationTableDto = new ApplicationTableDto(
                     persons.get(i).getId(),
-                    persons.get(i).getTab_personal_name(),
-                    persons.get(i).getApplication_number(),
-                    persons.get(i).getApplication_date(),
-                    persons.get(i).getApplication_selectedDeliveryType().getName(),
-                    persons.get(i).isBudget()
+                    persons.get(i).getTab_personal_name()
+//                    persons.get(i).getApplication_number(),
+//                    persons.get(i).getApplication_date(),
+//                    persons.get(i).getApplication_selectedDeliveryType().getName(),
+//                    persons.get(i).isBudget()
             );
             applicationsTableDto.add(applicationTableDto);
         }

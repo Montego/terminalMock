@@ -16,8 +16,8 @@ public class ApplicationTableDto {
     Long id;
 
     private String tab_personal_name;
-    private String application_number;
-    private LocalDate application_date;
-    private String application_selectedDeliveryType;
-    private boolean budget;
+//    private String application_number;
+//    private LocalDate application_date;
+//    private String application_selectedDeliveryType;
+//    private boolean budget;
 }
