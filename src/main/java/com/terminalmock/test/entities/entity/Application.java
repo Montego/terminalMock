@@ -11,7 +11,7 @@ import java.time.LocalDate;
 
 @Data
 @Entity
-public class Application implements Serializable {
+public class Application{
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     long id;

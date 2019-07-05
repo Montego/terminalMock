@@ -167,25 +167,24 @@ public class Person {
 
     private String photo;
 
-    private String application_number;
-
-    private LocalDate application_date;
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "application_deliveryType")
-    private DeliveryType application_selectedDeliveryType;
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "application_docType")
-    private DocType application_selectedDocType;
-    private boolean budget = false;
-    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-//    @JoinColumn(name="condition_person_id")
-    @JsonManagedReference
-    private Set<ApplicationCondition> application_condition;
-
-    //work
-    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-//    @JoinColumn(name="application_documents_id")
-    @JsonManagedReference
-    private Set<ApplicationDocuments> application_documents;
+//    private String application_number;
+//    private LocalDate application_date;
+//    @ManyToOne(fetch = FetchType.EAGER)
+//    @JoinColumn(name = "application_deliveryType")
+//    private DeliveryType application_selectedDeliveryType;
+//    @ManyToOne(fetch = FetchType.EAGER)
+//    @JoinColumn(name = "application_docType")
+//    private DocType application_selectedDocType;
+//    private boolean budget = false;
+//    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+////    @JoinColumn(name="condition_person_id")
+//    @JsonManagedReference
+//    private Set<ApplicationCondition> application_condition;
+//
+//    //work
+//    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+////    @JoinColumn(name="application_documents_id")
+//    @JsonManagedReference
+//    private Set<ApplicationDocuments> application_documents;
 
 }

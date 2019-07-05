@@ -42,7 +42,7 @@ public class ProfileController {
 
     @PostMapping()
     public Person create(@RequestBody Person person) {
-        System.out.println(person.getApplication_condition());
+//        System.out.println(person.getApplication_condition());
         System.out.println("save person");
         personService.save(person);
         return person;
