@@ -1,9 +1,10 @@
 package com.terminalmock.test.services.entityServices;
 
-import com.terminalmock.test.dto.ApplicationDto;
 import com.terminalmock.test.dto.ApplicationTableDto;
 import com.terminalmock.test.dto.PersonTableDto;
 import com.terminalmock.test.entities.entity.Person;
+import com.terminalmock.test.entities.entity.PersonInfo;
+import com.terminalmock.test.repositories.entityrepo.PersonInfoRepo;
 import com.terminalmock.test.repositories.entityrepo.PersonRepo;
 import org.springframework.stereotype.Service;
 
@@ -13,9 +14,11 @@ import java.util.List;
 @Service
 public class PersonService {
     private final PersonRepo person_Repo;
+    private final PersonInfoRepo personInfoRepo;
 
-    public PersonService(PersonRepo person_Repo) {
+    public PersonService(PersonRepo person_Repo, PersonInfoRepo personInfoRepo) {
         this.person_Repo = person_Repo;
+        this.personInfoRepo = personInfoRepo;
     }
 
     public Person getOne(long id) {
@@ -27,7 +30,8 @@ public class PersonService {
     }
 
     public List<PersonTableDto> getAllPersonTableDto() {
-        List<Person> persons= person_Repo.findAll();
+        List<PersonInfo> persons = personInfoRepo.findAll();
+
         List<PersonTableDto> personsDto = new ArrayList<>();
         for(int i =0; i<persons.size(); i++){
             PersonTableDto personTableDto = new PersonTableDto(
@@ -41,22 +45,22 @@ public class PersonService {
         }
         return personsDto;
     }
-    public List<ApplicationTableDto> getAllApplicationTableDto() {
-        List<Person> persons= person_Repo.findAll();
-        List<ApplicationTableDto> applicationsTableDto = new ArrayList<>();
-        for(int i =0; i<persons.size(); i++){
-            ApplicationTableDto applicationTableDto = new ApplicationTableDto(
-                    persons.get(i).getId(),
-                    persons.get(i).getTab_personal_name()
-//                    persons.get(i).getApplication_number(),
-//                    persons.get(i).getApplication_date(),
-//                    persons.get(i).getApplication_selectedDeliveryType().getName(),
-//                    persons.get(i).isBudget()
-            );
-            applicationsTableDto.add(applicationTableDto);
-        }
-        return applicationsTableDto;
-    }
+//    public List<ApplicationTableDto> getAllApplicationTableDto() {
+//        List<PersonInfo> persons= personInfoRepo.findAll();
+//        List<ApplicationTableDto> applicationsTableDto = new ArrayList<>();
+//        for(int i =0; i<persons.size(); i++){
+//            ApplicationTableDto applicationTableDto = new ApplicationTableDto(
+//                    persons.get(i).getId(),
+//                    persons.get(i).getTab_personal_name()
+////                    persons.get(i).getApplication_number(),
+////                    persons.get(i).getApplication_date(),
+////                    persons.get(i).getApplication_selectedDeliveryType().getName(),
+////                    persons.get(i).isBudget()
+//            );
+//            applicationsTableDto.add(applicationTableDto);
+//        }
+//        return applicationsTableDto;
+//    }
 
 //    public List<ApplicationDto> getAllApplicationDto() {
 //        List<Person> persons= person_Repo.findAll();

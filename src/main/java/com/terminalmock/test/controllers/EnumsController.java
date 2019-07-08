@@ -13,16 +13,21 @@ import java.util.List;
 @RequestMapping("api/enums")
 public class EnumsController {
 
-//    private final AccreditationDocTypeService accreditationDocTypeService;
+    //    private final AccreditationDocTypeService accreditationDocTypeService;
     private final AttrTypeService attrTypeService;
     private final DeliveryTypeService deliveryTypeService;
     private final DocTypeService docTypeService;
     private final EducationLevelService educationLevelService;
+    //    private final EduCrimeaService eduCrimeaService;
     private final ExamFormService examFormService;
     private final GenderService genderService;
+    //    private final IsAccreditationLikeExamService isAccreditationLikeExamService;
+//    private final IsDublicateService isDublicateService;
+//    private final IsForeignersService isForeignersService;
+//    private final IsHotelService isHotelService;
     private final LangInfoService langInfoService;
     private final LanguageLevelService languageLevelService;
-//    private final MilitaryDocTypeService militaryDocTypeService;
+    //    private final MilitaryDocTypeService militaryDocTypeService;
     private final MilitaryFormDocService militaryFormDocService;
     private final PrefTypeService prefTypeService;
     private final SoldieryStatusService soldieryStatusService;
@@ -33,16 +38,19 @@ public class EnumsController {
                            DocTypeService docTypeService, EducationLevelService educationLevelService,
                            ExamFormService examFormService, GenderService genderService,
                            LangInfoService langInfoService, LanguageLevelService languageLevelService,
-                           MilitaryFormDocService militaryFormDocService, PrefTypeService prefTypeService,
-                           SoldieryStatusService soldieryStatusService, TypeDiplomaService typeDiplomaService) {
+                           MilitaryFormDocService militaryFormDocService, PrefTypeService prefTypeService, SoldieryStatusService soldieryStatusService, TypeDiplomaService typeDiplomaService) {
         this.attrTypeService = attrTypeService;
+
         this.deliveryTypeService = deliveryTypeService;
         this.docTypeService = docTypeService;
         this.educationLevelService = educationLevelService;
+
         this.examFormService = examFormService;
         this.genderService = genderService;
+
         this.langInfoService = langInfoService;
         this.languageLevelService = languageLevelService;
+
         this.militaryFormDocService = militaryFormDocService;
         this.prefTypeService = prefTypeService;
         this.soldieryStatusService = soldieryStatusService;
@@ -50,10 +58,11 @@ public class EnumsController {
     }
 
     @GetMapping("/alive")
-    public String alive(){
+    public String alive() {
         return "i'm alive";
     }
-//    @GetMapping("/accreditationDocType")
+
+    //    @GetMapping("/accreditationDocType")
 //    public List<AccreditationDocType> getListAccreditationDocType() {
 //        return accreditationDocTypeService.getAll();
 //    }
@@ -61,19 +70,23 @@ public class EnumsController {
     public List<AttrType> getListAttrType() {
         return attrTypeService.getAll();
     }
+
     @GetMapping("/deliveryType")
     public List<DeliveryType> getListDeliveryType() {
         return deliveryTypeService.getAll();
     }
+
     @GetMapping("/docType")
     public List<DocType> getListDocType() {
         return docTypeService.getAll();
     }
+
     @GetMapping("/educationLevel")
     public List<EducationLevel> getListEducationLevel() {
         return educationLevelService.getAll();
     }
-//    @GetMapping("/eduCrimea")
+
+    //    @GetMapping("/eduCrimea")
 //    public List<EduCrimea> getListEduCrimea() {
 //        return eduCrimeaService.getAll();
 //    }
@@ -81,12 +94,14 @@ public class EnumsController {
     public List<ExamForm> getListExamForm() {
         return examFormService.getAll();
     }
+
     @GetMapping("/gender")
     public List<Gender> getListGender() {
 //        System.out.println(genderService.getAll().get(1).getName());
         return genderService.getAll();
     }
-//    @GetMapping("/isAccreditationLikeExam")
+
+    //    @GetMapping("/isAccreditationLikeExam")
 //    public List<IsAccreditationLikeExam> getListIsAccreditationLikeExam() {
 //        return isAccreditationLikeExamService.getAll();
 //    }
@@ -106,11 +121,13 @@ public class EnumsController {
     public List<LangInfo> getListLangInfo() {
         return langInfoService.getAll();
     }
+
     @GetMapping("/languageLevel")
     public List<LanguageLevel> getListLanguageLevel() {
         return languageLevelService.getAll();
     }
-//    @GetMapping("/militaryDocType")
+
+    //    @GetMapping("/militaryDocType")
 //    public List<MilitaryDocType> getListMilitaryDocType() {
 //        return militaryDocTypeService.getAll();
 //    }
@@ -118,14 +135,17 @@ public class EnumsController {
     public List<MilitaryFormDoc> getListMilitaryFormDoc() {
         return militaryFormDocService.getAll();
     }
+
     @GetMapping("/prefType")
     public List<PrefType> getListPrefType() {
         return prefTypeService.getAll();
     }
+
     @GetMapping("/soldieryStatus")
     public List<SoldieryStatus> getListSoldieryStatus() {
         return soldieryStatusService.getAll();
     }
+
     @GetMapping("/typeDiploma")
     public List<TypeDiploma> getListTypeDiploma() {
         return typeDiplomaService.getAll();
