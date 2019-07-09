@@ -3,6 +3,7 @@ package com.terminalmock.test.controllers;
 
 import com.terminalmock.test.dto.ApplicationTableDto;
 import com.terminalmock.test.dto.PersonTableDto;
+import com.terminalmock.test.entities.entity.Application;
 import com.terminalmock.test.entities.entity.Person;
 import com.terminalmock.test.entities.entity.PersonInfo;
 import com.terminalmock.test.services.entityServices.PersonInfoService;
@@ -12,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Set;
 
 @RestController
 @RequestMapping("api/profile")
@@ -42,6 +44,22 @@ public class ProfileController {
 //    public Person getPerson(@PathVariable Long id) {
 //        return personService.getOne(id);
 //    }
+
+    @GetMapping("/personByPersonInfo/{id}")
+    public Person getPersonByPersonInfo(@PathVariable Long id){
+        return personInfoService.getPersonByPersonInfo(id);
+    }
+
+    @GetMapping("/getApplicationsByPersonInfo/{id}")
+    public Set<Application> getApplicationsByPersonInfo(@PathVariable Long id){
+        return personInfoService.getApplicationsByPersonInfo(id);
+    }
+
+    @GetMapping("/getApplicationPersonName/{id}")
+    public String getApplicationPersonName(@PathVariable Long id){
+        return personInfoService.getApplicationPersonName(id);
+    }
+
     @GetMapping("/person/{id}")
     public PersonInfo getPerson(@PathVariable Long id) {
         return personInfoService.getOne(id);

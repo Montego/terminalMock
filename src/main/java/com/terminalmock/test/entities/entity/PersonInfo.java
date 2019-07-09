@@ -69,20 +69,17 @@ public class PersonInfo {
     @JoinColumn(name = "language1")
     private Language selected_foreignLanguageName1;
 
-
     private String language_score1;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "language2")
     private Language selected_foreignLanguageName2;
 
-
     private String language_score2;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "language3")
     private Language selected_foreignLanguageName3;
-
 
     private String language_score3;
     //from address tab
@@ -140,6 +137,7 @@ public class PersonInfo {
     private String extraInfosDescription1;
     private String extraInfosDescription2;
     private String image;
+    private String showimage;
 
     @JoinColumn(name="person_personInfo_id")
     @ManyToOne(fetch = FetchType.EAGER)

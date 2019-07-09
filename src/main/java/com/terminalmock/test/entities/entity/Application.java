@@ -13,9 +13,10 @@ import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
 
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
-@AllArgsConstructor
+//@AllArgsConstructor
 @Entity
 public class Application{
     @Id
@@ -34,6 +35,7 @@ public class Application{
     private DocType application_selectedDocType;
 
     private String fullname;
+
 
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name="application_condition_id")
@@ -75,9 +77,9 @@ public class Application{
             this.application_selectedDocType        = new DocType();
             this.fullname                           = "";
 
-            HashSet<ApplicationCondition> defSetAC = new HashSet<>();
-            defSetAC.add(new ApplicationCondition(true));
-            this.application_condition              = defSetAC;
+//            HashSet<ApplicationCondition> defSetAC = new HashSet<>();
+//            defSetAC.add(new ApplicationCondition(true));
+//            this.application_condition              = defSetAC;
 
             HashSet<ApplicationDocuments> defSetAD = new HashSet<>();
             defSetAD.add(new ApplicationDocuments(true));

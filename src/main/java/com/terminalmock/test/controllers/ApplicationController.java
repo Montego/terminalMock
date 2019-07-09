@@ -28,10 +28,14 @@ public class ApplicationController {
         return new Application(true);
     }
 
-    @GetMapping("/applicationByPerson/{id}")
-    public List<ApplicationShortDto> applicationByPerson(@PathVariable("id") Long id) {
-        return applicationShortDtoService.getPersonApplications(personRepo.findById(id).get());
-    }
+
+//    @GetMapping("/applicationByPerson/{id}")
+//    public Set<>
+
+//    @GetMapping("/applicationByPerson/{id}")
+//    public List<ApplicationShortDto> applicationByPerson(@PathVariable("id") Long id) {
+//        return applicationShortDtoService.getPersonApplications(personRepo.findById(id).get());
+//    }
 
     @PostMapping("/application")
     public Application applicationByPerson(@RequestBody Application application) {

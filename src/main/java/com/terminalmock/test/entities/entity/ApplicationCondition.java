@@ -6,9 +6,9 @@ import lombok.*;
 
 import javax.persistence.*;
 
-@Data
-//@Setter
-//@Getter
+//@Data
+@Setter
+@Getter
 @NoArgsConstructor
 @AllArgsConstructor
 //@Table(name = "ApplicationCondition")
