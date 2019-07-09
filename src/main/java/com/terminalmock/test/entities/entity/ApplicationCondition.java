@@ -36,10 +36,16 @@ public class ApplicationCondition {
     private String documentBase64;
 
 
+    @JoinColumn(name="application_condition_id")
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name="condition_person_id" )
     @JsonBackReference
-    Person person;
+    Application application;
+
+
+//    @ManyToOne(fetch = FetchType.EAGER)
+//    @JoinColumn(name="condition_person_id" )
+//    @JsonBackReference
+//    Person person;
 
 
 }

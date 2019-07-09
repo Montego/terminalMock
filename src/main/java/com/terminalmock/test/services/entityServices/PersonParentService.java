@@ -1,6 +1,6 @@
 package com.terminalmock.test.services.entityServices;
 
-import com.terminalmock.test.entities.entity.Person_parent;
+import com.terminalmock.test.entities.entity.PersonParent;
 import com.terminalmock.test.repositories.entityrepo.PersonParentRepo;
 import org.springframework.stereotype.Service;
 
@@ -14,15 +14,15 @@ public class PersonParentService {
         this.person_parentRepo = person_parentRepo;
     }
 
-    public Person_parent getOne(long id) {
+    public PersonParent getOne(long id) {
         return person_parentRepo.findById(id).orElse(null);
     }
 
-    public List<Person_parent> getAll() {
+    public List<PersonParent> getAll() {
         return person_parentRepo.findAll();
     }
 
-    public void save(Person_parent person_parent_){
+    public void save(PersonParent person_parent_){
         person_parentRepo.save(person_parent_);
     }
 

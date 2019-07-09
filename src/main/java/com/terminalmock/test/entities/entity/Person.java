@@ -1,14 +1,10 @@
 package com.terminalmock.test.entities.entity;
 
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-import com.terminalmock.test.entities.dictionary.*;
-import com.terminalmock.test.entities.enums.*;
 import lombok.*;
 
 import javax.persistence.*;
-import java.time.LocalDate;
 import java.util.Set;
 
 //@Data
@@ -102,7 +98,7 @@ public class Person {
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name="person_ege_id")
     @JsonManagedReference
-    private Set<Person_ege> ege_info;
+    private Set<PersonEge> ege_info;
 //from graduate_military tab
 //    @ManyToOne(fetch = FetchType.EAGER)
 //    @JoinColumn(name = "educationLevel")
@@ -163,7 +159,7 @@ public class Person {
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name="person_parent_id")
     @JsonManagedReference
-    private Set<Person_parent> parents_info;
+    private Set<PersonParent> parents_info;
 
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name="person_personInfo_id")
@@ -174,6 +170,11 @@ public class Person {
     @JoinColumn(name="person_futureInfo_id")
     @JsonManagedReference
     private Set<PersonFutures> futures_info;
+
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name="person_application_id")
+    @JsonManagedReference
+    private Set<Application> applications;
 
 //    private String photo;
 

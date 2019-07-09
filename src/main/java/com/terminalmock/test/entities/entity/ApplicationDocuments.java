@@ -27,9 +27,15 @@ public class ApplicationDocuments {
     private String tab_document_issuedBy;
     private String fullName;
 
+    @JoinColumn(name="application_document_id")
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name="document_person_id" )
     @JsonBackReference
-    private Person person_documents;
+    Application application;
+
+
+//    @ManyToOne(fetch = FetchType.EAGER)
+//    @JoinColumn(name="document_person_id" )
+//    @JsonBackReference
+//    private Person person_documents;
 
 }

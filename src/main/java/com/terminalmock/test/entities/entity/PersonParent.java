@@ -11,7 +11,7 @@ import java.time.LocalDate;
 
 @Data
 @Entity
-public class Person_parent {
+public class PersonParent {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     long id;
