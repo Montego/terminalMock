@@ -38,4 +38,24 @@ public class ApplicationDocuments {
 //    @JsonBackReference
 //    private Person person_documents;
 
+    //конструктор для информативного заполения JSON
+    public ApplicationDocuments(boolean defValues) {
+
+        if (defValues) {
+
+            this.id                                 = (long) -1;
+            this.tab_document_selectedDocumentType  = "";
+            this.tab_document_count                 = -1;
+            this.tab_document_series                = "";
+            this.tab_document_number                = "";
+            this.tab_document_selectedDocType       = new DocType(); //enum
+            this.tab_document_date                  = LocalDate.now();
+            this.tab_document_issuedBy              = "";
+            this.fullName                           = "";
+            this.application                        = new Application();
+
+        }
+    }
+
 }
+

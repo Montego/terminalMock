@@ -48,4 +48,29 @@ public class PersonEge {
     @JoinColumn(name="person_ege_id" )
     @JsonBackReference
     Person person;
+
+    //конструктор для информативного заполения JSON
+    public PersonEge(boolean defValues) {
+
+        if (defValues) {
+            this.id                                 = (long) -1;
+            this.tab_ege_lastname                   = "";
+            this.tab_ege_firstname                  = "";
+            this.tab_ege_middlename                 = "";
+            this.tab_ege_selectedIdentityCardCode   = new IdentityCardCode(true);
+            this.tab_ege_identityCardSeries         = "";
+            this.tab_ege_identityCardNumber         = "";
+            this.tab_ege_identityCardIssueDate      = LocalDate.now();
+            this.tab_ege_identityCardIssueBy        = "";
+            this.tab_ege_info_selectedCitizenship   = new AddressCountryRegion(); //dict
+            this.tab_ege_selectedExamForm           = new ExamForm(); //enum
+            this.tab_ege_year                       = "";
+            this.tab_ege_selectedSubject            = new Subject(true);
+            this.tab_ege_score                      = -1;
+            this.tab_ege_score_fis                  = -1;
+            this.tab_ege_appelation                 = "";
+            this.person                             = new Person();
+        }
+    }
+
 }

@@ -24,4 +24,18 @@ public class Subject {
     private int isEGE;
     @Column(name = "\"Cipher\"")
     private String cipher;
+
+    //конструктор для информативного заполения JSON
+    public Subject(boolean defValues) {
+
+        if (defValues) {
+            this.subjectId    = "";
+            this.name         = "";
+            this.orderBy      = -1;
+            this.minScore     = -1;
+            this.isEGE        = -1;
+            this.cipher       = "";
+        }
+    }
+
 }

@@ -64,6 +64,8 @@ public class ProfileController {
         personService.save(personFromDB);
     }
 
+
+
 //    @GetMapping("/testSave")
 //    public void doShit(){
 //        Person person = new Person();
@@ -86,4 +88,6 @@ public class ProfileController {
 //        person.setApplication_condition(conditions);
 //        personService.save(person);
 //    }
+
+
 }

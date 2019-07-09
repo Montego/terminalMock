@@ -47,5 +47,21 @@ public class ApplicationCondition {
 //    @JsonBackReference
 //    Person person;
 
+    //конструктор для информативного заполения JSON
+    public ApplicationCondition(boolean defValues){
+
+        if (defValues){
+
+            this.id                             = -1;
+            this.selected_faculty               = "";
+            this.selected_speciality            = new Speciality(true);
+            this.selected_educationType         = "";
+            this.selected_agreement             = "";
+            this.selected_specialRight          = "";
+            this.selected_typeOfSpecialRight    = "";
+            this.documentBase64                 = "";
+            this.application                    = new Application();
+        }
+    }
 
 }

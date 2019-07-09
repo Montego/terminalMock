@@ -42,4 +42,28 @@ public class PersonParent {
     @JsonBackReference
     Person person;
 
+    //конструктор для информативного заполения JSON
+    public PersonParent(boolean defValues) {
+
+        if (defValues) {
+            this.id                                     = (long) -1;
+            this.tab_parent_name                        = "";
+            this.tab_parent_selectedFamRelationShip     = new FamRelationShip();
+            this.tab_parent_lastname                    = "";
+            this.tab_parent_firstname                   = "";
+            this.tab_parent_middlename                  = "";
+            this.tab_parent_selectedGender              = new Gender(); //enum
+            this.tab_parent_birthDate                   = LocalDate.now();
+            this.tab_parent_organization_name           = "";
+            this.tab_parent_organization_address        = "";
+            this.tab_parent_organization_seniority      = "";
+            this.tab_parent_organization_employYears    = -1;
+            this.tab_parent_homePhoneNumber             = "";
+            this.tab_parent_cellularPhone               = "";
+            this.tab_parent_factAddress                 = "";
+            this.person                                 = new Person();
+        }
+
+    }
+
 }

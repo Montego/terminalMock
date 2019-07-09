@@ -10,6 +10,7 @@ import lombok.*;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.HashSet;
 import java.util.Set;
 
 @Data
@@ -60,4 +61,34 @@ public class Application{
     @ManyToOne(fetch = FetchType.EAGER)
     @JsonBackReference
     Person person;
+
+    public Application() {
+    }
+
+        //конструктор для информативного заполения JSON
+    public Application(boolean defValues){
+
+        if (defValues){
+            this.id                                 = -1;
+            this.application_number                 = "";
+            this.application_date                   = LocalDate.now();
+            this.application_selectedDeliveryType   = new DeliveryType();
+            this.application_selectedDocType        = new DocType();
+            this.fullname                           = "";
+
+            HashSet<ApplicationCondition> defSetAC = new HashSet<>();
+            defSetAC.add(new ApplicationCondition(true));
+            this.application_condition              = defSetAC;
+
+            HashSet<ApplicationDocuments> defSetAD = new HashSet<>();
+            defSetAD.add(new ApplicationDocuments(true));
+
+            this.application_documents              = defSetAD;
+            this.score_russian                      = -1;
+            this.score_chemistry                    = -1;
+            this.score_biology                      = -1;
+            this.person                             = new Person();
+        }
+
+    }
 }

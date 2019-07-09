@@ -43,4 +43,26 @@ public class PersonFutures {
     @ManyToOne(fetch = FetchType.EAGER)
     @JsonBackReference
     Person person;
+
+    //конструктор для информативного заполения JSON
+    public PersonFutures(boolean defValues) {
+
+        if (defValues) {
+            this.id                                     = (long) -1;
+            this.tab_features_selectedAttrType          = new AttrType();
+            this.tab_features_selectedPreference        = new Preference();
+            this.tab_features_selectedTypeDiploma       = new TypeDiploma();
+            this.tab_features_serial                    = "";
+            this.tab_features_number                    = "";
+            this.doc1                                   = "";
+            this.tab_features_selectedDocType1          = new DocType();
+            this.doc2                                   = "";
+            this.tab_features_selectedDocType2          = new DocType();
+            this.doc3                                   = "";
+            this.tab_features_selectedDocType3          = new DocType();
+            this.person                                 = new Person();
+        }
+    }
+
+
 }

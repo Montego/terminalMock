@@ -29,6 +29,21 @@ public class IdentityCardCode {
     public IdentityCardCode() {
     }
 
+    //конструктор для информативного заполения JSON
+    public IdentityCardCode(boolean defValues) {
+
+        if (defValues) {
+            this.identityCardCode       = "";
+            this.identityCardNamemiddle = "";
+            this.identityCardNameFull   = "";
+            this.identityCardNameShort  = "";
+            this.isUniversity           = -1;
+            this.isMandatory_Number     = -1;
+            this.isMandatory_Series     = -1;
+            this.sort                   = -1;
+        }
+    }
+
     public String getIdentityCardCode() {
         return this.identityCardCode;
     }

@@ -33,4 +33,23 @@ public class Speciality {
     @Column(name = "\"SpecLevel\"")
     private int specLevel;
 
+    //конструктор для информативного заполения JSON
+    public Speciality(boolean defValues){
+
+        if (defValues){
+
+            this.specialityId       = "";
+            this.description        = "";
+            this.deparCode          = "";
+            this.codeOKSO           = "";
+            this.normEduPeriod      = "";
+            this.descriptionEng     = "";
+            this.deparCodeForeign   = "";
+            this.isAdmissionComm    = -1;
+            this.educationLevel     = -1;
+            this.specLevel          = -1;
+
+        }
+    }
+
 }

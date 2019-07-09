@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Set;
 
 //@Data
@@ -198,4 +199,38 @@ public class Person {
 //    @JsonManagedReference
 //    private Set<ApplicationDocuments> application_documents;
 
+    //конструктор для информативного заполения JSON
+    public Person(boolean defValues) {
+
+        if (defValues) {
+
+            this.id = (long) -1;
+
+            HashSet<PersonEge> defSetPE = new HashSet<>();
+            defSetPE.add(new PersonEge(true));
+
+            this.ege_info = defSetPE;
+
+            HashSet<PersonParent> defSetPP = new HashSet<>();
+            defSetPP.add(new PersonParent(true));
+
+            this.parents_info = defSetPP;
+
+            HashSet<PersonInfo> defSetPI = new HashSet<>();
+            defSetPI.add(new PersonInfo(true));
+
+            this.person_info = defSetPI;
+
+            HashSet<PersonFutures> defSetPF = new HashSet<>();
+            defSetPF.add(new PersonFutures(true));
+
+            this.futures_info = defSetPF;
+
+            HashSet<Application> app = new HashSet<>();
+            app.add(new Application(true));
+
+            this.applications = app;
+
+        }
+    }
 }
