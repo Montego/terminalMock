@@ -14,6 +14,8 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 public class Application{
     @Id
@@ -62,10 +64,7 @@ public class Application{
     @JsonBackReference
     Person person;
 
-    public Application() {
-    }
-
-        //конструктор для информативного заполения JSON
+    //конструктор для информативного заполения JSON
     public Application(boolean defValues){
 
         if (defValues){

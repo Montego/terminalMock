@@ -12,6 +12,8 @@ import javax.persistence.*;
 import java.time.LocalDate;
 
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 public class PersonEge {
     @Id
@@ -48,6 +50,8 @@ public class PersonEge {
     @JoinColumn(name="person_ege_id" )
     @JsonBackReference
     Person person;
+
+
 
     //конструктор для информативного заполения JSON
     public PersonEge(boolean defValues) {

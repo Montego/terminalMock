@@ -5,11 +5,15 @@ import com.terminalmock.test.entities.dictionary.Preference;
 import com.terminalmock.test.entities.enums.AttrType;
 import com.terminalmock.test.entities.enums.DocType;
 import com.terminalmock.test.entities.enums.TypeDiploma;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 public class PersonFutures {
     @Id

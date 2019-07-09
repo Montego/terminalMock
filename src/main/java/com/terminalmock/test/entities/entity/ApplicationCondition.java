@@ -9,8 +9,8 @@ import javax.persistence.*;
 @Data
 //@Setter
 //@Getter
-//@NoArgsConstructor
-//@AllArgsConstructor
+@NoArgsConstructor
+@AllArgsConstructor
 //@Table(name = "ApplicationCondition")
 @Entity
 public class ApplicationCondition {

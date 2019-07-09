@@ -1,11 +1,16 @@
 package com.terminalmock.test.entities.dictionary;
 
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
+@NoArgsConstructor
+@AllArgsConstructor
 @Table(name = "\"D_IdentityCardTable\"")
 public class IdentityCardCode {
     @Id
@@ -25,9 +30,6 @@ public class IdentityCardCode {
     private int isMandatory_Series;
     @Column(name = "\"Sort\"")
     private int sort;
-
-    public IdentityCardCode() {
-    }
 
     //конструктор для информативного заполения JSON
     public IdentityCardCode(boolean defValues) {

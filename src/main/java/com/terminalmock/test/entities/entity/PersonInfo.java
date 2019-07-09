@@ -3,12 +3,16 @@ package com.terminalmock.test.entities.entity;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.terminalmock.test.entities.dictionary.*;
 import com.terminalmock.test.entities.enums.*;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.time.LocalDate;
 
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 public class PersonInfo {
     @Id
