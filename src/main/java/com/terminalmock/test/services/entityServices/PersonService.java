@@ -2,6 +2,7 @@ package com.terminalmock.test.services.entityServices;
 
 import com.terminalmock.test.dto.ApplicationTableDto;
 import com.terminalmock.test.dto.PersonTableDto;
+import com.terminalmock.test.entities.entity.Application;
 import com.terminalmock.test.entities.entity.Person;
 import com.terminalmock.test.entities.entity.PersonInfo;
 import com.terminalmock.test.repositories.entityrepo.PersonInfoRepo;
@@ -34,12 +35,15 @@ public class PersonService {
 
         List<PersonTableDto> personsDto = new ArrayList<>();
         for(int i =0; i<persons.size(); i++){
+//            List<Application> applications = persons.get(i).getPerson().getApplications();
+
             PersonTableDto personTableDto = new PersonTableDto(
                     persons.get(i).getId(),
                     persons.get(i).getTab_personal_lastname(),
                     persons.get(i).getTab_personal_firstname(),
                     persons.get(i).getTab_personal_middlename(),
                     persons.get(i).getTab_personal_birthDate()
+//                    applications.get(i).getApplication_number()
             );
             personsDto.add(personTableDto);
         }
