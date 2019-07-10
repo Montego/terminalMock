@@ -32,7 +32,7 @@ public class PersonInfoService {
         return personInfo.getPerson();
     }
 
-    public Set<Application> getApplicationsByPersonInfo(long id){
+    public List<Application> getApplicationsByPersonInfo(long id){
         PersonInfo personInfo = personInfoRepo.findById(id).orElse(null);
         Person person = personInfo.getPerson();
         return person.getApplications();

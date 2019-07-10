@@ -23,6 +23,7 @@ public class Application{
     @GeneratedValue(strategy = GenerationType.AUTO)
     long id;
     //application_condition массив
+    private String application_person_name;
     private String application_number;
     private LocalDate application_date;
 
@@ -34,7 +35,7 @@ public class Application{
     @JoinColumn(name = "docType")
     private DocType application_selectedDocType;
 
-    private String fullname;
+
 
 
     @OneToMany(cascade = CascadeType.ALL)
@@ -71,11 +72,11 @@ public class Application{
 
         if (defValues){
             this.id                                 = -1;
+            this.application_person_name            = "";
             this.application_number                 = "";
             this.application_date                   = LocalDate.now();
             this.application_selectedDeliveryType   = new DeliveryType();
             this.application_selectedDocType        = new DocType();
-            this.fullname                           = "";
 
 //            HashSet<ApplicationCondition> defSetAC = new HashSet<>();
 //            defSetAC.add(new ApplicationCondition(true));

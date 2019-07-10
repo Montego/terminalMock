@@ -5,7 +5,9 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 //@Data
@@ -45,7 +47,7 @@ public class Person {
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name="person_application_id")
     @JsonManagedReference
-    private Set<Application> applications;
+    private List<Application> applications;
 
     //конструктор для информативного заполения JSON
     public Person(boolean defValues) {
@@ -74,7 +76,7 @@ public class Person {
 
             this.futures_info = defSetPF;
 
-            HashSet<Application> app = new HashSet<>();
+            ArrayList<Application> app = new ArrayList<>();
             app.add(new Application(true));
 
             this.applications = app;

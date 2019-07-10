@@ -1,6 +1,7 @@
 package com.terminalmock.test.dto;
 
 
+import com.terminalmock.test.entities.enums.DeliveryType;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -13,11 +14,10 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ApplicationTableDto {
-    Long id;
-
-    private String tab_personal_name;
-//    private String application_number;
-//    private LocalDate application_date;
-//    private String application_selectedDeliveryType;
+    private Long applicationId;
+    private String application_person_name;
+    private String application_number;
+    private LocalDate application_date;
+    private DeliveryType application_selectedDeliveryType;
 //    private boolean budget;
 }

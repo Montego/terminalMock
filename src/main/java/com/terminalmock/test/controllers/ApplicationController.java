@@ -1,10 +1,13 @@
 package com.terminalmock.test.controllers;
 
 import com.terminalmock.test.dto.ApplicationShortDto;
+import com.terminalmock.test.dto.ApplicationTableDto;
 import com.terminalmock.test.entities.entity.Application;
 import com.terminalmock.test.repositories.entityrepo.ApplicationRepo;
 import com.terminalmock.test.repositories.entityrepo.PersonRepo;
 import com.terminalmock.test.services.dtoServices.ApplicationShortDtoService;
+import com.terminalmock.test.services.dtoServices.ApplicationTableDtoService;
+import com.terminalmock.test.services.entityServices.ApplicationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,7 +19,10 @@ public class ApplicationController {
 
     @Autowired
     ApplicationShortDtoService applicationShortDtoService;
-
+    @Autowired
+    ApplicationTableDtoService applicationTableDtoService;
+    @Autowired
+    ApplicationService applicationService;
     @Autowired
     ApplicationRepo applicationRepo;
 
@@ -38,9 +44,29 @@ public class ApplicationController {
 //    }
 
     @PostMapping("/application")
-    public Application applicationByPerson(@RequestBody Application application) {
+    public Application saveApplication(@RequestBody Application application) {
         return applicationRepo.save(application);
+    }
 
+
+    @GetMapping("/applicationById/{id}")
+    public Application getApplicationById(@PathVariable Long id) {
+        System.out.println("appl by id");
+        return applicationService.getOne(id);
+    }
+
+    @PostMapping("/application/{id}")
+    public String saveApplWithPersonConnect(
+            @RequestBody Application application,
+            @PathVariable Long id) {
+        applicationService.saveWithPersonConnect(application,id);
+        return "application with person connect was save successfully";
+
+    }
+
+    @GetMapping("/applicationTable/{id}")
+    public List<ApplicationTableDto> getApplicationsTableDto(@PathVariable Long id){
+        return applicationTableDtoService.getApplicationsTableDto(id);
     }
 
 }
