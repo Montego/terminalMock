@@ -32,6 +32,8 @@ public class ApplicationCondition {
     private String selected_agreement;
     private String selected_specialRight;
     private String selected_typeOfSpecialRight;
+    private String proof_special_right_serial;
+    private String proof_special_right_number;
 
     private String documentBase64;
 

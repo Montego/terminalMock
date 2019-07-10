@@ -28,8 +28,12 @@ public class ApplicationTableDtoService {
     public List<ApplicationTableDto> getApplicationsTableDto(long id) {
         PersonInfo personInfo = personInfoRepo.findById(id).orElse(null);
         Person person = personInfo.getPerson();
+
         List<Application> applications = person.getApplications();
         List<ApplicationTableDto> applicationTableDtos = new ArrayList<>();
+
+//        ApplicationTableDto applicationTableDto = new ApplicationTableDto();
+//        if(applicationRepo.findById())
         for (int i = 0; i < (applications).size(); i++) {
             ApplicationTableDto applicationTableDto = new ApplicationTableDto(
                     applications.get(i).getId(),
