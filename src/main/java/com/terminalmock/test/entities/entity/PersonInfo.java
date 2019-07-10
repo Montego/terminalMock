@@ -143,7 +143,7 @@ public class PersonInfo {
     @ManyToOne(fetch = FetchType.EAGER)
     @JsonBackReference
     Person person;
-
+    //git test
     //конструктор для информативного заполения JSON
     public PersonInfo(boolean defValues) {
 
