@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping("/dictionary")
+@RequestMapping("/api/dictionary")
 
 public class DictionaryController {
     private final AcademyYearService academyYearService;
