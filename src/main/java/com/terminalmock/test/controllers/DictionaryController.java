@@ -12,6 +12,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/dictionary")
+
 public class DictionaryController {
     private final AcademyYearService academyYearService;
 //    private final AccreditationDocService accreditationDocService;
