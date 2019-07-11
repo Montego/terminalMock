@@ -9,17 +9,17 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/rest")
 public class PersonController {
 
-    @Autowired
-    PersonRepo personRepo;
-
-    @GetMapping("/getEmptyPerson")
-    public Person getEmptyMedCertDPO(){
-        return new Person(true);
-    }
-
-    @PostMapping("/person")
-    public Person save(@RequestBody Person person){
-        return personRepo.save(person);
-    }
+//    @Autowired
+//    PersonRepo personRepo;
+//
+//    @GetMapping("/getEmptyPerson")
+//    public Person getEmptyMedCertDPO(){
+//        return new Person(true);
+//    }
+//
+//    @PostMapping("/person")
+//    public Person save(@RequestBody Person person){
+//        return personRepo.save(person);
+//    }
 
 }

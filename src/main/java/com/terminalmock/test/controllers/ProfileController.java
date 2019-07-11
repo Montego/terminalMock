@@ -73,16 +73,24 @@ public class ProfileController {
         return person;
     }
 
+//    @PutMapping("/person/{id}")
+//    public void update(
+//            @PathVariable("id") Person personFromDB,
+//            @RequestBody Person person) {
+//        BeanUtils.copyProperties(person, personFromDB, "id");
+//        System.out.println("update person");
+//        personService.save(personFromDB);
+//    }
+
     @PutMapping("/person/{id}")
     public void update(
-            @PathVariable("id") Person personFromDB,
+            @PathVariable("id") Long personInfoFromDBid,
             @RequestBody Person person) {
+        Person personFromDB = personInfoService.getPersonByPersonInfo(personInfoFromDBid);
         BeanUtils.copyProperties(person, personFromDB, "id");
         System.out.println("update person");
         personService.save(personFromDB);
     }
-
-
 
 //    @GetMapping("/testSave")
 //    public void doShit(){

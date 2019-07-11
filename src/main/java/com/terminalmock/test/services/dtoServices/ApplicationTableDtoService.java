@@ -27,7 +27,16 @@ public class ApplicationTableDtoService {
 
     public List<ApplicationTableDto> getApplicationsTableDto(long id) {
         PersonInfo personInfo = personInfoRepo.findById(id).orElse(null);
-        Person person = personInfo.getPerson();
+        Person person = null;
+
+        try{
+             person = personInfo.getPerson();
+        }catch (NullPointerException e){
+            System.out.println("person null");
+            List<ApplicationTableDto> empty = new ArrayList<>();
+            return empty;
+        }
+//        Person person = personInfo.getPerson();
 
         List<Application> applications = person.getApplications();
         List<ApplicationTableDto> applicationTableDtos = new ArrayList<>();

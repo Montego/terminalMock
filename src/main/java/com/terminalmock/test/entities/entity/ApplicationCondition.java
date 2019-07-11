@@ -21,9 +21,11 @@ public class ApplicationCondition {
     //TODO переделать на данные из БД
     private String selected_faculty;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "speciality")
-    private Speciality selected_speciality;
+//    @ManyToOne(fetch = FetchType.EAGER)
+//    @JoinColumn(name = "speciality")
+//    private Speciality selected_speciality;
+
+    private String selected_speciality;
 
     //TODO переделать на объект
     private String selected_educationType;
@@ -44,26 +46,23 @@ public class ApplicationCondition {
     Application application;
 
 
-//    @ManyToOne(fetch = FetchType.EAGER)
-//    @JoinColumn(name="condition_person_id" )
-//    @JsonBackReference
-//    Person person;
+
 
     //конструктор для информативного заполения JSON
-    public ApplicationCondition(boolean defValues){
-
-        if (defValues){
-
-            this.id                             = -1;
-            this.selected_faculty               = "";
-            this.selected_speciality            = new Speciality(true);
-            this.selected_educationType         = "";
-            this.selected_agreement             = "";
-            this.selected_specialRight          = "";
-            this.selected_typeOfSpecialRight    = "";
-            this.documentBase64                 = "";
-            this.application                    = new Application();
-        }
-    }
+//    public ApplicationCondition(boolean defValues){
+//
+//        if (defValues){
+//
+//            this.id                             = -1;
+//            this.selected_faculty               = "";
+//            this.selected_speciality            = new Speciality(true);
+//            this.selected_educationType         = "";
+//            this.selected_agreement             = "";
+//            this.selected_specialRight          = "";
+//            this.selected_typeOfSpecialRight    = "";
+//            this.documentBase64                 = "";
+//            this.application                    = new Application();
+//        }
+//    }
 
 }
