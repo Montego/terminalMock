@@ -86,9 +86,12 @@ public class PersonInfo {
     private String tab_address_registrationAddress;
     private String tab_address_factAddress;
     private String tab_address_templateRegistrationAddress;
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "educationLevel")
-    private EducationLevel tab_edu_military_educationLevel;
+
+//    @ManyToOne(fetch = FetchType.EAGER)
+//    @JoinColumn(name = "educationLevel")
+//    private EducationLevel tab_edu_military_educationLevel;
+    private String tab_edu_military_educationLevel;
+
     private String tab_edu_military_univer;
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "addressCountryRegion")
@@ -193,7 +196,7 @@ public class PersonInfo {
             this.tab_address_registrationAddress            = "";
             this.tab_address_factAddress                    = "";
             this.tab_address_templateRegistrationAddress    = "";
-            this.tab_edu_military_educationLevel            = new EducationLevel();
+            this.tab_edu_military_educationLevel            = "";
             this.tab_edu_military_univer                    = "";
             this.tab_edu_military_selectedCountryRegion     = new AddressCountryRegion();
             this.tab_edu_military_selectedState             = new AddressState();
