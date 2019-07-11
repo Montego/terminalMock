@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("api/profile")
+@RequestMapping("/profile")
 public class ApplicationController {
 
     @Autowired
