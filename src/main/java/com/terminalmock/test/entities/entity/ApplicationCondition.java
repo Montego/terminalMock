@@ -2,9 +2,11 @@ package com.terminalmock.test.entities.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.terminalmock.test.entities.dictionary.Speciality;
+import com.terminalmock.test.entities.enums.DocType;
 import lombok.*;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 
 //@Data
 @Setter
@@ -32,12 +34,17 @@ public class ApplicationCondition {
 
     //TODO приходит "да/нет" в буль. переделать
     private String selected_agreement;
+    private LocalDate date_agreement;
     private String selected_specialRight;
     private String selected_typeOfSpecialRight;
+    private String proof_special_right;
+    private String proof_special_right_description;
     private String proof_special_right_serial;
     private String proof_special_right_number;
-
-    private String documentBase64;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "docType")
+    private DocType condition_selectedDocType;
+//    private String documentBase64;
 
 
     @JoinColumn(name="application_condition_id")

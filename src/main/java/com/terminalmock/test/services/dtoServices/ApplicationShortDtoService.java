@@ -13,19 +13,19 @@ import java.util.ArrayList;
 @Service
 public class ApplicationShortDtoService {
 
-    @Autowired
-    ApplicationRepo applicationRepo;
-
-    public ArrayList<ApplicationShortDto> getPersonApplications(Person person){
-
-        ArrayList<Application> arList = applicationRepo.findAllByPerson(person);
-        ArrayList<ApplicationShortDto> result = new ArrayList<>();
-
-        for(Application app:arList){
-            result.add(ApplicationConverter.EntityToShortDto(app));
-        }
-
-        return result;
-    }
+//    @Autowired
+//    ApplicationRepo applicationRepo;
+//
+//    public ArrayList<ApplicationShortDto> getPersonApplications(Person person){
+//
+//        ArrayList<Application> arList = applicationRepo.findAllByPerson(person);
+//        ArrayList<ApplicationShortDto> result = new ArrayList<>();
+//
+////        for(Application app:arList){
+////            result.add(ApplicationConverter.EntityToShortDto(app));
+////        }
+//
+//        return result;
+//    }
 
 }

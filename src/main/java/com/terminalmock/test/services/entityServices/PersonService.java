@@ -79,6 +79,7 @@ public class PersonService {
 //    }
 
     public void save(Person person){
+//        person.getPerson_info();
         person_Repo.save(person);
     }
 

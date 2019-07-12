@@ -22,6 +22,7 @@ public class Person {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
 
+    private String acceptedPerson;
 //from evidence_ege tab
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name="person_ege_id")
@@ -34,10 +35,17 @@ public class Person {
     @JsonManagedReference
     private Set<PersonParent> parents_info;
 
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name="person_personInfo_id")
+//    @OneToMany(cascade = CascadeType.ALL)
+//    @JoinColumn(name="person_personInfo_id")
+//    @JsonManagedReference
+//    private Set<PersonInfo> person_info;
+//    @OneToOne(mappedBy = "person", cascade = CascadeType.ALL)
+//    @OneToOne(optional = false, mappedBy="person")
+
+    @OneToOne(cascade=CascadeType.ALL, mappedBy= "person")
     @JsonManagedReference
-    private Set<PersonInfo> person_info;
+    private PersonInfo person_info;
+
 
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name="person_futureInfo_id")

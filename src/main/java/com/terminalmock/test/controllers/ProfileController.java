@@ -16,7 +16,7 @@ import java.util.List;
 import java.util.Set;
 
 @RestController
-@RequestMapping("/api/profile")
+@RequestMapping("/profile")
 public class ProfileController {
     private final PersonService personService;
     private final PersonInfoService personInfoService;
@@ -67,7 +67,7 @@ public class ProfileController {
 
     @PostMapping()
     public Person create(@RequestBody Person person) {
-
+        System.out.println(person.getPerson_info());
         System.out.println("save person");
         personService.save(person);
         return person;
@@ -86,11 +86,28 @@ public class ProfileController {
     public void update(
             @PathVariable("id") Long personInfoFromDBid,
             @RequestBody Person person) {
+
+//        PersonInfo personInfoFromDB = personInfoService.getOne(personInfoFromDBid);
+//        PersonInfo personInfo = person.getPersonInfo();
+
         Person personFromDB = personInfoService.getPersonByPersonInfo(personInfoFromDBid);
         BeanUtils.copyProperties(person, personFromDB, "id");
         System.out.println("update person");
         personService.save(personFromDB);
     }
+    @PutMapping("/acceptPerson/{id}")
+    public String acceptPerson(
+            @PathVariable("id") Long personInfoFromDBid,
+            @RequestBody String accept){
+        Person personFromDB = personInfoService.getPersonByPersonInfo(personInfoFromDBid);
+        Person personFromDBNew = personInfoService.getPersonByPersonInfo(personInfoFromDBid);
+        personFromDBNew.setAcceptedPerson(accept);
+        BeanUtils.copyProperties(personFromDBNew, personFromDB, "id");
+        personService.save(personFromDBNew);
+        return "Утверждено";
+    }
+
+
 
 //    @GetMapping("/testSave")
 //    public void doShit(){

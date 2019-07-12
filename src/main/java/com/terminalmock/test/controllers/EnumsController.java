@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/enums")
+@RequestMapping("/enums")
 public class EnumsController {
 
     //    private final AccreditationDocTypeService accreditationDocTypeService;
