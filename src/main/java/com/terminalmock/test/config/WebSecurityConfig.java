@@ -64,6 +64,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 //                .and()
                 .logout()
                 .permitAll();
+
+//        http.authorizeRequests().antMatchers("*").permitAll(); //Строка для тестирования
     }
 
     @Override

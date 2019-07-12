@@ -13,18 +13,19 @@ import java.util.Set;
 @Getter
 @Setter
 @Entity
-@Table(name="usr")
+@Table(name="AUTH_User")
 public class User  implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-
     private String username;
     private String password;
 
-    @Column(name = "email")
+    private String alias;
     private String login;
+
+    private String email;
 
     private boolean active;
 
