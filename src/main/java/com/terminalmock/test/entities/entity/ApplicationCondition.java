@@ -44,6 +44,22 @@ public class ApplicationCondition {
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "docType")
     private DocType condition_selectedDocType;
+
+    private String proof_special_right2;
+    private String proof_special_right_description2;
+    private String proof_special_right_serial2;
+    private String proof_special_right_number2;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "docType2")
+    private DocType condition_selectedDocType2;
+
+    private String proof_special_right3;
+    private String proof_special_right_description3;
+    private String proof_special_right_serial3;
+    private String proof_special_right_number3;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "docType3")
+    private DocType condition_selectedDocType3;
 //    private String documentBase64;
 
 

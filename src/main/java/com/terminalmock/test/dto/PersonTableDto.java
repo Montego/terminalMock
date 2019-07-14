@@ -18,5 +18,7 @@ public class PersonTableDto {
     private String tab_personal_firstname;
     private String tab_personal_middlename;
     private LocalDate tab_personal_birthDate;
+
 //    private String application_number;
+    private String resultAcceptPerson;
 }

@@ -49,7 +49,8 @@ public class ApplicationTableDtoService {
                     applications.get(i).getApplication_person_name(),
                     applications.get(i).getApplication_number(),
                     applications.get(i).getApplication_date(),
-                    applications.get(i).getApplication_selectedDeliveryType()
+                    applications.get(i).getApplication_selectedDeliveryType(),
+                    applications.get(i).getPerson().getAcceptedPerson()
             );
             applicationTableDtos.add(applicationTableDto);
         }

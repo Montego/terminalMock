@@ -5,6 +5,7 @@ import com.terminalmock.test.dto.ApplicationTableDto;
 import com.terminalmock.test.entities.entity.Application;
 import com.terminalmock.test.repositories.entityrepo.ApplicationRepo;
 import com.terminalmock.test.repositories.entityrepo.PersonRepo;
+import com.terminalmock.test.services.dtoServices.ApplicationNumberDtoService;
 import com.terminalmock.test.services.dtoServices.ApplicationShortDtoService;
 import com.terminalmock.test.services.dtoServices.ApplicationTableDtoService;
 import com.terminalmock.test.services.entityServices.ApplicationService;
@@ -21,6 +22,8 @@ public class ApplicationController {
     ApplicationShortDtoService applicationShortDtoService;
     @Autowired
     ApplicationTableDtoService applicationTableDtoService;
+    @Autowired
+    ApplicationNumberDtoService applicationNumberDtoService;
     @Autowired
     ApplicationService applicationService;
     @Autowired
@@ -67,6 +70,11 @@ public class ApplicationController {
     @GetMapping("/applicationTable/{id}")
     public List<ApplicationTableDto> getApplicationsTableDto(@PathVariable Long id){
         return applicationTableDtoService.getApplicationsTableDto(id);
+    }
+
+    @GetMapping("/applicationNumber/{id}")
+    public String getApplicationNumberByPersonInfo(@PathVariable Long id) {
+        return applicationNumberDtoService.getApplicationNumberByPersonInfo(id);
     }
 
 }

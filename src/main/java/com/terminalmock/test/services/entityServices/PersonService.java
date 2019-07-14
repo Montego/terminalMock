@@ -42,7 +42,9 @@ public class PersonService {
                     persons.get(i).getTab_personal_lastname(),
                     persons.get(i).getTab_personal_firstname(),
                     persons.get(i).getTab_personal_middlename(),
-                    persons.get(i).getTab_personal_birthDate()
+                    persons.get(i).getTab_personal_birthDate(),
+//                    persons.get(i).getPerson().getApplications().get(i).getApplication_number(),
+                    persons.get(i).getPerson().getAcceptedPerson()
 //                    applications.get(i).getApplication_number()
             );
             personsDto.add(personTableDto);

@@ -52,7 +52,7 @@ private String tab_ege_selectedExamForm;
     private int tab_ege_score_fis;
     private String tab_ege_appelation;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="person_ege_id" )
     @JsonBackReference
     Person person;
