@@ -67,7 +67,7 @@ public class ApplicationController {
             @RequestBody Application application,
             @PathVariable Long id) {
         applicationService.saveWithPersonConnect(application,id);
-        return "application with person connect was save successfully";
+        return "Сохранено";
 
     }
 

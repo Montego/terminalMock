@@ -45,12 +45,15 @@ public class PersonService {
                     persons.get(i).getTab_personal_birthDate(),
 //                    persons.get(i).getPerson().getApplications().get(i).getApplication_number(),
                     persons.get(i).getPerson().getAcceptedPerson()
+//                    persons.get(i).getPerson().getApplication().getSaved()
 //                    applications.get(i).getApplication_number()
             );
             personsDto.add(personTableDto);
         }
         return personsDto;
     }
+
+
 //    public List<ApplicationTableDto> getAllApplicationTableDto() {
 //        List<PersonInfo> persons= personInfoRepo.findAll();
 //        List<ApplicationTableDto> applicationsTableDto = new ArrayList<>();

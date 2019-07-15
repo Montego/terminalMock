@@ -32,10 +32,10 @@ public class PersonInfoService {
         return personInfo.getPerson();
     }
 
-    public List<Application> getApplicationsByPersonInfo(long id){
+    public Application getApplicationsByPersonInfo(long id){
         PersonInfo personInfo = personInfoRepo.findById(id).orElse(null);
         Person person = personInfo.getPerson();
-        return person.getApplications();
+        return person.getApplication();
     }
 
     public String getApplicationPersonName(long id){

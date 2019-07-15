@@ -51,7 +51,7 @@ public class ProfileController {
     }
 
     @GetMapping("/getApplicationsByPersonInfo/{id}")
-    public List<Application> getApplicationsByPersonInfo(@PathVariable Long id){
+    public Application getApplicationsByPersonInfo(@PathVariable Long id){
         return personInfoService.getApplicationsByPersonInfo(id);
     }
 

@@ -98,7 +98,7 @@ public class PersonInfo {
     private AddressCountryRegion tab_edu_military_selectedCountryRegion;
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "addressState")
-    private AddressState tab_edu_military_selectedState;
+    private AddressState tab_edu_military_selectedState = null;
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "academyYear")
     private AcademyYear tab_edu_military_selectedAcademyYear;

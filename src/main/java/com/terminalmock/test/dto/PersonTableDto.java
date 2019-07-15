@@ -21,4 +21,5 @@ public class PersonTableDto {
 
 //    private String application_number;
     private String resultAcceptPerson;
+//    private String saved;
 }

@@ -54,31 +54,29 @@ public class FillDocumentsDtoService {
         doc2.setCount(2);
         doc2.setIssuedBy(personInfo.getTab_edu_military_eduDocName());
 
-        DocumentDto doc3 = new DocumentDto();
-        doc3.setName(personInfo.getTab_edu_military_selectedMilitaryFormDoc().getName());
-        doc3.setSerial(personInfo.getTab_edu_military_militarySeries());
-        doc3.setNumber(personInfo.getTab_edu_military_militaryNumber());
-        doc3.setFullname(
-                personInfo.getTab_edu_military_selectedMilitaryFormDoc().getName() +
-                        " " +
-                        personInfo.getTab_edu_military_militarySeries() +
-                        " " +
-                        personInfo.getTab_edu_military_militaryNumber());
-        doc3.setSelected_docType(personInfo.getTab_edu_military_selectedDocType());
-        doc3.setDateOfIssue(personInfo.getTab_edu_military_militaryIssueDate());
-        doc3.setCount(2);
-        doc3.setIssuedBy(personInfo.getTab_edu_military_militaryIssueBy());
-
-//        Person person = personInfo.getPerson();
-//        List<PersonFutures> personFutures = person.getFutures_info();
-//        for(int i=0; i<personFutures.size(); i++){
-//            personFutures.get(i).g
-//        }
-
         List<DocumentDto> documentDtos = new ArrayList<>();
         documentDtos.add(doc1);
         documentDtos.add(doc2);
-        documentDtos.add(doc3);
+
+        DocumentDto doc3 = new DocumentDto();
+        if(personInfo.getTab_edu_military_selectedMilitaryFormDoc() != null){
+            doc3.setName(personInfo.getTab_edu_military_selectedMilitaryFormDoc().getName());
+            doc3.setSerial(personInfo.getTab_edu_military_militarySeries());
+            doc3.setNumber(personInfo.getTab_edu_military_militaryNumber());
+            doc3.setFullname(
+                    personInfo.getTab_edu_military_selectedMilitaryFormDoc().getName() +
+                            " " +
+                            personInfo.getTab_edu_military_militarySeries() +
+                            " " +
+                            personInfo.getTab_edu_military_militaryNumber());
+            doc3.setSelected_docType(personInfo.getTab_edu_military_selectedDocType());
+            doc3.setDateOfIssue(personInfo.getTab_edu_military_militaryIssueDate());
+            doc3.setCount(2);
+            doc3.setIssuedBy(personInfo.getTab_edu_military_militaryIssueBy());
+            documentDtos.add(doc3);
+        }else{
+            System.out.println("aaaaaaa");
+        }
 
         return documentDtos;
     }

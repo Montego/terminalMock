@@ -19,42 +19,47 @@ public class ApplicationTableDtoService {
     @Autowired
     PersonInfoRepo personInfoRepo;
 
-//    public List<ApplicationTableDto> getAll(Long id) {
-//
-//        List<>
-//        return person_Repo.findAll();
-//    }
-
     public List<ApplicationTableDto> getApplicationsTableDto(long id) {
         PersonInfo personInfo = personInfoRepo.findById(id).orElse(null);
-        Person person = null;
+        Person person = personInfo.getPerson();
 
-        try{
-             person = personInfo.getPerson();
-        }catch (NullPointerException e){
-            System.out.println("person null");
-            List<ApplicationTableDto> empty = new ArrayList<>();
-            return empty;
-        }
-//        Person person = personInfo.getPerson();
-
-        List<Application> applications = person.getApplications();
+        Application application = person.getApplication();
         List<ApplicationTableDto> applicationTableDtos = new ArrayList<>();
-
-//        ApplicationTableDto applicationTableDto = new ApplicationTableDto();
-//        if(applicationRepo.findById())
-        for (int i = 0; i < (applications).size(); i++) {
+        if(application!= null){
             ApplicationTableDto applicationTableDto = new ApplicationTableDto(
-                    applications.get(i).getId(),
-                    applications.get(i).getApplication_person_name(),
-                    applications.get(i).getApplication_number(),
-                    applications.get(i).getApplication_date(),
-                    applications.get(i).getApplication_selectedDeliveryType(),
-                    applications.get(i).getPerson().getAcceptedPerson(),
-                    applications.get(i).getSaved()
+                    application.getId(),
+                    application.getApplication_person_name(),
+                    application.getApplication_number(),
+                    application.getApplication_date(),
+                    application.getApplication_selectedDeliveryType(),
+                    application.getPerson().getAcceptedPerson(),
+                    application.getSaved()
             );
             applicationTableDtos.add(applicationTableDto);
+        }else {
+            ApplicationTableDto applicationTableDto = new ApplicationTableDto(
+                    0l,
+                    "",
+                    "",
+                    null,
+                    null,
+                    "Не утверждено",
+                    "Не сохранено");
         }
+
+
+//        for (int i = 0; i < (applications).size(); i++) {
+//            ApplicationTableDto applicationTableDto = new ApplicationTableDto(
+//                    applications.get(i).getId(),
+//                    applications.get(i).getApplication_person_name(),
+//                    applications.get(i).getApplication_number(),
+//                    applications.get(i).getApplication_date(),
+//                    applications.get(i).getApplication_selectedDeliveryType(),
+//                    applications.get(i).getPerson().getAcceptedPerson(),
+//                    applications.get(i).getSaved()
+//            );
+
+
         return applicationTableDtos;
     }
 }

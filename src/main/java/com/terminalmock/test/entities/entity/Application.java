@@ -23,7 +23,7 @@ public class Application{
     @GeneratedValue(strategy = GenerationType.AUTO)
     long id;
 
-    private String saved;
+    private String saved = "Не сохранено";
     //application_condition массив
     private String application_person_name;
     private String application_number;
@@ -64,8 +64,13 @@ public class Application{
 
     private int score_biology;
 
-    @JoinColumn(name="person_application_id")
-    @ManyToOne(fetch = FetchType.EAGER)
+//    @JoinColumn(name="person_application_id")
+//    @ManyToOne(fetch = FetchType.EAGER)
+//    @JsonBackReference
+//    Person person;
+
+    @OneToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name="person_id")
     @JsonBackReference
     Person person;
 

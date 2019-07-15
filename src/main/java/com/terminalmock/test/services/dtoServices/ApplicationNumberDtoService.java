@@ -7,8 +7,6 @@ import com.terminalmock.test.repositories.entityrepo.PersonInfoRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-
 @Service
 public class ApplicationNumberDtoService {
     @Autowired
@@ -16,10 +14,10 @@ public class ApplicationNumberDtoService {
     @Autowired
     PersonInfoRepo personInfoRepo;
 
-    public String getApplicationNumberByPersonInfo(long id){
+    public String getApplicationNumberByPersonInfo(long id) {
         PersonInfo personInfo = personInfoRepo.findById(id).orElse(null);
-        List<Application> applications = personInfo.getPerson().getApplications();
-        return applications.get(0).getApplication_number();
+        Application application = personInfo.getPerson().getApplication();
+        return application.getApplication_number();
     }
 
 }
