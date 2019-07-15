@@ -22,6 +22,8 @@ public class Application{
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     long id;
+
+    private String saved;
     //application_condition массив
     private String application_person_name;
     private String application_number;

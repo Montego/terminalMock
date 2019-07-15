@@ -108,6 +108,18 @@ public class ProfileController {
     }
 
 
+//    @PutMapping("/saved/{id}")
+//    public String savedPerson(
+//            @PathVariable("id") Long personInfoFromDBid,
+//            @RequestBody String saved){
+//        Person personFromDB = personInfoService.getPersonByPersonInfo(personInfoFromDBid);
+//        Person personFromDBNew = personInfoService.getPersonByPersonInfo(personInfoFromDBid);
+//        personFromDBNew.setSaved(saved);
+//        BeanUtils.copyProperties(personFromDBNew, personFromDB, "id");
+//        personService.save(personFromDBNew);
+//        return "Сохранено";
+//    }
+
 
 //    @GetMapping("/testSave")
 //    public void doShit(){

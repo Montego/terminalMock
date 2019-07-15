@@ -23,6 +23,7 @@ public class Person {
     Long id;
 
     private String acceptedPerson;
+//    private String saved;
 //from evidence_ege tab
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name="person_ege_id")
@@ -50,7 +51,7 @@ public class Person {
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name="person_futureInfo_id")
     @JsonManagedReference
-    private Set<PersonFutures> futures_info;
+    private List<PersonFutures> futures_info;
 
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name="person_application_id")

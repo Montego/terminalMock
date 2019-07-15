@@ -20,5 +20,6 @@ public class ApplicationTableDto {
     private LocalDate application_date;
     private DeliveryType application_selectedDeliveryType;
     private String resultAcceptPerson;
+    private String saved;
 //    private boolean budget;
 }

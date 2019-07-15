@@ -2,12 +2,14 @@ package com.terminalmock.test.controllers;
 
 import com.terminalmock.test.dto.ApplicationShortDto;
 import com.terminalmock.test.dto.ApplicationTableDto;
+import com.terminalmock.test.dto.DocumentDto;
 import com.terminalmock.test.entities.entity.Application;
 import com.terminalmock.test.repositories.entityrepo.ApplicationRepo;
 import com.terminalmock.test.repositories.entityrepo.PersonRepo;
 import com.terminalmock.test.services.dtoServices.ApplicationNumberDtoService;
 import com.terminalmock.test.services.dtoServices.ApplicationShortDtoService;
 import com.terminalmock.test.services.dtoServices.ApplicationTableDtoService;
+import com.terminalmock.test.services.dtoServices.FillDocumentsDtoService;
 import com.terminalmock.test.services.entityServices.ApplicationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -24,6 +26,8 @@ public class ApplicationController {
     ApplicationTableDtoService applicationTableDtoService;
     @Autowired
     ApplicationNumberDtoService applicationNumberDtoService;
+    @Autowired
+    FillDocumentsDtoService fillDocumentsDtoService;
     @Autowired
     ApplicationService applicationService;
     @Autowired
@@ -75,6 +79,11 @@ public class ApplicationController {
     @GetMapping("/applicationNumber/{id}")
     public String getApplicationNumberByPersonInfo(@PathVariable Long id) {
         return applicationNumberDtoService.getApplicationNumberByPersonInfo(id);
+    }
+
+    @GetMapping("/FillDocuments/{id}")
+    public List<DocumentDto> getDocumentsByPersonInfoId(@PathVariable Long id) {
+        return fillDocumentsDtoService.getFillDocumentsByPersonInfo(id);
     }
 
 }

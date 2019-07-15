@@ -16,7 +16,7 @@ public class DocTypeService {
         this.docTypeRepo = docTypeRepo;
     }
 
-    public DocType getOne(Long id) {
+    public DocType getOne(int id) {
         return docTypeRepo.findById(id).orElse(null);
     }
 

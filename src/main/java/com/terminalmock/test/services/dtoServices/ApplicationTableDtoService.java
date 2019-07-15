@@ -50,7 +50,8 @@ public class ApplicationTableDtoService {
                     applications.get(i).getApplication_number(),
                     applications.get(i).getApplication_date(),
                     applications.get(i).getApplication_selectedDeliveryType(),
-                    applications.get(i).getPerson().getAcceptedPerson()
+                    applications.get(i).getPerson().getAcceptedPerson(),
+                    applications.get(i).getSaved()
             );
             applicationTableDtos.add(applicationTableDto);
         }
