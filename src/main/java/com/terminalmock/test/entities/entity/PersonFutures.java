@@ -31,14 +31,20 @@ public class PersonFutures {
     private String tab_features_serial;
     private String tab_features_number;
     private String doc1;
+    private String doc1_serial;
+    private String doc1_number;
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "DocType1")
     private DocType tab_features_selectedDocType1 = null;
     private String doc2;
+    private String doc2_serial;
+    private String doc2_number;
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "DocType2")
     private DocType tab_features_selectedDocType2 = null;
     private String doc3;
+    private String doc3_serial;
+    private String doc3_number;
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "DocType3")
     private DocType tab_features_selectedDocType3 = null;

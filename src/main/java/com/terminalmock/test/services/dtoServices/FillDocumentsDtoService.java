@@ -59,7 +59,7 @@ public class FillDocumentsDtoService {
         documentDtos.add(doc2);
 
         DocumentDto doc3 = new DocumentDto();
-        if(personInfo.getTab_edu_military_selectedMilitaryFormDoc() != null){
+        if(personInfo.getTab_edu_military_selectedMilitaryFormDoc() != null ){
             doc3.setName(personInfo.getTab_edu_military_selectedMilitaryFormDoc().getName());
             doc3.setSerial(personInfo.getTab_edu_military_militarySeries());
             doc3.setNumber(personInfo.getTab_edu_military_militaryNumber());
