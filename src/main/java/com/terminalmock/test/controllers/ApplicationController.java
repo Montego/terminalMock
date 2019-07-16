@@ -36,10 +36,10 @@ public class ApplicationController {
     @Autowired
     PersonRepo personRepo;
 
-    @GetMapping("/getEmptyApplication")
-    public Application getEmptyApplication() {
-        return new Application(true);
-    }
+//    @GetMapping("/getEmptyApplication")
+//    public Application getEmptyApplication() {
+//        return new Application(true);
+//    }
 
 
 //    @GetMapping("/applicationByPerson/{id}")

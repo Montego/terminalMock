@@ -75,29 +75,29 @@ public class Application{
     Person person;
 
     //конструктор для информативного заполения JSON
-    public Application(boolean defValues){
-
-        if (defValues){
-            this.id                                 = -1;
-            this.application_person_name            = "";
-            this.application_number                 = "";
-            this.application_date                   = LocalDate.now();
-            this.application_selectedDeliveryType   = new DeliveryType();
-            this.application_selectedDocType        = new DocType();
-
-//            HashSet<ApplicationCondition> defSetAC = new HashSet<>();
-//            defSetAC.add(new ApplicationCondition(true));
-//            this.application_condition              = defSetAC;
-
-            HashSet<ApplicationDocuments> defSetAD = new HashSet<>();
-            defSetAD.add(new ApplicationDocuments(true));
-
-            this.application_documents              = defSetAD;
-            this.score_russian                      = -1;
-            this.score_chemistry                    = -1;
-            this.score_biology                      = -1;
-            this.person                             = new Person();
-        }
-
-    }
+//    public Application(boolean defValues){
+//
+//        if (defValues){
+//            this.id                                 = -1;
+//            this.application_person_name            = "";
+//            this.application_number                 = "";
+//            this.application_date                   = LocalDate.now();
+//            this.application_selectedDeliveryType   = new DeliveryType();
+//            this.application_selectedDocType        = new DocType();
+//
+////            HashSet<ApplicationCondition> defSetAC = new HashSet<>();
+////            defSetAC.add(new ApplicationCondition(true));
+////            this.application_condition              = defSetAC;
+//
+//            HashSet<ApplicationDocuments> defSetAD = new HashSet<>();
+//            defSetAD.add(new ApplicationDocuments(true));
+//
+//            this.application_documents              = defSetAD;
+//            this.score_russian                      = -1;
+//            this.score_chemistry                    = -1;
+//            this.score_biology                      = -1;
+//            this.person                             = new Person();
+//        }
+//
+//    }
 }
