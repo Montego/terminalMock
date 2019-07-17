@@ -44,7 +44,7 @@ public class PersonInfo {
     private LocalDate tab_personal_identityCardIssueDate;
     private String tab_personal_identityCardIssueDep;
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "addressCountryRegion", insertable = false, updatable = false)
+    @JoinColumn(name = "addressCountryRegion")
     private AddressCountryRegion tab_personal_selectedCitizenship;
     private boolean tab_personal_isCompatriot;
     private boolean tab_personal_isEquatedForeign;
@@ -91,10 +91,10 @@ public class PersonInfo {
 //    @JoinColumn(name = "educationLevel")
 //    private EducationLevel tab_edu_military_educationLevel;
     private String tab_edu_military_educationLevel;
-
+//change here
     private String tab_edu_military_univer;
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "addressCountryRegion")
+    @JoinColumn(name = "addressCountryRegionEducation")
     private AddressCountryRegion tab_edu_military_selectedCountryRegion;
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "addressState")
