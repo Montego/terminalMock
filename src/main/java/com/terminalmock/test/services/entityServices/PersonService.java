@@ -44,7 +44,8 @@ public class PersonService {
                     persons.get(i).getTab_personal_middlename(),
                     persons.get(i).getTab_personal_birthDate(),
 //                    persons.get(i).getPerson().getApplications().get(i).getApplication_number(),
-                    persons.get(i).getPerson().getAcceptedPerson()
+                    persons.get(i).getPerson().getAcceptedPerson(),
+                    persons.get(i).getPerson().getSaved()
 //                    persons.get(i).getPerson().getApplication().getSaved()
 //                    applications.get(i).getApplication_number()
             );
