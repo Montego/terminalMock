@@ -10,6 +10,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 
 @Data
 @NoArgsConstructor
@@ -36,18 +37,31 @@ public class PersonFutures {
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "DocType1")
     private DocType tab_features_selectedDocType1 = null;
+//    private LocalDate tab_featuresShowDate1;
+//    private LocalDate doc1_IssuDate;
+//    private String doc1_IssueBy;
+//    private String doc1_full_info;
+
     private String doc2;
     private String doc2_serial;
     private String doc2_number;
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "DocType2")
     private DocType tab_features_selectedDocType2 = null;
+//    private LocalDate tab_featuresShowDate2;
+//    private LocalDate doc2_IssuDate;
+//    private String doc2_IssueBy;
+//    private String doc2_full_info;
     private String doc3;
     private String doc3_serial;
     private String doc3_number;
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "DocType3")
     private DocType tab_features_selectedDocType3 = null;
+//    private LocalDate tab_featuresShowDate3;
+//    private LocalDate doc3_IssuDate;
+//    private String doc3_IssueBy;
+//    private String doc3_full_info;
 
     @JoinColumn(name="person_futureInfo_id")
     @ManyToOne(fetch = FetchType.EAGER)

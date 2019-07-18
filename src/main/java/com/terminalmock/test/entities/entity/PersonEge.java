@@ -49,8 +49,10 @@ private String tab_ege_selectedExamForm;
     private String tab_ege_selectedSubject;
 
     private int tab_ege_score;
-    private int tab_ege_score_fis;
-    private String tab_ege_appelation;
+//    private int tab_ege_score_fis;
+//    private String tab_ege_appelation;
+    private boolean tab_ege_changePaspInf = false;
+
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="person_ege_id" )
