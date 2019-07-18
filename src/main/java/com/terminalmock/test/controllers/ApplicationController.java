@@ -55,6 +55,11 @@ public class ApplicationController {
         return applicationRepo.save(application);
     }
 
+//
+//    @GetMapping("/ways")
+//    public List<> getApplicationById(@PathVariable Long id) {
+//        return applicationService.getOne(id);
+//    }
 
     @GetMapping("/applicationById/{id}")
     public Application getApplicationById(@PathVariable Long id) {
