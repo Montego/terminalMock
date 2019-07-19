@@ -7,9 +7,11 @@ import com.terminalmock.test.dto.PersonTableDto;
 import com.terminalmock.test.entities.entity.Application;
 import com.terminalmock.test.entities.entity.Person;
 import com.terminalmock.test.entities.entity.PersonInfo;
+import com.terminalmock.test.entities.view.Wizard;
 import com.terminalmock.test.services.dtoServices.ConditionsDtoService;
 import com.terminalmock.test.services.entityServices.PersonInfoService;
 import com.terminalmock.test.services.entityServices.PersonService;
+import com.terminalmock.test.services.viewServices.WizardService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -23,7 +25,8 @@ public class ProfileController {
 
     @Autowired
     ConditionsDtoService conditionsDtoService;
-
+    @Autowired
+    WizardService wizardService;
     private final PersonService personService;
     private final PersonInfoService personInfoService;
     @Autowired
@@ -126,11 +129,15 @@ public class ProfileController {
         return personService.getAllPersonTableDto();
     }
 
-    @GetMapping("/conditionsDto")
-    public List<ConditionsDto> getAll(){
-        return conditionsDtoService.getAll();
-    }
+//    @GetMapping("/conditionsDto")
+//    public List<ConditionsDto> getAll(){
+//        return conditionsDtoService.getAll();
+//    }
 
+    @GetMapping("/conditionsDto")
+    public List<Wizard> getAll(){
+        return wizardService.getAll();
+    }
 //    @GetMapping("/testSave")
 //    public void doShit(){
 //        Person person = new Person();

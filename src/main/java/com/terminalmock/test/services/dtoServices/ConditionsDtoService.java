@@ -1,37 +1,67 @@
 package com.terminalmock.test.services.dtoServices;
 
 import com.terminalmock.test.dto.ConditionsDto;
+import com.terminalmock.test.dto.ResultAplDto;
+import com.terminalmock.test.entities.entity.Application;
+import com.terminalmock.test.entities.entity.ChoosenWizard;
+import com.terminalmock.test.entities.entity.Person;
+import com.terminalmock.test.entities.entity.PersonInfo;
+import com.terminalmock.test.entities.view.Wizard;
+import com.terminalmock.test.repositories.entityrepo.ChoosenWizardRepo;
+import com.terminalmock.test.repositories.entityrepo.PersonInfoRepo;
+import com.terminalmock.test.services.entityServices.ChoosenWizardService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
 @Service
 public class ConditionsDtoService {
-    public List<ConditionsDto> getAll() {
+    @Autowired
+    PersonInfoRepo personInfoRepo;
+    @Autowired
+    ChoosenWizardRepo choosenWizardRepo;
 
-        List<ConditionsDto> conditionsDtos = new ArrayList<>();
-        ConditionsDto conditionsDto1 = new ConditionsDto(
-                "One","One","one","one","one","one",false
+    public ResultAplDto get (long id){
+        PersonInfo personInfo = personInfoRepo.findById(id).orElse(null);
+        String fullname = personInfo.getTab_personal_lastname() + " " + personInfo.getTab_personal_firstname() + " " + personInfo.getTab_personal_middlename();
+        String appl_number = "С" + personInfo.getId();
+        Person person = personInfo.getPerson();
+        System.out.println(person.getId());
+        Application application = person.getApplication();
+
+//        System.out.println(application.getId());
+//        choosenWizardRepo.findAllByApplication(application.getId());
+
+        List<ChoosenWizard> choosenWizards = choosenWizardRepo.findAllByApplication(
+//                application.getId()
+                application
         );
-        ConditionsDto conditionsDto2 = new ConditionsDto(
-                "two","two","two","two","two","two",false
+
+
+        ResultAplDto resultAplDto = new ResultAplDto(
+//                application.getApplication_number(),
+                appl_number,
+                fullname,
+                LocalDate.now(),
+                choosenWizards
         );
-        ConditionsDto conditionsDto3 = new ConditionsDto(
-                "three","three","three","three","three","three",false
-        );
-
-        conditionsDtos.add(conditionsDto1);
-        conditionsDtos.add(conditionsDto2);
-        conditionsDtos.add(conditionsDto3);
-        conditionsDtos.add(conditionsDto1);
-        conditionsDtos.add(conditionsDto2);
-        conditionsDtos.add(conditionsDto3);
-        conditionsDtos.add(conditionsDto1);
-        conditionsDtos.add(conditionsDto2);
-        conditionsDtos.add(conditionsDto3);
-
-
-        return conditionsDtos;
+        return resultAplDto;
     }
+
+
+
+
+
+        private String application_number;
+        private String application_person_name;
+        private LocalDate application_date = LocalDate.now();
+
+
+
+
+
+
 }

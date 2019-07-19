@@ -1,6 +1,7 @@
 package com.terminalmock.test.services.entityServices;
 
 import com.terminalmock.test.entities.entity.Application;
+import com.terminalmock.test.entities.entity.ChoosenWizard;
 import com.terminalmock.test.entities.entity.Person;
 import com.terminalmock.test.entities.entity.PersonInfo;
 import com.terminalmock.test.repositories.entityrepo.ApplicationRepo;
@@ -37,6 +38,9 @@ public class ApplicationService {
         PersonInfo personInfo = personInfoRepo.findById(id).orElse(null);
         Person person = personInfo.getPerson();
         application.setPerson(person);
+
+        
+
         applicationRepo.save(application);
     }
 

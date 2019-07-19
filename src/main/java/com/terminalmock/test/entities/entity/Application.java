@@ -5,12 +5,14 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.terminalmock.test.entities.enums.DeliveryType;
 import com.terminalmock.test.entities.enums.DocType;
+import com.terminalmock.test.entities.view.Wizard;
 import lombok.*;
 
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Getter
@@ -51,28 +53,26 @@ public class Application{
     private Set<ApplicationDocuments> application_documents;
 
 
-//    @OneToMany(fetch = FetchType.EAGER, mappedBy = "application",cascade = CascadeType.ALL)
-//    Set<ApplicationCondition> application_condition;
-//
-//    @OneToMany(fetch = FetchType.EAGER, mappedBy = "application",cascade = CascadeType.ALL)
-//    Set<ApplicationDocuments> application_documents;
-    //application_documents массив
-
     private int score_russian;
 
     private int score_chemistry;
 
     private int score_biology;
 
-//    @JoinColumn(name="person_application_id")
-//    @ManyToOne(fetch = FetchType.EAGER)
-//    @JsonBackReference
-//    Person person;
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name="application_wizard_id")
+    @JsonManagedReference
+    private Set<ChoosenWizard> choosenWizards;
 
     @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name="person_id")
     @JsonBackReference
     Person person;
+
+
+//    @ElementCollection
+//    List<Wizard> wizards;
+
 
     //конструктор для информативного заполения JSON
 //    public Application(boolean defValues){
