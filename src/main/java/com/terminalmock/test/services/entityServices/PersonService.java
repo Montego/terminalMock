@@ -1,16 +1,18 @@
 package com.terminalmock.test.services.entityServices;
 
-import com.terminalmock.test.dto.ApplicationTableDto;
 import com.terminalmock.test.dto.PersonTableDto;
-import com.terminalmock.test.entities.entity.Application;
 import com.terminalmock.test.entities.entity.Person;
 import com.terminalmock.test.entities.entity.PersonInfo;
+import com.terminalmock.test.entities.entity.PersonParent;
+import com.terminalmock.test.entities.enums.AddressType;
 import com.terminalmock.test.repositories.entityrepo.PersonInfoRepo;
 import com.terminalmock.test.repositories.entityrepo.PersonRepo;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static com.terminalmock.test.services.entityServices.AddressService.convertAdrDtoToAdr;
 
 @Service
 public class PersonService {
@@ -86,10 +88,34 @@ public class PersonService {
 
     public void save(Person person){
 //        person.getPerson_info();
+        updateAddresses(person.getPerson_info());
+        person.getParents_info().forEach(this::updateAddresses);
         person_Repo.save(person);
     }
 
     public void delete(Long id) {
         person_Repo.deleteById(id);
     }
+
+
+    private void updateAddresses(PersonInfo cp){
+
+        cp.getAddresses().forEach( adr ->
+                {
+                    AddressType adType = adr.getAddressType();
+                    convertAdrDtoToAdr(cp.getAddressesDto().stream().filter(adrDto -> adType.getId().equals(adrDto.getAddressType().getId())).findFirst().orElseGet(null), adr);
+                }
+        );
+    }
+
+    private void updateAddresses(PersonParent cp){
+
+        cp.getAddresses().forEach( adr ->
+                {
+                    AddressType adType = adr.getAddressType();
+                    convertAdrDtoToAdr(cp.getAddressesDto().stream().filter(adrDto -> adType.getId().equals(adrDto.getAddressType().getId())).findFirst().orElseGet(null), adr);
+                }
+        );
+    }
+
 }
