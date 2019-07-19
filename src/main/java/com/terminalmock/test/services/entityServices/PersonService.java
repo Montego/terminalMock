@@ -4,6 +4,7 @@ import com.terminalmock.test.dto.PersonTableDto;
 import com.terminalmock.test.entities.entity.Person;
 import com.terminalmock.test.entities.entity.PersonInfo;
 import com.terminalmock.test.entities.entity.PersonParent;
+import com.terminalmock.test.entities.entity.User;
 import com.terminalmock.test.entities.enums.AddressType;
 import com.terminalmock.test.repositories.entityrepo.PersonInfoRepo;
 import com.terminalmock.test.repositories.entityrepo.PersonRepo;
@@ -32,27 +33,23 @@ public class PersonService {
         return person_Repo.findAll();
     }
 
-    public List<PersonTableDto> getAllPersonTableDto() {
-        List<PersonInfo> persons = personInfoRepo.findAll();
+    public List<PersonTableDto> getAllPersonTableDto(User user) {
+        List<PersonInfo> persons = personInfoRepo.findAllByModifiedBy(user.getAlias());
 
         List<PersonTableDto> personsDto = new ArrayList<>();
-        for(int i =0; i<persons.size(); i++){
-//            List<Application> applications = persons.get(i).getPerson().getApplications();
 
-            PersonTableDto personTableDto = new PersonTableDto(
-                    persons.get(i).getId(),
-                    persons.get(i).getTab_personal_lastname(),
-                    persons.get(i).getTab_personal_firstname(),
-                    persons.get(i).getTab_personal_middlename(),
-                    persons.get(i).getTab_personal_birthDate(),
-//                    persons.get(i).getPerson().getApplications().get(i).getApplication_number(),
-                    persons.get(i).getPerson().getAcceptedPerson(),
-                    persons.get(i).getPerson().getSaved()
-//                    persons.get(i).getPerson().getApplication().getSaved()
-//                    applications.get(i).getApplication_number()
-            );
-            personsDto.add(personTableDto);
+        for (PersonInfo person : persons){
+            PersonTableDto dto = new PersonTableDto();
+            dto.setId(person.getId());
+            dto.setTab_personal_lastname(person.getTab_personal_lastname());
+            dto.setTab_personal_firstname(person.getTab_personal_firstname());
+            dto.setTab_personal_middlename(person.getTab_personal_middlename());
+            dto.setTab_personal_birthDate(person.getTab_personal_birthDate());
+            dto.setResultAcceptPerson(person.getPerson().getAcceptedPerson());
+            dto.setSaved(person.getPerson().getSaved());
+            personsDto.add(dto);
         }
+
         return personsDto;
     }
 
@@ -86,8 +83,9 @@ public class PersonService {
 //        return applicationsDto;
 //    }
 
-    public void save(Person person){
+    public void save(Person person, User user){
 //        person.getPerson_info();
+        person.getPerson_info().setModifiedBy(user.getAlias());
         updateAddresses(person.getPerson_info());
         person.getParents_info().forEach(this::updateAddresses);
         person_Repo.save(person);

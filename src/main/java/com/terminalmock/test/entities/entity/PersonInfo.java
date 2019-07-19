@@ -256,4 +256,7 @@ public class PersonInfo {
 
     @Transient
     private List<AddressCellBasedDto> addressesDto = new ArrayList<>();
+
+    @Column(name = "\"modifiedBy\"")
+    private String modifiedBy;
 }

@@ -1,11 +1,11 @@
 package com.terminalmock.test.controllers;
 
 
-
 import com.terminalmock.test.dto.PersonTableDto;
 import com.terminalmock.test.entities.entity.Application;
 import com.terminalmock.test.entities.entity.Person;
 import com.terminalmock.test.entities.entity.PersonInfo;
+import com.terminalmock.test.entities.entity.User;
 import com.terminalmock.test.entities.view.Wizard;
 import com.terminalmock.test.services.dtoServices.ConditionsDtoService;
 import com.terminalmock.test.services.entityServices.PersonInfoService;
@@ -13,6 +13,7 @@ import com.terminalmock.test.services.entityServices.PersonService;
 import com.terminalmock.test.services.viewServices.WizardService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -39,8 +40,8 @@ public class ProfileController {
         return personService.getAll();
     }
     @GetMapping("/personsTable")
-    public List<PersonTableDto> getAllPersonTableDto() {
-        return personService.getAllPersonTableDto();
+    public List<PersonTableDto> getAllPersonTableDto(@AuthenticationPrincipal User user) {
+        return personService.getAllPersonTableDto(user);
     }
 //    @GetMapping("/applicationsTable")
 //    public List<ApplicationTableDto> getAllApplicationTableDto() {
@@ -73,10 +74,10 @@ public class ProfileController {
     }
 
     @PostMapping()
-    public Person create(@RequestBody Person person) {
+    public Person create(@RequestBody Person person, @AuthenticationPrincipal User user) {
         System.out.println(person.getPerson_info());
         System.out.println("save person");
-        personService.save(person);
+        personService.save(person,user);
         return person;
     }
 
@@ -92,7 +93,8 @@ public class ProfileController {
     @PutMapping("/person/{id}")
     public void update(
             @PathVariable("id") Long personInfoFromDBid,
-            @RequestBody Person person) {
+            @RequestBody Person person,
+            @AuthenticationPrincipal User user) {
 
 //        PersonInfo personInfoFromDB = personInfoService.getOne(personInfoFromDBid);
 //        PersonInfo personInfo = person.getPersonInfo();
@@ -100,17 +102,18 @@ public class ProfileController {
         Person personFromDB = personInfoService.getPersonByPersonInfo(personInfoFromDBid);
         BeanUtils.copyProperties(person, personFromDB, "id");
         System.out.println("update person");
-        personService.save(personFromDB);
+        personService.save(personFromDB,user);
     }
     @PutMapping("/acceptPerson/{id}")
     public String acceptPerson(
             @PathVariable("id") Long personInfoFromDBid,
-            @RequestBody String accept){
+            @RequestBody String accept,
+            @AuthenticationPrincipal User user){
         Person personFromDB = personInfoService.getPersonByPersonInfo(personInfoFromDBid);
         Person personFromDBNew = personInfoService.getPersonByPersonInfo(personInfoFromDBid);
         personFromDBNew.setAcceptedPerson(accept);
         BeanUtils.copyProperties(personFromDBNew, personFromDB, "id");
-        personService.save(personFromDBNew);
+        personService.save(personFromDBNew, user);
         return "Утверждено";
     }
 
@@ -118,13 +121,14 @@ public class ProfileController {
     @PutMapping("/saved/{id}")
     public List<PersonTableDto> savedPerson(
             @PathVariable("id") Long personInfoFromDBid,
-            @RequestBody String saved){
+            @RequestBody String saved,
+            @AuthenticationPrincipal User user){
         Person personFromDB = personInfoService.getPersonByPersonInfo(personInfoFromDBid);
         Person personFromDBNew = personInfoService.getPersonByPersonInfo(personInfoFromDBid);
         personFromDBNew.setSaved(saved);
         BeanUtils.copyProperties(personFromDBNew, personFromDB, "id");
-        personService.save(personFromDBNew);
-        return personService.getAllPersonTableDto();
+        personService.save(personFromDBNew,user);
+        return personService.getAllPersonTableDto(user);
     }
 
 //    @GetMapping("/conditionsDto")
