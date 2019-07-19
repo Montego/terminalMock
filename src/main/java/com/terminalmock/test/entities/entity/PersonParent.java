@@ -2,12 +2,19 @@ package com.terminalmock.test.entities.entity;
 
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.terminalmock.test.entities.dictionary.FamRelationShip;
+import com.terminalmock.test.entities.entity.address.AddressCellBasedDto;
+import com.terminalmock.test.entities.entity.address.PersonParentAddress;
 import com.terminalmock.test.entities.enums.Gender;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
 @Entity
@@ -67,5 +74,13 @@ public class PersonParent {
         }
 
     }
+
+    @OneToMany(orphanRemoval = true, cascade = CascadeType.ALL)
+    @JoinColumn(name = "\"RefId\"")
+    @JsonManagedReference
+    private List<PersonParentAddress> addresses = new ArrayList<>();
+
+    @Transient
+    private List<AddressCellBasedDto> addressesDto = new ArrayList<>();
 
 }

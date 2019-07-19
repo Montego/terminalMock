@@ -1,7 +1,6 @@
 package com.terminalmock.test.controllers;
 
 
-import com.terminalmock.test.dto.ApplicationTableDto;
 import com.terminalmock.test.dto.PersonTableDto;
 import com.terminalmock.test.entities.entity.Application;
 import com.terminalmock.test.entities.entity.Person;
@@ -13,7 +12,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Set;
 
 @RestController
 @RequestMapping("/profile")
