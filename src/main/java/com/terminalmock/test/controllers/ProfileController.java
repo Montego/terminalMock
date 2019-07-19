@@ -2,10 +2,12 @@ package com.terminalmock.test.controllers;
 
 
 import com.terminalmock.test.dto.ApplicationTableDto;
+import com.terminalmock.test.dto.ConditionsDto;
 import com.terminalmock.test.dto.PersonTableDto;
 import com.terminalmock.test.entities.entity.Application;
 import com.terminalmock.test.entities.entity.Person;
 import com.terminalmock.test.entities.entity.PersonInfo;
+import com.terminalmock.test.services.dtoServices.ConditionsDtoService;
 import com.terminalmock.test.services.entityServices.PersonInfoService;
 import com.terminalmock.test.services.entityServices.PersonService;
 import org.springframework.beans.BeanUtils;
@@ -18,6 +20,10 @@ import java.util.Set;
 @RestController
 @RequestMapping("/profile")
 public class ProfileController {
+
+    @Autowired
+    ConditionsDtoService conditionsDtoService;
+
     private final PersonService personService;
     private final PersonInfoService personInfoService;
     @Autowired
@@ -120,6 +126,10 @@ public class ProfileController {
         return personService.getAllPersonTableDto();
     }
 
+    @GetMapping("/conditionsDto")
+    public List<ConditionsDto> getAll(){
+        return conditionsDtoService.getAll();
+    }
 
 //    @GetMapping("/testSave")
 //    public void doShit(){
