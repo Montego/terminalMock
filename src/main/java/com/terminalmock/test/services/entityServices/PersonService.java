@@ -5,7 +5,9 @@ import com.terminalmock.test.entities.entity.Person;
 import com.terminalmock.test.entities.entity.PersonInfo;
 import com.terminalmock.test.entities.entity.PersonParent;
 import com.terminalmock.test.entities.entity.User;
-import com.terminalmock.test.entities.enums.AddressType;
+import com.terminalmock.test.entities.entity.address.AddressCellBasedDto;
+import com.terminalmock.test.entities.entity.address.PersonAddress;
+import com.terminalmock.test.entities.entity.address.PersonParentAddress;
 import com.terminalmock.test.repositories.entityrepo.PersonInfoRepo;
 import com.terminalmock.test.repositories.entityrepo.PersonRepo;
 import org.springframework.stereotype.Service;
@@ -86,8 +88,7 @@ public class PersonService {
     public void save(Person person, User user){
 //        person.getPerson_info();
         person.getPerson_info().setModifiedBy(user.getAlias());
-        updateAddresses(person.getPerson_info());
-        person.getParents_info().forEach(this::updateAddresses);
+        HandleAddresses(person);
         person_Repo.save(person);
     }
 
@@ -96,24 +97,45 @@ public class PersonService {
     }
 
 
-    private void updateAddresses(PersonInfo cp){
 
-        cp.getAddresses().forEach( adr ->
-                {
-                    AddressType adType = adr.getAddressType();
-                    convertAdrDtoToAdr(cp.getAddressesDto().stream().filter(adrDto -> adType.getId().equals(adrDto.getAddressType().getId())).findFirst().orElseGet(null), adr);
+    private void HandleAddresses(Person person){
+        createAddressesFromDto(person.getPerson_info());
+        if (person.getParents_info() != null){
+            for (PersonParent parent: person.getParents_info()){
+                if (parent.getAddressesDto() != null){
+                    createAddressesFromDto(parent);
                 }
-        );
+            }
+        }
+
     }
 
-    private void updateAddresses(PersonParent cp){
 
-        cp.getAddresses().forEach( adr ->
-                {
-                    AddressType adType = adr.getAddressType();
-                    convertAdrDtoToAdr(cp.getAddressesDto().stream().filter(adrDto -> adType.getId().equals(adrDto.getAddressType().getId())).findFirst().orElseGet(null), adr);
-                }
-        );
+    private void createAddressesFromDto(PersonInfo cp){
+        List<PersonAddress> addresses = new ArrayList<>();
+        if(cp.getAddressesDto() != null ){
+            for (AddressCellBasedDto dto : cp.getAddressesDto()){
+                PersonAddress model = new PersonAddress();
+                convertAdrDtoToAdr(dto,model);
+                model.setAddressType(dto.getAddressType());
+                addresses.add(model);
+            }
+            addresses.forEach(addr -> addr.setPerson(cp));
+            cp.setAddresses(addresses);
+        }
     }
 
+    private void createAddressesFromDto(PersonParent personParent){
+        if (personParent.getAddressesDto() != null){
+            List<PersonParentAddress> addresses = new ArrayList<>();
+            for (AddressCellBasedDto dto : personParent.getAddressesDto()){
+                PersonParentAddress model = new PersonParentAddress();
+                convertAdrDtoToAdr(dto,model);
+                model.setAddressType(dto.getAddressType());
+                addresses.add(model);
+            }
+            addresses.forEach(addr -> addr.setPersonParent(personParent));
+            personParent.setAddresses(addresses);
+        }
+    }
 }

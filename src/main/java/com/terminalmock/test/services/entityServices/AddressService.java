@@ -29,7 +29,7 @@ public class AddressService {
 
     }
 
-    public static AddressCellBasedDto convertAdrToAdrDto(PersonAddress model){
+    public static AddressCellBasedDto convertAdrToAdrDto(Address model){
         AddressCellBasedDto dto =  new AddressCellBasedDto();
 
         dto.setAddressId(model.getEntrantFIASAddressId());

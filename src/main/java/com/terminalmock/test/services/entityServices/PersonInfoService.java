@@ -3,9 +3,11 @@ package com.terminalmock.test.services.entityServices;
 import com.terminalmock.test.entities.entity.Application;
 import com.terminalmock.test.entities.entity.Person;
 import com.terminalmock.test.entities.entity.PersonInfo;
+import com.terminalmock.test.entities.entity.PersonParent;
 import com.terminalmock.test.entities.entity.address.AddressCell;
 import com.terminalmock.test.entities.entity.address.AddressCellBasedDto;
 import com.terminalmock.test.entities.entity.address.PersonAddress;
+import com.terminalmock.test.entities.entity.address.PersonParentAddress;
 import com.terminalmock.test.entities.enums.AddressType;
 import com.terminalmock.test.repositories.entityrepo.PersonInfoRepo;
 import org.springframework.stereotype.Service;
@@ -33,8 +35,7 @@ public class PersonInfoService {
     public PersonInfo getOne(long id) {
         PersonInfo response = personInfoRepo.findById(id).orElse(null);
         if (response != null){
-            addAddresses(response);
-            addAddressesDto(response);
+            handleAddresses(response.getPerson());
         }
         return response;
     }
@@ -45,6 +46,9 @@ public class PersonInfoService {
 
     public Person getPersonByPersonInfo(long id){
         PersonInfo personInfo = personInfoRepo.findById(id).orElse(null);
+        if (personInfo != null){
+            handleAddresses(personInfo.getPerson());
+        }
         return personInfo.getPerson();
     }
 
@@ -124,6 +128,32 @@ public class PersonInfoService {
             dtos.add(dto);
         }
         return dtos;
+    }
+
+    private void handleAddresses(Person person){
+        ArrayList<AddressCellBasedDto> dtos = new ArrayList<>();
+        if (person.getPerson_info() != null && person.getPerson_info().getAddresses() != null){
+            for (PersonAddress address: person.getPerson_info().getAddresses()){
+                AddressCellBasedDto dto = convertAdrToAdrDto(address);
+                dto.setAddressType(address.getAddressType());
+                dtos.add(dto);
+            }
+        }
+        person.getPerson_info().setAddressesDto(dtos);
+
+        ArrayList<AddressCellBasedDto> parentDtos = new ArrayList<>();
+        if (person.getParents_info() != null){
+            for (PersonParent parent: person.getParents_info()){
+                if (parent.getAddresses() != null){
+                    for (PersonParentAddress parentAddress: parent.getAddresses()){
+                        AddressCellBasedDto parentDto = convertAdrToAdrDto(parentAddress);
+                        parentDto.setAddressType(parentAddress.getAddressType());
+                        parentDtos.add(parentDto);
+                    }
+                    parent.setAddressesDto(parentDtos);
+                }
+            }
+        }
     }
 
 }
