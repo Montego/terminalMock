@@ -1,13 +1,25 @@
 package com.terminalmock.test.controllers;
 
-import com.terminalmock.test.entities.entity.Person;
-import com.terminalmock.test.repositories.entityrepo.PersonRepo;
+import com.terminalmock.test.entities.entity.address.AddressCellBasedDto;
+import com.terminalmock.test.services.entityServices.PersonInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 @RestController
-@RequestMapping("/rest")
+@RequestMapping("/util")
 public class PersonController {
+    @Autowired
+    PersonInfoService personInfoService;
+
+    @GetMapping("/addresses")
+    public List<AddressCellBasedDto> getAddressesDto(){
+        return personInfoService.getAddressesDto();
+
+    }
 
 //    @Autowired
 //    PersonRepo personRepo;

@@ -20,6 +20,9 @@ import static com.terminalmock.test.services.entityServices.AddressService.conve
 @Service
 public class PersonInfoService {
     private final PersonInfoRepo personInfoRepo;
+    private static final AddressType REG_ADDRESS = new AddressType(0,"Адрес регистрации");
+    private static final AddressType FACT_ADDRESS = new AddressType(1, "Адрес фактический");
+    private static final AddressType TEMP_REG_ADDRESS = new AddressType(2, "Адрес временной регистрации");
 
 
     public PersonInfoService(PersonInfoRepo personInfoRepo) {
@@ -93,6 +96,34 @@ public class PersonInfoService {
                     convertAdrDtoToAdr(cp.getAddressesDto().stream().filter(adrDto -> adType.getId().equals(adrDto.getAddressType().getId())).findFirst().orElseGet(null), adr);
                 }
         );
+    }
+
+    public List<AddressCellBasedDto> getAddressesDto(){
+        List<PersonAddress> personAddresses = new ArrayList<>();
+
+        PersonAddress fac = new PersonAddress();
+        fac.setAddressType(FACT_ADDRESS);
+        personAddresses.add(fac);
+
+        PersonAddress reg = new PersonAddress();
+        fac.setAddressType(REG_ADDRESS);
+        personAddresses.add(reg);
+
+        PersonAddress tempreg = new PersonAddress();
+        tempreg.setAddressType(TEMP_REG_ADDRESS);
+        personAddresses.add(tempreg);
+
+        return convertListPersonAddressesToListAddressCellBasedDto(personAddresses);
+    }
+
+    private List<AddressCellBasedDto>  convertListPersonAddressesToListAddressCellBasedDto(List<PersonAddress> addresses){
+        List<AddressCellBasedDto> dtos = new ArrayList<>();
+        for (PersonAddress address : addresses){
+            AddressCellBasedDto dto = convertAdrToAdrDto(address);
+            dto.setAddressSearchObj(new AddressCell(null,null,address.getAddressTxt()));
+            dtos.add(dto);
+        }
+        return dtos;
     }
 
 }
