@@ -1,9 +1,6 @@
 package com.terminalmock.test.entities.enums;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 
@@ -13,6 +10,7 @@ import javax.persistence.*;
 @Getter
 @Setter
 @Table(name = "\"BE_AddressType\"")
+@EqualsAndHashCode
 public class AddressType {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
