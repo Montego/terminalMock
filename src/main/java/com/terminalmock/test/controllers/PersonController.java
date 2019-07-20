@@ -21,7 +21,7 @@ public class PersonController {
 
     }
 
-    @GetMapping("/parrentAddress")
+    @GetMapping("/parentAddress")
     public AddressCellBasedDto getParrentAddress(){
         return personInfoService.getParentAddressDto();
     }
