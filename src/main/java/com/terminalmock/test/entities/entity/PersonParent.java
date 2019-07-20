@@ -13,8 +13,6 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
 
 @Data
 @Entity
@@ -75,12 +73,12 @@ public class PersonParent {
 
     }
 
-    @OneToMany(orphanRemoval = true, cascade = CascadeType.ALL)
+    @OneToOne(orphanRemoval = true, cascade = CascadeType.ALL)
     @JoinColumn(name = "\"RefId\"")
     @JsonManagedReference
-    private List<PersonParentAddress> addresses = new ArrayList<>();
+    private PersonParentAddress address;
 
     @Transient
-    private List<AddressCellBasedDto> addressesDto = new ArrayList<>();
+    private AddressCellBasedDto addressDto;
 
 }

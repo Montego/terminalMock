@@ -102,8 +102,8 @@ public class PersonService {
         createAddressesFromDto(person.getPerson_info());
         if (person.getParents_info() != null){
             for (PersonParent parent: person.getParents_info()){
-                if (parent.getAddressesDto() != null){
-                    createAddressesFromDto(parent);
+                if (parent.getAddressDto() != null){
+                    createAddressFromDto(parent);
                 }
             }
         }
@@ -125,17 +125,13 @@ public class PersonService {
         }
     }
 
-    private void createAddressesFromDto(PersonParent personParent){
-        if (personParent.getAddressesDto() != null){
-            List<PersonParentAddress> addresses = new ArrayList<>();
-            for (AddressCellBasedDto dto : personParent.getAddressesDto()){
-                PersonParentAddress model = new PersonParentAddress();
-                convertAdrDtoToAdr(dto,model);
-                model.setAddressType(dto.getAddressType());
-                addresses.add(model);
-            }
-            addresses.forEach(addr -> addr.setPersonParent(personParent));
-            personParent.setAddresses(addresses);
+    private void createAddressFromDto(PersonParent personParent){
+        if (personParent.getAddressDto() != null){
+            PersonParentAddress model = new PersonParentAddress();
+            convertAdrDtoToAdr(personParent.getAddressDto(),model);
+            model.setAddressType(personParent.getAddressDto().getAddressType());
+            model.setPersonParent(personParent);
+            personParent.setAddress(model);
         }
     }
 }

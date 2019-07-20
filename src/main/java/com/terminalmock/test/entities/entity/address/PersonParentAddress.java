@@ -8,14 +8,14 @@ import lombok.Setter;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 
 @Getter
 @Setter
 @Entity
 @DiscriminatorValue("PersonParent")
 public class PersonParentAddress extends Address {
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name = "\"RefId\"")
     @JsonBackReference
     private PersonParent personParent;

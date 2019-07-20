@@ -4,10 +4,7 @@ import com.terminalmock.test.entities.entity.Application;
 import com.terminalmock.test.entities.entity.Person;
 import com.terminalmock.test.entities.entity.PersonInfo;
 import com.terminalmock.test.entities.entity.PersonParent;
-import com.terminalmock.test.entities.entity.address.AddressCell;
-import com.terminalmock.test.entities.entity.address.AddressCellBasedDto;
-import com.terminalmock.test.entities.entity.address.PersonAddress;
-import com.terminalmock.test.entities.entity.address.PersonParentAddress;
+import com.terminalmock.test.entities.entity.address.*;
 import com.terminalmock.test.entities.enums.AddressType;
 import com.terminalmock.test.repositories.entityrepo.PersonInfoRepo;
 import org.springframework.stereotype.Service;
@@ -15,6 +12,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static com.terminalmock.test.services.entityServices.AddressService.convertAdrDtoToAdr;
 import static com.terminalmock.test.services.entityServices.AddressService.convertAdrToAdrDto;
@@ -63,34 +61,7 @@ public class PersonInfoService {
         return personInfo.getTab_personal_lastname() + " " + personInfo.getTab_personal_firstname() + " " + personInfo.getTab_personal_middlename();
     }
 
-    private void  addAddressesDto(PersonInfo cp){
-        //convertAdrToAdrDto
-        List<AddressCellBasedDto> dtos = new ArrayList<>();
-        for (PersonAddress address : cp.getAddresses()){
-            AddressCellBasedDto dto = convertAdrToAdrDto(address);
-            dto.setAddressSearchObj(new AddressCell(null,null,address.getAddressTxt()));
-            dtos.add(dto);
-        }
-        cp.setAddressesDto(dtos);
-    }
 
-    private void addAddresses(PersonInfo cp){
-        if (cp.getAddresses().isEmpty()){
-            PersonAddress reg = new PersonAddress();
-            reg.setPerson(cp);
-            reg.setAddressType(new AddressType(0,"Адрес регистрации"));
-
-            PersonAddress fac = new PersonAddress();
-            fac.setPerson(cp);
-            fac.setAddressType(new AddressType(1, "Адрес фактический"));
-
-            PersonAddress tem = new PersonAddress();
-            tem.setPerson(cp);
-            tem.setAddressType(new AddressType(2, "Адрес временной регистрации"));
-
-            cp.setAddresses(Arrays.asList(reg,fac,tem));
-        }
-    }
 
     private void updateAddresses(PersonInfo cp){
 
@@ -131,8 +102,16 @@ public class PersonInfoService {
     }
 
     private void handleAddresses(Person person){
+        handlePersonAddresses(person);
+        handlePersonParentAddress(person);
+    }
+
+    private void handlePersonAddresses(Person person){
         ArrayList<AddressCellBasedDto> dtos = new ArrayList<>();
         if (person.getPerson_info() != null && person.getPerson_info().getAddresses() != null){
+            if (person.getPerson_info().getAddresses().size()<3){
+                addEmptyAddressesForPerson(person);
+            }
             for (PersonAddress address: person.getPerson_info().getAddresses()){
                 AddressCellBasedDto dto = convertAdrToAdrDto(address);
                 dto.setAddressType(address.getAddressType());
@@ -140,20 +119,40 @@ public class PersonInfoService {
             }
         }
         person.getPerson_info().setAddressesDto(dtos);
+    }
 
-        ArrayList<AddressCellBasedDto> parentDtos = new ArrayList<>();
+    private void handlePersonParentAddress(Person person){
         if (person.getParents_info() != null){
             for (PersonParent parent: person.getParents_info()){
-                if (parent.getAddresses() != null){
-                    for (PersonParentAddress parentAddress: parent.getAddresses()){
-                        AddressCellBasedDto parentDto = convertAdrToAdrDto(parentAddress);
-                        parentDto.setAddressType(parentAddress.getAddressType());
-                        parentDtos.add(parentDto);
-                    }
-                    parent.setAddressesDto(parentDtos);
+                if (parent.getAddress() != null){
+                    AddressCellBasedDto parentDto = convertAdrToAdrDto(parent.getAddress());
+                    parentDto.setAddressType(parent.getAddress().getAddressType());
+                    parent.setAddressDto(parentDto);
+                } else {
+                    PersonParentAddress model = new PersonParentAddress();
+                    AddressCellBasedDto parentDto = convertAdrToAdrDto(model);
+                    parentDto.setAddressType(FACT_ADDRESS);
+                    parent.setAddressDto(parentDto);
                 }
             }
         }
     }
 
+    private void addEmptyAddressesForPerson(Person person) {
+        List<AddressType> types = Arrays.asList(FACT_ADDRESS,REG_ADDRESS,TEMP_REG_ADDRESS);
+        List<AddressType> personTypes = person.getPerson_info().getAddresses().stream()
+                .map(Address::getAddressType).collect(Collectors.toList());
+        types.removeAll(personTypes);
+        for (AddressType type : types){
+            AddressCellBasedDto dto = new AddressCellBasedDto();
+            dto.setAddressType(type);
+            person.getPerson_info().getAddressesDto().add(dto);
+        }
+    }
+
+    public AddressCellBasedDto getParentAddressDto() {
+        PersonParentAddress address = new PersonParentAddress();
+        address.setAddressType(FACT_ADDRESS);
+        return convertAdrToAdrDto(address);
+    }
 }

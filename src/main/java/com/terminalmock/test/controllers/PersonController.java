@@ -21,6 +21,11 @@ public class PersonController {
 
     }
 
+    @GetMapping("/parrentAddress")
+    public AddressCellBasedDto getParrentAddress(){
+        return personInfoService.getParentAddressDto();
+    }
+
 //    @Autowired
 //    PersonRepo personRepo;
 //
