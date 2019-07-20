@@ -249,8 +249,8 @@ public class PersonInfo {
 //            this.person                                     = new Person();
 //        }
 //    }
-    @OneToMany(orphanRemoval = true, cascade = CascadeType.ALL)
-    @JoinColumn(name = "\"RefId\"")
+    @OneToMany(orphanRemoval = true, cascade = CascadeType.ALL, mappedBy = "person")
+    //@JoinColumn(name = "\"RefId\"")
     @JsonManagedReference
     private List<PersonAddress> addresses = new ArrayList<>();
 
