@@ -30,7 +30,7 @@ public class ChoosenWizard {
     private String specialityId;
     @Column(name = "\"EnvironmentId\"")
     private String environmentId;
-
+    private String company;
     private String contract;
     private LocalDate date;
     @Column(name = "\"courseNum\"")

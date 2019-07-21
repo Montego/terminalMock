@@ -16,16 +16,16 @@ public class ApplicationDocuments {
     @GeneratedValue(strategy = GenerationType.AUTO)
     Long id;
 
-    private String name;
-    private String serial;
-    private String number;
-    private String fullname;
+    private String nameDoc;
+    private String serialDoc;
+    private String numberDoc;
+    private String fullnameDoc;
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "docType")
-    private DocType selected_docType;
-    private LocalDate dateOfIssue;
-    private int count = 0;
-    private String issuedBy;
+    private DocType docTypeDoc;
+    private LocalDate dateOfIssueDoc;
+    private int countDoc = 0;
+    private String IssuedByDoc;
 //    private String tab_document_selectedDocumentType;
 //    private int tab_document_count;
 //    private String tab_document_series;

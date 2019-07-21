@@ -77,19 +77,19 @@ public class PersonInfo {
     @JoinColumn(name = "language1")
     private Language selected_foreignLanguageName1;
 
-    private String language_score1;
+    private int language_score1;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "language2")
     private Language selected_foreignLanguageName2;
 
-    private String language_score2;
+    private int language_score2;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "language3")
     private Language selected_foreignLanguageName3;
 
-    private String language_score3;
+    private int language_score3;
     //from address tab
     private String tab_address_registrationAddress;
     private String tab_address_factAddress;
