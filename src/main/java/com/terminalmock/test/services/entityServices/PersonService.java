@@ -10,6 +10,7 @@ import com.terminalmock.test.entities.entity.address.PersonAddress;
 import com.terminalmock.test.entities.entity.address.PersonParentAddress;
 import com.terminalmock.test.repositories.entityrepo.PersonInfoRepo;
 import com.terminalmock.test.repositories.entityrepo.PersonRepo;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -36,7 +37,12 @@ public class PersonService {
     }
 
     public List<PersonTableDto> getAllPersonTableDto(User user) {
-        List<PersonInfo> persons = personInfoRepo.findAllByModifiedBy(user.getAlias());
+        List<PersonInfo> persons;
+        if (user.isAdmin()){
+            persons = personInfoRepo.findAll();
+        } else {
+            persons = personInfoRepo.findAllByModifiedBy(user.getAlias());
+        }
 
         List<PersonTableDto> personsDto = new ArrayList<>();
 
@@ -87,6 +93,9 @@ public class PersonService {
 
     public void save(Person person, User user){
 //        person.getPerson_info();
+        if (user == null){
+            throw new UsernameNotFoundException("user not found exeption");
+        }
         person.getPerson_info().setModifiedBy(user.getAlias());
         HandleAddresses(person);
         person_Repo.save(person);

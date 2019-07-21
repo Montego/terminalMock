@@ -250,7 +250,6 @@ public class PersonInfo {
 //        }
 //    }
     @OneToMany(orphanRemoval = true, cascade = CascadeType.ALL, mappedBy = "person")
-    //@JoinColumn(name = "\"RefId\"")
     @JsonManagedReference
     private List<PersonAddress> addresses = new ArrayList<>();
 

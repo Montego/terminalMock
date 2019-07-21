@@ -10,7 +10,6 @@ import com.terminalmock.test.repositories.entityrepo.PersonInfoRepo;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -139,14 +138,17 @@ public class PersonInfoService {
     }
 
     private void addEmptyAddressesForPerson(Person person) {
-        List<AddressType> types = Arrays.asList(FACT_ADDRESS,REG_ADDRESS,TEMP_REG_ADDRESS);
+        List<AddressType> types = new ArrayList<>();
+        types.add(FACT_ADDRESS);
+        types.add(REG_ADDRESS);
+        types.add(TEMP_REG_ADDRESS);
         List<AddressType> personTypes = person.getPerson_info().getAddresses().stream()
                 .map(Address::getAddressType).collect(Collectors.toList());
         types.removeAll(personTypes);
         for (AddressType type : types){
-            AddressCellBasedDto dto = new AddressCellBasedDto();
-            dto.setAddressType(type);
-            person.getPerson_info().getAddressesDto().add(dto);
+            PersonAddress model = new PersonAddress();
+            model.setAddressType(type);
+            person.getPerson_info().getAddresses().add(model);
         }
     }
 

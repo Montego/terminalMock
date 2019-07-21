@@ -74,7 +74,6 @@ public class PersonParent {
     }
 
     @OneToOne(orphanRemoval = true, cascade = CascadeType.ALL, mappedBy = "personParent")
-    //@JoinColumn(name = "\"RefId\"")
     @JsonManagedReference
     private PersonParentAddress address;
 
