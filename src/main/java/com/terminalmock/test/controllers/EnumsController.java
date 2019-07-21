@@ -4,6 +4,7 @@ import com.terminalmock.test.entities.enums.*;
 import com.terminalmock.test.services.enumsServices.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -69,6 +70,10 @@ public class EnumsController {
     @GetMapping("/attrType")
     public List<AttrType> getListAttrType() {
         return attrTypeService.getAll();
+    }
+    @GetMapping("/attrType/{id}")
+    public AttrType getOneAttrType(@PathVariable Integer id) {
+        return attrTypeService.getOne(id);
     }
 
     @GetMapping("/deliveryType")

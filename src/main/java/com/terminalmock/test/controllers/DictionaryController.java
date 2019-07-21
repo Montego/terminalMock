@@ -4,7 +4,6 @@ import com.terminalmock.test.entities.dictionary.*;
 import com.terminalmock.test.services.dictionaryServices.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -33,6 +32,7 @@ public class DictionaryController {
     private final SoldieryService soldieryService;
     private final SpecialityService specialityService;
     private final SubjectService subjectService;
+    private final TargOrgService targOrgService;
 //    private final UnvSpecialityService unvSpecialityService;
 
     @Autowired
@@ -43,7 +43,7 @@ public class DictionaryController {
                                 HighSchoolService highSchoolService, IdentityCardCodeService identityCardCodeService,
                                 LanguageService languageService, PreferenceService preferenceService,
                                 QualificationLevelService qualificationLevelService, SoldieryService soldieryService,
-                                SpecialityService specialityService, SubjectService subjectService) {
+                                SpecialityService specialityService, SubjectService subjectService, TargOrgService targOrgService) {
         this.academyYearService = academyYearService;
         this.addressCountryRegionService = addressCountryRegionService;
         this.addressStateService = addressStateService;
@@ -60,6 +60,7 @@ public class DictionaryController {
         this.soldieryService = soldieryService;
         this.specialityService = specialityService;
         this.subjectService = subjectService;
+        this.targOrgService = targOrgService;
     }
 
 //    @GetMapping("/docByPreferenceId/{id}")
@@ -143,6 +144,10 @@ public class DictionaryController {
     @GetMapping("/subject")
     public List<Subject> getListSubject() {
         return subjectService.getAll();
+    }
+    @GetMapping("/targOrg")
+    public List<TargOrg> getListTargOrg() {
+        return targOrgService.getAll();
     }
 //    @GetMapping("/unvSpeciality")
 //    public List<UnvSpeciality> getListUnvSpeciality() {

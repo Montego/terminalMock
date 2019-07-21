@@ -1,6 +1,7 @@
 package com.terminalmock.test.entities.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.terminalmock.test.entities.dictionary.TargOrg;
 import com.terminalmock.test.entities.enums.DocType;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -30,7 +31,9 @@ public class ChoosenWizard {
     private String specialityId;
     @Column(name = "\"EnvironmentId\"")
     private String environmentId;
-    private String company;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "TargOrg")
+    private TargOrg company;
     private String contract;
     private LocalDate date;
     @Column(name = "\"courseNum\"")

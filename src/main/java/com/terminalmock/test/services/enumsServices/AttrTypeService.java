@@ -15,7 +15,7 @@ public class AttrTypeService {
         this.attrTypeRepo = attrTypeRepo;
     }
 
-    public AttrType getOne(Long id) {
+    public AttrType getOne(Integer id) {
         return attrTypeRepo.findById(id).orElse(null);
     }
 
