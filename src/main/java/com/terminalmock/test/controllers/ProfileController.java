@@ -74,11 +74,11 @@ public class ProfileController {
     }
 
     @PostMapping()
-    public Person create(@RequestBody Person person, @AuthenticationPrincipal User user) {
+    public String create(@RequestBody Person person, @AuthenticationPrincipal User user) {
         System.out.println(person.getPerson_info());
         System.out.println("save person");
         personService.save(person,user);
-        return person;
+        return "Сохранено";
     }
 
 //    @PutMapping("/person/{id}")
@@ -104,37 +104,42 @@ public class ProfileController {
         System.out.println("update person");
         personService.save(personFromDB,user);
     }
-    @PutMapping("/acceptPerson/{id}")
-    public String acceptPerson(
-            @PathVariable("id") Long personInfoFromDBid,
-            @RequestBody String accept,
-            @AuthenticationPrincipal User user){
-        Person personFromDB = personInfoService.getPersonByPersonInfo(personInfoFromDBid);
-        Person personFromDBNew = personInfoService.getPersonByPersonInfo(personInfoFromDBid);
-        personFromDBNew.setAcceptedPerson(accept);
-        BeanUtils.copyProperties(personFromDBNew, personFromDB, "id");
-        personService.save(personFromDBNew, user);
-        return "Утверждено";
-    }
+//    @PutMapping("/acceptPerson/{id}")
+//    public String acceptPerson(
+//            @PathVariable("id") Long personInfoFromDBid,
+//            @RequestBody String accept,
+//            @AuthenticationPrincipal User user){
+//        Person personFromDB = personInfoService.getPersonByPersonInfo(personInfoFromDBid);
+//        Person personFromDBNew = personInfoService.getPersonByPersonInfo(personInfoFromDBid);
+//        personFromDBNew.setAcceptedPerson(accept);
+//        BeanUtils.copyProperties(personFromDBNew, personFromDB, "id");
+//        personService.save(personFromDBNew, user);
+//        return "Утверждено";
+//    }
 
 
-    @PutMapping("/saved/{id}")
-    public List<PersonTableDto> savedPerson(
-            @PathVariable("id") Long personInfoFromDBid,
-            @RequestBody String saved,
-            @AuthenticationPrincipal User user){
-        Person personFromDB = personInfoService.getPersonByPersonInfo(personInfoFromDBid);
-        Person personFromDBNew = personInfoService.getPersonByPersonInfo(personInfoFromDBid);
-        personFromDBNew.setSaved(saved);
-        BeanUtils.copyProperties(personFromDBNew, personFromDB, "id");
-        personService.save(personFromDBNew,user);
-        return personService.getAllPersonTableDto(user);
-    }
+//    @PutMapping("/saved/{id}")
+//    public List<PersonTableDto> savedPerson(
+//            @PathVariable("id") Long personInfoFromDBid,
+//            @RequestBody String saved,
+//            @AuthenticationPrincipal User user){
+//        Person personFromDB = personInfoService.getPersonByPersonInfo(personInfoFromDBid);
+//        Person personFromDBNew = personInfoService.getPersonByPersonInfo(personInfoFromDBid);
+//        personFromDBNew.setSaved(saved);
+//        BeanUtils.copyProperties(personFromDBNew, personFromDB, "id");
+//        personService.save(personFromDBNew,user);
+//        return personService.getAllPersonTableDto(user);
+//    }
 
 //    @GetMapping("/conditionsDto")
 //    public List<ConditionsDto> getAll(){
 //        return conditionsDtoService.getAll();
 //    }
+    @GetMapping("/application/{id}")
+    public Application getAllApplicationByPersonInfoId(@PathVariable Long id){
+        return personInfoService.getApplicationsByPersonInfo(id);
+    }
+
 
     @GetMapping("/conditionsDto")
     public List<Wizard> getAll(){

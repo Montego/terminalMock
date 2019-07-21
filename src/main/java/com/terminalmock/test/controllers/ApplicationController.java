@@ -2,10 +2,12 @@ package com.terminalmock.test.controllers;
 
 import com.terminalmock.test.dto.*;
 import com.terminalmock.test.entities.entity.Application;
+import com.terminalmock.test.entities.view.Wizard;
 import com.terminalmock.test.repositories.entityrepo.ApplicationRepo;
 import com.terminalmock.test.repositories.entityrepo.PersonRepo;
 import com.terminalmock.test.services.dtoServices.*;
 import com.terminalmock.test.services.entityServices.ApplicationService;
+import com.terminalmock.test.services.viewServices.WizardService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,7 +19,8 @@ public class ApplicationController {
 
     @Autowired
     ConditionsDtoService conditionsDtoService;
-
+    @Autowired
+    WizardService wizardService;
     @Autowired
     ApplicationShortDtoService applicationShortDtoService;
     @Autowired
@@ -92,6 +95,11 @@ public class ApplicationController {
     @GetMapping("/conditions/{id}")
     public ResultAplDto get(@PathVariable Long id){
         return conditionsDtoService.get(id);
+    }
+
+    @GetMapping("/fullConditions")
+    public List<Wizard> getAll(){
+        return wizardService.getAll();
     }
 
 }

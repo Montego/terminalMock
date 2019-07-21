@@ -31,15 +31,9 @@ public class ConditionsDtoService {
         Person person = personInfo.getPerson();
         System.out.println(person.getId());
         Application application = person.getApplication();
-
-//        System.out.println(application.getId());
-//        choosenWizardRepo.findAllByApplication(application.getId());
-
         List<ChoosenWizard> choosenWizards = choosenWizardRepo.findAllByApplication(
-//                application.getId()
                 application
         );
-
 
         ResultAplDto resultAplDto = new ResultAplDto(
 //                application.getApplication_number(),
@@ -50,16 +44,6 @@ public class ConditionsDtoService {
         );
         return resultAplDto;
     }
-
-
-
-
-
-        private String application_number;
-        private String application_person_name;
-        private LocalDate application_date = LocalDate.now();
-
-
 
 
 

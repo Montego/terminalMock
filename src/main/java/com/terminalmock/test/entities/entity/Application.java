@@ -18,18 +18,21 @@ import java.util.Set;
 @Getter
 @Setter
 @NoArgsConstructor
-//@AllArgsConstructor
+@AllArgsConstructor
 @Entity
 public class Application{
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     long id;
-
-    private String saved = "Не сохранено";
-    //application_condition массив
-    private String application_person_name;
-    private String application_number;
     private LocalDate application_date;
+
+    private String saved;
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name="application_document_id")
+    @JsonManagedReference
+    private Set<ApplicationDocuments> application_documents;
+    private String application_number;
+    private String application_person_name;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "deliveryType")
@@ -47,17 +50,6 @@ public class Application{
     @JsonManagedReference
     private Set<ApplicationCondition> application_condition;
 
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name="application_document_id")
-    @JsonManagedReference
-    private Set<ApplicationDocuments> application_documents;
-
-
-    private int score_russian;
-
-    private int score_chemistry;
-
-    private int score_biology;
 
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name="application_wizard_id")

@@ -1,6 +1,6 @@
 package com.terminalmock.test.dto;
 
-import com.terminalmock.test.entities.entity.ApplicationCondition;
+//import com.terminalmock.test.entities.entity.ApplicationCondition;
 import com.terminalmock.test.entities.entity.ApplicationDocuments;
 import com.terminalmock.test.entities.enums.DeliveryType;
 import com.terminalmock.test.entities.enums.DocType;
@@ -25,6 +25,6 @@ public class ApplicationDto {
     private DeliveryType application_selectedDeliveryType;
     private boolean budget;
     private DocType application_selectedDocType;
-    private Set<ApplicationCondition> application_condition;
+//    private Set<ApplicationCondition> application_condition;
     private Set<ApplicationDocuments> application_documents;
 }

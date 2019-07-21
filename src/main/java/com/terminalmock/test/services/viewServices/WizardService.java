@@ -17,7 +17,7 @@ public class WizardService {
     }
 
     public List<Wizard> getAll() {
-        System.out.println(wizardRepo.findAll().get(0).toString());
+
 
 //        List<Wizard> wizards = wizardRepo.findAll();
 //        List<ConditionsDto> conditionsDtos = new ArrayList<>();
