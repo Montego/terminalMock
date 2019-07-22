@@ -1,5 +1,6 @@
 package com.terminalmock.test.entities.dictionary;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -40,12 +41,7 @@ public class Document {
     private int diplomCopy;
 
 
-//    @ManyToMany
-//    @JoinTable(
-//            name = "\"D_PreferenceByDoc\"",
-//            joinColumns = { @JoinColumn(name = "\"DocumentId\"") },
-//            inverseJoinColumns = { @JoinColumn(name = "\"PreferenceId\"") }
-//    )
-////    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-//    private List<Preference> preferences;
+    @JsonIgnore
+    @ManyToMany(mappedBy = "documents")
+    private List<Preference> preferences;
 }

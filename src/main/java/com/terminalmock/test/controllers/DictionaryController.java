@@ -95,8 +95,9 @@ public class DictionaryController {
         return documentService.getAll();
     }
 
-//    @GetMapping("/documentByPreference/{id}")
-//    public List<Document> getListDocumentByPreference(@PathVariable String id) {
+//    @GetMapping("/documentByPreference/{preference}")
+//    public List<Document> findAllByPreferences(@PathVariable Preference preference) {
+//        List<Preference>.
 //        return documentService.findAllByPreferences(id);
 //    }
 
@@ -140,6 +141,8 @@ public class DictionaryController {
     public List<Preference> getListPreference() {
         return preferenceService.getAll();
     }
+
+
     @GetMapping("/qualificationLevel")
     public List<QualificationLevel> getList() {
         return qualificationLevelService.getAll();
