@@ -1,5 +1,6 @@
 package com.terminalmock.test.entities.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.security.core.GrantedAuthority;
@@ -20,6 +21,8 @@ public class User  implements UserDetails {
     private Long id;
 
     private String username;
+
+    @JsonIgnore
     private String password;
 
     private String alias;
