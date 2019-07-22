@@ -36,11 +36,11 @@ public class Preference {
     @Column(name = "\"isManual\"")
     private int isManual;
 
-//    @ManyToMany
-//    @JoinTable(
-//            name = "\"D_PreferenceByDoc\"",
-//            joinColumns = { @JoinColumn(name = "\"PreferenceId\"") },
-//            inverseJoinColumns = { @JoinColumn(name = "\"DocumentId\"") }
-//    )
-//    private List<Document> documents;
+    @ManyToMany
+    @JoinTable(
+            name = "\"D_PreferenceByDoc\"",
+            joinColumns = { @JoinColumn(name = "\"PreferenceId\"") },
+            inverseJoinColumns = { @JoinColumn(name = "\"DocumentId\"") }
+    )
+    private List<Document> documents;
 }
