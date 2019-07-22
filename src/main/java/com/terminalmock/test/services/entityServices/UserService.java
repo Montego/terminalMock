@@ -4,6 +4,7 @@ import com.terminalmock.test.entities.entity.Role;
 import com.terminalmock.test.entities.entity.User;
 import com.terminalmock.test.repositories.entityrepo.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -35,6 +36,11 @@ public class UserService implements UserDetailsService {
         return user;
     }
 
+
+    public User getCurrentUser(){
+        return  ((User) SecurityContextHolder.getContext().getAuthentication().getPrincipal());
+
+    }
 
     public List<User> findAll() {
         return userRepository.findAll();
