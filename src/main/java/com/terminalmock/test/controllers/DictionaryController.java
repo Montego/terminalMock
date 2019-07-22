@@ -3,11 +3,9 @@ package com.terminalmock.test.controllers;
 import com.terminalmock.test.entities.dictionary.*;
 import com.terminalmock.test.services.dictionaryServices.*;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -95,16 +93,14 @@ public class DictionaryController {
         return documentService.getAll();
     }
 
-//    @GetMapping("/documentByPreference/{preference}")
-//    public List<Document> findAllByPreferences(@PathVariable Preference preference) {
-//        List<Preference>.
-//        return documentService.findAllByPreferences(id);
-//    }
+    @PostMapping("/documentByPreference/")
+    public List<Document> findAllByPreferences(@RequestBody Preference preference) {
+        List<Preference> prefs = new ArrayList<>();
+        prefs.add(preference);
+        return documentService.findAllByPreferences(prefs);
+    }
 
-//    @GetMapping("/documentByPreference/{id}")
-//    public List<Document> findAllByPreferencesIsContainingPPreferenceId(@PathVariable String id) {
-//        return documentService.findAllByPreferencesIsContainingPPreferenceId(id);
-//    }
+
 //    @GetMapping("/eduCountryRegion")
 //    public List<EduCountryRegion> getListEduCountryRegion() {
 //        return eduCountryRegionService.getAll();
