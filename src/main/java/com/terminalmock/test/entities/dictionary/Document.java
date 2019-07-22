@@ -46,5 +46,6 @@ public class Document {
 //            joinColumns = { @JoinColumn(name = "\"DocumentId\"") },
 //            inverseJoinColumns = { @JoinColumn(name = "\"PreferenceId\"") }
 //    )
+////    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 //    private List<Preference> preferences;
 }

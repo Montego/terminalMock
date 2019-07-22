@@ -4,6 +4,7 @@ import com.terminalmock.test.entities.dictionary.*;
 import com.terminalmock.test.services.dictionaryServices.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -93,6 +94,16 @@ public class DictionaryController {
     public List<Document> getListDocument() {
         return documentService.getAll();
     }
+
+//    @GetMapping("/documentByPreference/{id}")
+//    public List<Document> getListDocumentByPreference(@PathVariable String id) {
+//        return documentService.findAllByPreferences(id);
+//    }
+
+//    @GetMapping("/documentByPreference/{id}")
+//    public List<Document> findAllByPreferencesIsContainingPPreferenceId(@PathVariable String id) {
+//        return documentService.findAllByPreferencesIsContainingPPreferenceId(id);
+//    }
 //    @GetMapping("/eduCountryRegion")
 //    public List<EduCountryRegion> getListEduCountryRegion() {
 //        return eduCountryRegionService.getAll();

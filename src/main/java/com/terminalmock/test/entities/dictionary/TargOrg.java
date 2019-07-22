@@ -29,5 +29,5 @@ public class TargOrg {
     @Column(name = "\"ShortName\"")
     private String shortName;
     @Column(name = "\"Blocked\"")
-    private int blocked;
+    private Integer blocked;
 }

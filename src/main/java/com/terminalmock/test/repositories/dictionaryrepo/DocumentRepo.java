@@ -9,9 +9,12 @@ import java.util.Optional;
 
 public interface DocumentRepo extends JpaRepository<Document, String> {
 
-//    List<Document> findAllByPreferences_PreferenceId(String id);
+//    List<Document> findAllByPreferences(String id);
 
-//
+
+//    List<Document> findAllByPreferencesIsContainingPPreferenceId(String id);
+
+
 //
 //    @Query("select all from Document left join Preference on Document.documentId = " +
 //            "Preference.preferenceId where preferenceId = " )
