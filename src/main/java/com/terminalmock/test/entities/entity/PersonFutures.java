@@ -1,6 +1,7 @@
 package com.terminalmock.test.entities.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.terminalmock.test.entities.dictionary.Document;
 import com.terminalmock.test.entities.dictionary.Preference;
 import com.terminalmock.test.entities.enums.AttrType;
 import com.terminalmock.test.entities.enums.DocType;
@@ -32,7 +33,9 @@ public class PersonFutures {
     private String tab_features_serial;
     private String tab_features_number;
 
-    private String doc1;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "DocName1")
+    private Document doc1;
     private String doc1_serial;
     private String doc1_number;
     @ManyToOne(fetch = FetchType.EAGER)
@@ -43,7 +46,9 @@ public class PersonFutures {
     private String doc1_IssueBy;
     private String doc1_full_info;
 
-    private String doc2;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "DocName2")
+    private Document doc2;
     private String doc2_serial;
     private String doc2_number;
     @ManyToOne(fetch = FetchType.EAGER)
@@ -54,7 +59,9 @@ public class PersonFutures {
     private String doc2_IssueBy;
     private String doc2_full_info;
 
-    private String doc3;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "DocName3")
+    private Document doc3;
     private String doc3_serial;
     private String doc3_number;
     @ManyToOne(fetch = FetchType.EAGER)
@@ -71,24 +78,24 @@ public class PersonFutures {
     Person person;
 
     //конструктор для информативного заполения JSON
-    public PersonFutures(boolean defValues) {
-
-        if (defValues) {
-            this.id                                     = (long) -1;
-            this.tab_features_selectedAttrType          = new AttrType();
-            this.tab_features_selectedPreference        = new Preference();
-            this.tab_features_selectedTypeDiploma       = new TypeDiploma();
-            this.tab_features_serial                    = "";
-            this.tab_features_number                    = "";
-            this.doc1                                   = "";
-            this.tab_features_selectedDocType1          = new DocType();
-            this.doc2                                   = "";
-            this.tab_features_selectedDocType2          = new DocType();
-            this.doc3                                   = "";
-            this.tab_features_selectedDocType3          = new DocType();
-            this.person                                 = new Person();
-        }
-    }
+//    public PersonFutures(boolean defValues) {
+//
+//        if (defValues) {
+//            this.id                                     = (long) -1;
+//            this.tab_features_selectedAttrType          = new AttrType();
+//            this.tab_features_selectedPreference        = new Preference();
+//            this.tab_features_selectedTypeDiploma       = new TypeDiploma();
+//            this.tab_features_serial                    = "";
+//            this.tab_features_number                    = "";
+//            this.doc1                                   = "";
+//            this.tab_features_selectedDocType1          = new DocType();
+//            this.doc2                                   = "";
+//            this.tab_features_selectedDocType2          = new DocType();
+//            this.doc3                                   = "";
+//            this.tab_features_selectedDocType3          = new DocType();
+//            this.person                                 = new Person();
+//        }
+//    }
 
 
 }
