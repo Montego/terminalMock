@@ -80,7 +80,7 @@ public class PersonInfoService {
         personAddresses.add(fac);
 
         PersonAddress reg = new PersonAddress();
-        fac.setAddressType(REG_ADDRESS);
+        reg.setAddressType(REG_ADDRESS);
         personAddresses.add(reg);
 
         PersonAddress tempreg = new PersonAddress();
