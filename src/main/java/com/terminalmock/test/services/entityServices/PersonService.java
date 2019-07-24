@@ -1,10 +1,7 @@
 package com.terminalmock.test.services.entityServices;
 
 import com.terminalmock.test.dto.PersonTableDto;
-import com.terminalmock.test.entities.entity.Person;
-import com.terminalmock.test.entities.entity.PersonInfo;
-import com.terminalmock.test.entities.entity.PersonParent;
-import com.terminalmock.test.entities.entity.User;
+import com.terminalmock.test.entities.entity.*;
 import com.terminalmock.test.entities.entity.address.AddressCellBasedDto;
 import com.terminalmock.test.entities.entity.address.PersonAddress;
 import com.terminalmock.test.entities.entity.address.PersonParentAddress;
@@ -98,6 +95,8 @@ public class PersonService {
         }
         person.getPerson_info().setModifiedBy(user.getAlias());
         HandleAddresses(person);
+        cleanFutureDocs(person);
+
         person_Repo.save(person);
     }
 
@@ -142,5 +141,23 @@ public class PersonService {
             model.setPersonParent(personParent);
             personParent.setAddress(model);
         }
+    }
+
+    private void cleanFutureDocs(Person person){
+
+        if(person!=null && person.getFutures_info()!=null){
+            for (PersonFutures pf: person.getFutures_info()){
+                if (pf.getDoc1() != null && pf.getDoc1().getName() == null){
+                    pf.setDoc1(null);
+                }
+                if (pf.getDoc2() != null && pf.getDoc2().getName() == null){
+                    pf.setDoc2(null);
+                }
+                if (pf.getDoc3() != null && pf.getDoc3().getName() == null){
+                    pf.setDoc3(null);
+                }
+            }
+        }
+
     }
 }

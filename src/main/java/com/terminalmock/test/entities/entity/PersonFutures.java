@@ -33,9 +33,12 @@ public class PersonFutures {
     private String tab_features_serial;
     private String tab_features_number;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "DocName1")
+
+    @OneToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "doc1")
     private Document doc1;
+    private String doc1_newName;
+
     private String doc1_serial;
     private String doc1_number;
     @ManyToOne(fetch = FetchType.EAGER)
@@ -46,9 +49,12 @@ public class PersonFutures {
     private String doc1_IssueBy;
     private String doc1_full_info;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "DocName2")
+
+    @OneToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "doc2")
+
     private Document doc2;
+    private String doc2_newName;
     private String doc2_serial;
     private String doc2_number;
     @ManyToOne(fetch = FetchType.EAGER)
@@ -59,9 +65,12 @@ public class PersonFutures {
     private String doc2_IssueBy;
     private String doc2_full_info;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "DocName3")
+
+    @OneToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "doc3")
+
     private Document doc3;
+    private String doc3_newName;
     private String doc3_serial;
     private String doc3_number;
     @ManyToOne(fetch = FetchType.EAGER)
@@ -78,24 +87,25 @@ public class PersonFutures {
     Person person;
 
     //конструктор для информативного заполения JSON
-//    public PersonFutures(boolean defValues) {
-//
-//        if (defValues) {
-//            this.id                                     = (long) -1;
-//            this.tab_features_selectedAttrType          = new AttrType();
-//            this.tab_features_selectedPreference        = new Preference();
-//            this.tab_features_selectedTypeDiploma       = new TypeDiploma();
-//            this.tab_features_serial                    = "";
-//            this.tab_features_number                    = "";
-//            this.doc1                                   = "";
-//            this.tab_features_selectedDocType1          = new DocType();
-//            this.doc2                                   = "";
-//            this.tab_features_selectedDocType2          = new DocType();
-//            this.doc3                                   = "";
-//            this.tab_features_selectedDocType3          = new DocType();
-//            this.person                                 = new Person();
-//        }
-//    }
+
+    public PersonFutures(boolean defValues) {
+
+        if (defValues) {
+            this.id                                     = (long) -1;
+            this.tab_features_selectedAttrType          = new AttrType();
+            this.tab_features_selectedPreference        = new Preference();
+            this.tab_features_selectedTypeDiploma       = new TypeDiploma();
+            this.tab_features_serial                    = "";
+            this.tab_features_number                    = "";
+            this.doc1                                   = new Document();
+            this.tab_features_selectedDocType1          = new DocType();
+            this.doc2                                   = new Document();
+            this.tab_features_selectedDocType2          = new DocType();
+            this.doc3                                   = new Document();
+            this.tab_features_selectedDocType3          = new DocType();
+            this.person                                 = new Person();
+        }
+    }
 
 
 }
