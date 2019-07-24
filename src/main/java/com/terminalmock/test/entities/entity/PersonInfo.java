@@ -149,6 +149,9 @@ public class PersonInfo {
     private String extraInfosDescription2;
     private String image;
     private String showimage;
+    private String fisSettlementTypeId = "";
+
+
 
 //    @JoinColumn(name="person_personInfo_id")
 //    @ManyToOne(fetch = FetchType.EAGER)
