@@ -95,10 +95,10 @@ public class PersonInfo {
     private String tab_address_factAddress;
     private String tab_address_templateRegistrationAddress;
 
-//    @ManyToOne(fetch = FetchType.EAGER)
-//    @JoinColumn(name = "educationLevel")
-//    private EducationLevel tab_edu_military_educationLevel;
-    private String tab_edu_military_educationLevel;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "educationLevel")
+    private EducationLevel tab_edu_military_educationLevel;
+//    private String tab_edu_military_educationLevel;
 //change here
     private String tab_edu_military_univer;
     @ManyToOne(fetch = FetchType.EAGER)
@@ -153,17 +153,9 @@ public class PersonInfo {
 
 
 
-//    @JoinColumn(name="person_personInfo_id")
-//    @ManyToOne(fetch = FetchType.EAGER)
-//    @JsonBackReference
-//    Person person;
-
-//    @OneToOne(fetch = FetchType.EAGER)
-//    @MapsId
     @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name="person_id")
     @JsonBackReference
-//    @OneToOne(optional = false, mappedBy= "personInfo")
     Person person;
 
     //git test

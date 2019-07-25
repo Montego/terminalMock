@@ -2,6 +2,7 @@ package com.terminalmock.test.entities.entity;
 
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.terminalmock.test.entities.dictionary.AcademyYear;
 import com.terminalmock.test.entities.dictionary.AddressCountryRegion;
 import com.terminalmock.test.entities.dictionary.IdentityCardCode;
 import com.terminalmock.test.entities.dictionary.Subject;
@@ -16,6 +17,8 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @Entity
 public class PersonEge {
+
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     long id;
@@ -39,18 +42,15 @@ public class PersonEge {
 //    @ManyToOne(fetch = FetchType.EAGER)
 //    @JoinColumn(name = "examForm")
 //    private ExamForm tab_ege_selectedExamForm;
-private String tab_ege_selectedExamForm;
+    private String tab_ege_selectedExamForm;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "academyYear")
+    private AcademyYear tab_ege_year;
 
-    private String tab_ege_year;
-
-//    @ManyToOne(fetch = FetchType.EAGER)
-//    @JoinColumn(name = "subject")
-//    private Subject tab_ege_selectedSubject;
     private String tab_ege_selectedSubject;
 
     private int tab_ege_score;
-//    private int tab_ege_score_fis;
-//    private String tab_ege_appelation;
+
     private boolean tab_ege_changePaspInf = false;
 
 
