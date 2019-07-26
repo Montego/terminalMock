@@ -2,10 +2,7 @@ package com.terminalmock.test.entities.dictionary;
 
 import lombok.Data;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.time.LocalDate;
 
 @Entity
@@ -13,6 +10,7 @@ import java.time.LocalDate;
 @Table(name = "\"D_AcadamyYear\"")
 public class AcademyYear {
     @Id
+    @OrderBy("name DESC")
     @Column(name = "\"AcadamyYearId\"")
     private String academyYearId;
     @Column(name = "\"Description\"")

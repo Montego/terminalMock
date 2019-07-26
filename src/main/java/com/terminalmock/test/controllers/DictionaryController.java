@@ -69,7 +69,7 @@ public class DictionaryController {
 
 
     @GetMapping("/academyYear")
-    public List<AcademyYear> getListAcademyYear() {
+    public Iterable<AcademyYear> getListAcademyYear() {
         return academyYearService.getAll();
     }
 //    @GetMapping("/accreditationDoc")

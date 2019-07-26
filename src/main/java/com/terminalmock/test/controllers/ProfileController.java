@@ -74,11 +74,12 @@ public class ProfileController {
     }
 
     @PostMapping()
-    public String create(@RequestBody Person person, @AuthenticationPrincipal User user) {
+    public Long create(@RequestBody Person person, @AuthenticationPrincipal User user) {
         System.out.println(person.getPerson_info());
         System.out.println("save person");
+        person.setSaved("Сохранено");
         personService.save(person,user);
-        return "Сохранено";
+        return personService.getOne(person.getId()).getId();
     }
 
 //    @PutMapping("/person/{id}")

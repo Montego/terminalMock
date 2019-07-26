@@ -9,6 +9,6 @@ import java.util.Optional;
 
 public interface ApplicationRepo extends JpaRepository<Application, Long> {
 
-    ArrayList<Application> findAllByPerson(Person person);
-
+//    ArrayList<Application> findAllByPerson_application(Person person);
+//    ArrayList<Application> findAllBy
 }

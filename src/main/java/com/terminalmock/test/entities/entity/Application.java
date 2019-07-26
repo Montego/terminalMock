@@ -39,6 +39,10 @@ public class Application{
     private DeliveryType application_selectedDeliveryType;
 
     @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "deliveryReturnType")
+    private DeliveryType application_selectedDeliveryReturnType;
+
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "docType")
     private DocType application_selectedDocType;
 
@@ -59,7 +63,7 @@ public class Application{
     @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name="person_id")
     @JsonBackReference
-    Person person;
+    Person person_application;
 
 
 //    @ElementCollection
