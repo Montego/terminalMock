@@ -37,7 +37,7 @@ public class ApplicationService {
     public void saveWithPersonConnect(Application application, Long id){
         PersonInfo personInfo = personInfoRepo.findById(id).orElse(null);
         Person person = personInfo.getPerson();
-        application.setPerson_application(person);
+        application.setPerson(person);
 
 
 

@@ -32,7 +32,7 @@ public class ApplicationTableDtoService {
                     application.getApplication_number(),
                     application.getApplication_date(),
                     application.getApplication_selectedDeliveryType(),
-                    application.getPerson_application().getAcceptedPerson(),
+                    application.getPerson().getAcceptedPerson(),
                     application.getSaved()
             );
             applicationTableDtos.add(applicationTableDto);

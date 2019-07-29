@@ -58,7 +58,7 @@ public class Person {
     @JsonManagedReference
     private AxaptaCode axaptaCode;
 
-    @OneToOne(cascade=CascadeType.ALL, mappedBy= "person_application")
+    @OneToOne(cascade=CascadeType.ALL, mappedBy= "person")
     @JsonManagedReference
     private Application application;
     //конструктор для информативного заполения JSON

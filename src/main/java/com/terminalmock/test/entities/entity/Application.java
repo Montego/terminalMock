@@ -63,7 +63,7 @@ public class Application{
     @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name="person_id")
     @JsonBackReference
-    Person person_application;
+    Person person;
 
 
 //    @ElementCollection
