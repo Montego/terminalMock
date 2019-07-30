@@ -66,7 +66,7 @@ public class SearchPersonInfoSvc {
         }
 
         Pageable pages = PageRequest.of(page, size, direction, property);
-
+        //TODO заменить на List <personTableDto>
         return personInfoRepo.findAll(specificationForSearch(params),pages);
     }
 

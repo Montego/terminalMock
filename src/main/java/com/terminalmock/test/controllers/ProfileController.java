@@ -7,6 +7,8 @@ import com.terminalmock.test.entities.entity.Person;
 import com.terminalmock.test.entities.entity.PersonInfo;
 import com.terminalmock.test.entities.entity.User;
 import com.terminalmock.test.entities.view.Wizard;
+import com.terminalmock.test.model.comparison.SearchParams;
+import com.terminalmock.test.services.SearchPersonInfoSvc;
 import com.terminalmock.test.services.dtoServices.ConditionsDtoService;
 import com.terminalmock.test.services.entityServices.PersonInfoService;
 import com.terminalmock.test.services.entityServices.PersonService;
@@ -16,6 +18,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @RestController
@@ -28,10 +31,18 @@ public class ProfileController {
     WizardService wizardService;
     private final PersonService personService;
     private final PersonInfoService personInfoService;
+    private final SearchPersonInfoSvc searchPersonInfoSvc;
     @Autowired
-    public ProfileController(PersonService personService,PersonInfoService personInfoService) {
+    public ProfileController(PersonService personService, PersonInfoService personInfoService, SearchPersonInfoSvc searchPersonInfoSvc) {
         this.personService = personService;
         this.personInfoService = personInfoService;
+        this.searchPersonInfoSvc = searchPersonInfoSvc;
+    }
+
+    @PostMapping("/search/")
+    public Iterable<PersonInfo> searching (@RequestBody SearchParams params, HttpServletRequest request){
+            return searchPersonInfoSvc.searchMedCerts(params, request);
+
     }
 
     @GetMapping("/persons")
@@ -101,7 +112,7 @@ public class ProfileController {
 //        PersonInfo personInfo = person.getPersonInfo();
 
         Person personFromDB = personInfoService.getPersonByPersonInfo(personInfoFromDBid);
-        BeanUtils.copyProperties(person, personFromDB, "id");
+        BeanUtils.copyProperties(person, personFromDB, "id","person_info");
         System.out.println("update person");
         personService.save(personFromDB,user);
     }
