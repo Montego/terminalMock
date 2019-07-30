@@ -39,11 +39,14 @@ public class ProfileController {
         this.searchPersonInfoSvc = searchPersonInfoSvc;
     }
 
-    @PostMapping("/search/")
-    public Iterable<PersonInfo> searching (@RequestBody SearchParams params, HttpServletRequest request){
+//    @PostMapping("/search/")
+//    public Iterable<PersonInfo> searching (@RequestBody SearchParams params, HttpServletRequest request){
+//            return searchPersonInfoSvc.searchMedCerts(params, request);
+//    }
+        @PostMapping("/search/")
+        public List<PersonTableDto> searching (@RequestBody SearchParams params, HttpServletRequest request){
             return searchPersonInfoSvc.searchMedCerts(params, request);
-
-    }
+        }
 
     @GetMapping("/persons")
     public List<Person> getListPerson() {

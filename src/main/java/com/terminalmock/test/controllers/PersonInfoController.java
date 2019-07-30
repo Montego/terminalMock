@@ -33,14 +33,14 @@ public class PersonInfoController {
      *               он не будет участвовать в фильтрации
      * @return Iterable<PersonInfo> - возвращает список свидетельств подходящих по описанию
      */
-    @PostMapping("/searchPersonInfo")
-    public Iterable<PersonInfo> searchMedCerts(@RequestBody SearchForm input, HttpServletRequest request) {
-
-        SearchParams params = input.getSearchForm();
-
-        return searchPersonInfoSvc.searchMedCerts(params,request);
-
-    }
+//    @PostMapping("/searchPersonInfo")
+//    public Iterable<PersonInfo> searchMedCerts(@RequestBody SearchForm input, HttpServletRequest request) {
+//
+//        SearchParams params = input.getSearchForm();
+//
+//        return searchPersonInfoSvc.searchMedCerts(params,request);
+//
+//    }
 
     @GetMapping("/getEmptySearchParams")
     public SearchForm getEmptySearchParams() {
