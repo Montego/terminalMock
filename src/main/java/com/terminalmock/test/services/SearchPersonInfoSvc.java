@@ -93,7 +93,6 @@ public class SearchPersonInfoSvc {
         return new SearchForm(true);
     }
 
-
 //внутренние процедуры
 
     private Specification<PersonInfo> specificationForSearch(SearchParams params){

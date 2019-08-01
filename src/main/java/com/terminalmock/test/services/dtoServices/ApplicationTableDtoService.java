@@ -2,15 +2,11 @@ package com.terminalmock.test.services.dtoServices;
 
 import com.terminalmock.test.dto.ApplicationTableDto;
 import com.terminalmock.test.entities.entity.Application;
-import com.terminalmock.test.entities.entity.Person;
 import com.terminalmock.test.entities.entity.PersonInfo;
 import com.terminalmock.test.repositories.entityrepo.ApplicationRepo;
 import com.terminalmock.test.repositories.entityrepo.PersonInfoRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.ArrayList;
-import java.util.List;
 
 @Service
 public class ApplicationTableDtoService {
@@ -19,14 +15,17 @@ public class ApplicationTableDtoService {
     @Autowired
     PersonInfoRepo personInfoRepo;
 
-    public List<ApplicationTableDto> getApplicationsTableDto(long id) {
+    public ApplicationTableDto getApplicationsTableDto(long id) {
         PersonInfo personInfo = personInfoRepo.findById(id).orElse(null);
-        Person person = personInfo.getPerson();
-
-        Application application = person.getApplication();
-        List<ApplicationTableDto> applicationTableDtos = new ArrayList<>();
-        if(application!= null){
-            ApplicationTableDto applicationTableDto = new ApplicationTableDto(
+        Application application;
+        if (personInfo != null) {
+            application = personInfo.getPerson().getApplication();
+        } else {
+            application = null;
+        }
+        ApplicationTableDto applicationTableDto;
+        if (application != null) {
+            applicationTableDto = new ApplicationTableDto(
                     application.getId(),
                     application.getApplication_person_name(),
                     application.getApplication_number(),
@@ -35,9 +34,8 @@ public class ApplicationTableDtoService {
                     application.getPerson().getAcceptedPerson(),
                     application.getSaved()
             );
-            applicationTableDtos.add(applicationTableDto);
-        }else {
-            ApplicationTableDto applicationTableDto = new ApplicationTableDto(
+        } else {
+            applicationTableDto = new ApplicationTableDto(
                     0l,
                     "",
                     "",
@@ -47,19 +45,6 @@ public class ApplicationTableDtoService {
                     "Не сохранено");
         }
 
-
-//        for (int i = 0; i < (applications).size(); i++) {
-//            ApplicationTableDto applicationTableDto = new ApplicationTableDto(
-//                    applications.get(i).getId(),
-//                    applications.get(i).getApplication_person_name(),
-//                    applications.get(i).getApplication_number(),
-//                    applications.get(i).getApplication_date(),
-//                    applications.get(i).getApplication_selectedDeliveryType(),
-//                    applications.get(i).getPerson().getAcceptedPerson(),
-//                    applications.get(i).getSaved()
-//            );
-
-
-        return applicationTableDtos;
+        return applicationTableDto;
     }
 }

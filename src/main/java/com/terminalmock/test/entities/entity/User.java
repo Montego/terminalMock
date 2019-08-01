@@ -14,8 +14,8 @@ import java.util.Set;
 @Getter
 @Setter
 @Entity
-@Table(name="AUTH_User")
-public class User  implements UserDetails {
+@Table(name = "AUTH_User")
+public class User implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
@@ -32,15 +32,16 @@ public class User  implements UserDetails {
 
     private boolean active;
 
-    public boolean isAdmin(){
+    public boolean isAdmin() {
         return roles.contains(Role.ADMIN);
     }
-    public boolean isTechpo(){
+
+    public boolean isTechpo() {
         return roles.contains(Role.TECHPO);
     }
 
     @ElementCollection(targetClass = Role.class, fetch = FetchType.EAGER)
-    @CollectionTable(name="user_role",joinColumns = @JoinColumn(name="user_id"))
+    @CollectionTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"))
     @Enumerated(EnumType.STRING)
     private Set<Role> roles;
 

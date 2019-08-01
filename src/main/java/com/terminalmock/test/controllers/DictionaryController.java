@@ -13,26 +13,22 @@ import java.util.List;
 
 public class DictionaryController {
     private final AcademyYearService academyYearService;
-//    private final AccreditationDocService accreditationDocService;
     private final AddressCountryRegionService addressCountryRegionService;
     private final AddressStateService addressStateService;
     private final DocumentKindService documentKindService;
     private final DocumentService documentService;
-//    private final EduCountryRegionService eduCountryRegionService;
     private final EduDocService eduDocService;
     private final EduLevelService eduLevelService;
     private final FamRelationShipService famRelationShipService;
     private final HighSchoolService highSchoolService;
     private final IdentityCardCodeService identityCardCodeService;
     private final LanguageService languageService;
-//    private final OtherCountryRegionService otherCountryRegionService;
     private final PreferenceService preferenceService;
     private final QualificationLevelService qualificationLevelService;
     private final SoldieryService soldieryService;
     private final SpecialityService specialityService;
     private final SubjectService subjectService;
     private final TargOrgService targOrgService;
-//    private final UnvSpecialityService unvSpecialityService;
 
     @Autowired
     public DictionaryController(AcademyYearService academyYearService,
@@ -62,32 +58,26 @@ public class DictionaryController {
         this.targOrgService = targOrgService;
     }
 
-//    @GetMapping("/docByPreferenceId/{id}")
-//    public List<Document> getListDocByPreferenceId(@PathVariable String id) {
-//        return documentService.findAllByPreferences_PreferenceId(id);
-//    }
-
-
     @GetMapping("/academyYear")
     public Iterable<AcademyYear> getListAcademyYear() {
         return academyYearService.getAll();
     }
-//    @GetMapping("/accreditationDoc")
-//    public List<AccreditationDoc> getListAccreditationDoc() {
-//        return accreditationDocService.getAll();
-//    }
+
     @GetMapping("/addressCountryRegion")
     public List<AddressCountryRegion> getListAddressCountryRegion() {
         return addressCountryRegionService.getAll();
     }
+
     @GetMapping("/addressState")
     public List<AddressState> getListAddressState() {
         return addressStateService.getAll();
     }
+
     @GetMapping("/documentKind")
     public List<DocumentKind> getListDocumentKind() {
         return documentKindService.getAll();
     }
+
     @GetMapping("/document")
     public List<Document> getListDocument() {
         return documentService.getAll();
@@ -100,39 +90,36 @@ public class DictionaryController {
         return documentService.findAllByPreferences(prefs);
     }
 
-
-//    @GetMapping("/eduCountryRegion")
-//    public List<EduCountryRegion> getListEduCountryRegion() {
-//        return eduCountryRegionService.getAll();
-//    }
     @GetMapping("/eduDoc")
     public List<EduDoc> getListEduDoc() {
         return eduDocService.getAll();
     }
+
     @GetMapping("/eduLevel")
     public List<EduLevel> getListEduLevel() {
         return eduLevelService.getAll();
     }
+
     @GetMapping("/famRelationShip")
     public List<FamRelationShip> getListFamRelationShip() {
         return famRelationShipService.getAll();
     }
+
     @GetMapping("/highSchool")
     public List<HighSchool> getListHighSchool() {
         return highSchoolService.getAll();
     }
-        @GetMapping("/identityCardCode")
+
+    @GetMapping("/identityCardCode")
     public List<IdentityCardCode> getListIdentityCardCode() {
         return identityCardCodeService.getAll();
     }
+
     @GetMapping("/language")
     public List<Language> getListLanguage() {
         return languageService.getAll();
     }
-//    @GetMapping("/otherCountryRegion")
-//    public List<OtherCountryRegion> getListOtherCountryRegion() {
-//        return otherCountryRegionService.getAll();
-//    }
+
     @GetMapping("/preference")
     public List<Preference> getListPreference() {
         return preferenceService.getAll();
@@ -143,24 +130,25 @@ public class DictionaryController {
     public List<QualificationLevel> getList() {
         return qualificationLevelService.getAll();
     }
+
     @GetMapping("/soldiery")
     public List<Soldiery> getListSoldiery() {
         return soldieryService.getAll();
     }
+
     @GetMapping("/speciality")
     public List<Speciality> getListSpeciality() {
         return specialityService.getAll();
     }
+
     @GetMapping("/subject")
     public List<Subject> getListSubject() {
         return subjectService.getAll();
     }
+
     @GetMapping("/targOrg")
     public List<TargOrg> getListTargOrg() {
         return targOrgService.getAll();
     }
-//    @GetMapping("/unvSpeciality")
-//    public List<UnvSpeciality> getListUnvSpeciality() {
-//        return unvSpecialityService.getAll();
-//    }
+
 }

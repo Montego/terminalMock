@@ -5,8 +5,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.time.LocalDate;
-
 @Getter
 @Setter
 @NoArgsConstructor
@@ -20,7 +18,5 @@ public class ConditionsDto {
     private String courseNum;
     private String eduForm;
     private boolean chose;
-//    private String application_number;
-//    private String application_person_name;
-//    private LocalDate application_date = LocalDate.now();
+
 }

@@ -16,27 +16,15 @@ public class PersonController {
     PersonInfoService personInfoService;
 
     @GetMapping("/addresses")
-    public List<AddressCellBasedDto> getAddressesDto(){
+    public List<AddressCellBasedDto> getAddressesDto() {
         return personInfoService.getAddressesDto();
 
     }
 
     @GetMapping("/parentAddress")
-    public AddressCellBasedDto getParrentAddress(){
+    public AddressCellBasedDto getParrentAddress() {
         return personInfoService.getParentAddressDto();
     }
 
-//    @Autowired
-//    PersonRepo personRepo;
-//
-//    @GetMapping("/getEmptyPerson")
-//    public Person getEmptyMedCertDPO(){
-//        return new Person(true);
-//    }
-//
-//    @PostMapping("/person")
-//    public Person save(@RequestBody Person person){
-//        return personRepo.save(person);
-//    }
 
 }

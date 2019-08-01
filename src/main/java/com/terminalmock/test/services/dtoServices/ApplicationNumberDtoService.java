@@ -1,6 +1,5 @@
 package com.terminalmock.test.services.dtoServices;
 
-import com.terminalmock.test.entities.entity.Application;
 import com.terminalmock.test.entities.entity.PersonInfo;
 import com.terminalmock.test.repositories.entityrepo.ApplicationRepo;
 import com.terminalmock.test.repositories.entityrepo.PersonInfoRepo;
@@ -16,8 +15,12 @@ public class ApplicationNumberDtoService {
 
     public String getApplicationNumberByPersonInfo(long id) {
         PersonInfo personInfo = personInfoRepo.findById(id).orElse(null);
-        Application application = personInfo.getPerson().getApplication();
-        return application.getApplication_number();
+        if (personInfo != null) {
+            return personInfo.getPerson().getApplication().getApplication_number();
+        } else {
+            return null;
+        }
+
     }
 
 }

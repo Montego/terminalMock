@@ -12,11 +12,10 @@ public class AxaptaCodeService {
     public AxaptaCodeService(AxaptaCodeRepository axaptaCodeRepository) {
         this.axaptaCodeRepository = axaptaCodeRepository;
     }
-    public void save(AxaptaCode axaptaCode){
+
+    public void save(AxaptaCode axaptaCode) {
         axaptaCodeRepository.save(axaptaCode);
     }
 
-//    public AxaptaCode getOneByPerson(Long id){
-//
-//    }
+
 }

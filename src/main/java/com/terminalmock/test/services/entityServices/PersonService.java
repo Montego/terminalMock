@@ -35,7 +35,7 @@ public class PersonService {
 
     public List<PersonTableDto> getAllPersonTableDto(User user) {
         List<PersonInfo> persons;
-        if (user.isAdmin()){
+        if (user.isAdmin()) {
             persons = personInfoRepo.findAll();
         } else {
             persons = personInfoRepo.findAllByModifiedBy(user.getAlias());
@@ -43,15 +43,18 @@ public class PersonService {
 
         List<PersonTableDto> personsDto = new ArrayList<>();
 
-        for (PersonInfo person : persons){
-            PersonTableDto dto = new PersonTableDto();
-            dto.setId(person.getId());
-            dto.setTab_personal_lastname(person.getTab_personal_lastname());
-            dto.setTab_personal_firstname(person.getTab_personal_firstname());
-            dto.setTab_personal_middlename(person.getTab_personal_middlename());
-            dto.setTab_personal_birthDate(person.getTab_personal_birthDate());
-            dto.setResultAcceptPerson(person.getPerson().getAcceptedPerson());
-            dto.setSaved(person.getPerson().getSaved());
+        for (PersonInfo person : persons) {
+            PersonTableDto dto = new PersonTableDto(
+                    person.getId(),
+                    person.getTab_personal_lastname(),
+                    person.getTab_personal_firstname(),
+                    person.getTab_personal_middlename(),
+                    person.getTab_personal_birthDate(),
+                    person.getPerson().getAcceptedPerson(),
+                    person.getPerson().getSaved()
+
+            );
+
             personsDto.add(dto);
         }
 
@@ -59,45 +62,16 @@ public class PersonService {
     }
 
 
-//    public List<ApplicationTableDto> getAllApplicationTableDto() {
-//        List<PersonInfo> persons= personInfoRepo.findAll();
-//        List<ApplicationTableDto> applicationsTableDto = new ArrayList<>();
-//        for(int i =0; i<persons.size(); i++){
-//            ApplicationTableDto applicationTableDto = new ApplicationTableDto(
-//                    persons.get(i).getId(),
-//                    persons.get(i).getTab_personal_name()
-////                    persons.get(i).getApplication_number(),
-////                    persons.get(i).getApplication_date(),
-////                    persons.get(i).getApplication_selectedDeliveryType().getName(),
-////                    persons.get(i).isBudget()
-//            );
-//            applicationsTableDto.add(applicationTableDto);
-//        }
-//        return applicationsTableDto;
-//    }
-
-//    public List<ApplicationDto> getAllApplicationDto() {
-//        List<Person> persons= person_Repo.findAll();
-//        List<ApplicationDto> applicationsDto = new ArrayList<>();
-//        for(int i = 0; i<persons.size(); i++){
-//            ApplicationDto applicationDto = new ApplicationDto(
-//
-//            );
-//            applicationsDto.add(applicationDto);
-//        }
-//        return applicationsDto;
-//    }
-
-    public void save(Person person, User user){
+    public Long save(Person person, User user) {
 //        person.getPerson_info();
-        if (user == null){
+        if (user == null) {
             throw new UsernameNotFoundException("user not found exeption");
         }
         person.getPerson_info().setModifiedBy(user.getAlias());
         HandleAddresses(person);
         cleanFutureDocs(person);
 
-        person_Repo.save(person);
+        return person_Repo.save(person).getId();
     }
 
     public void delete(Long id) {
@@ -105,12 +79,11 @@ public class PersonService {
     }
 
 
-
-    private void HandleAddresses(Person person){
+    private void HandleAddresses(Person person) {
         createAddressesFromDto(person.getPerson_info());
-        if (person.getParents_info() != null){
-            for (PersonParent parent: person.getParents_info()){
-                if (parent.getAddressDto() != null){
+        if (person.getParents_info() != null) {
+            for (PersonParent parent : person.getParents_info()) {
+                if (parent.getAddressDto() != null) {
                     createAddressFromDto(parent);
                 }
             }
@@ -119,12 +92,12 @@ public class PersonService {
     }
 
 
-    private void createAddressesFromDto(PersonInfo cp){
+    private void createAddressesFromDto(PersonInfo cp) {
         List<PersonAddress> addresses = new ArrayList<>();
-        if(cp.getAddressesDto() != null ){
-            for (AddressCellBasedDto dto : cp.getAddressesDto()){
+        if (cp.getAddressesDto() != null) {
+            for (AddressCellBasedDto dto : cp.getAddressesDto()) {
                 PersonAddress model = new PersonAddress();
-                convertAdrDtoToAdr(dto,model);
+                convertAdrDtoToAdr(dto, model);
                 model.setAddressType(dto.getAddressType());
                 addresses.add(model);
             }
@@ -133,27 +106,27 @@ public class PersonService {
         }
     }
 
-    private void createAddressFromDto(PersonParent personParent){
-        if (personParent.getAddressDto() != null){
+    private void createAddressFromDto(PersonParent personParent) {
+        if (personParent.getAddressDto() != null) {
             PersonParentAddress model = new PersonParentAddress();
-            convertAdrDtoToAdr(personParent.getAddressDto(),model);
+            convertAdrDtoToAdr(personParent.getAddressDto(), model);
             model.setAddressType(personParent.getAddressDto().getAddressType());
             model.setPersonParent(personParent);
             personParent.setAddress(model);
         }
     }
 
-    private void cleanFutureDocs(Person person){
+    private void cleanFutureDocs(Person person) {
 
-        if(person!=null && person.getFutures_info()!=null){
-            for (PersonFutures pf: person.getFutures_info()){
-                if (pf.getDoc1() != null && pf.getDoc1().getName() == null){
+        if (person != null && person.getFutures_info() != null) {
+            for (PersonFutures pf : person.getFutures_info()) {
+                if (pf.getDoc1() != null && pf.getDoc1().getName() == null) {
                     pf.setDoc1(null);
                 }
-                if (pf.getDoc2() != null && pf.getDoc2().getName() == null){
+                if (pf.getDoc2() != null && pf.getDoc2().getName() == null) {
                     pf.setDoc2(null);
                 }
-                if (pf.getDoc3() != null && pf.getDoc3().getName() == null){
+                if (pf.getDoc3() != null && pf.getDoc3().getName() == null) {
                     pf.setDoc3(null);
                 }
             }
