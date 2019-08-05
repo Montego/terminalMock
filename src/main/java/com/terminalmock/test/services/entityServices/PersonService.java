@@ -68,10 +68,16 @@ public class PersonService {
             throw new UsernameNotFoundException("user not found exeption");
         }
         person.getPerson_info().setModifiedBy(user.getAlias());
+        person.getPerson_info().setTab_personal_name(
+                        person.getPerson_info().getTab_personal_lastname() + " " +
+                        person.getPerson_info().getTab_personal_firstname() + " " +
+                        person.getPerson_info().getTab_personal_middlename()
+        );
         HandleAddresses(person);
         cleanFutureDocs(person);
+        person_Repo.save(person);
 
-        return person_Repo.save(person).getId();
+        return person.getPerson_info().getId();
     }
 
     public void delete(Long id) {

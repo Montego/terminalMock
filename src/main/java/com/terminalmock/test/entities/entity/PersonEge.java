@@ -36,7 +36,7 @@ public class PersonEge {
     private LocalDate tab_ege_identityCardIssueDate;
     private String tab_ege_identityCardIssueBy;
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "addressCountryRegion")
+    @JoinColumn(name = "countryRegionId")
     private AddressCountryRegion tab_ege_info_selectedCitizenship;
 
 //    @ManyToOne(fetch = FetchType.EAGER)

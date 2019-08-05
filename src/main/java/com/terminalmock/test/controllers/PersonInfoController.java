@@ -7,25 +7,25 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-
-@RestController
-@RequestMapping("/rest")
-public class PersonInfoController {
-
-    private final
-    SearchPersonInfoSvc searchPersonInfoSvc;
-
-    @Autowired
-    public PersonInfoController(SearchPersonInfoSvc searchPersonInfoSvc) {
-        this.searchPersonInfoSvc = searchPersonInfoSvc;
-    }
-
-    
-    @GetMapping("/getEmptySearchParams")
-    public SearchForm getEmptySearchParams() {
-
-        return searchPersonInfoSvc.getEmptySearchParams();
-
-    }
-
-}
+//
+//@RestController
+//@RequestMapping("/rest")
+//public class PersonInfoController {
+//
+//    private final
+//    SearchPersonInfoSvc searchPersonInfoSvc;
+//
+//    @Autowired
+//    public PersonInfoController(SearchPersonInfoSvc searchPersonInfoSvc) {
+//        this.searchPersonInfoSvc = searchPersonInfoSvc;
+//    }
+//
+//
+//    @GetMapping("/getEmptySearchParams")
+//    public SearchForm getEmptySearchParams() {
+//
+//        return searchPersonInfoSvc.getEmptySearchParams();
+//
+//    }
+//
+//}
