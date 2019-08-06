@@ -10,9 +10,14 @@ import com.terminalmock.test.entities.entity.address.PersonAddress;
 import com.terminalmock.test.entities.entity.address.PersonParentAddress;
 import com.terminalmock.test.repositories.entityrepo.PersonInfoRepo;
 import com.terminalmock.test.repositories.entityrepo.PersonRepo;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
+import org.springframework.web.util.UriComponentsBuilder;
 
+import java.net.URI;
+import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,6 +25,8 @@ import static com.terminalmock.test.services.entityServices.AddressService.conve
 
 @Service
 public class PersonService {
+    private final static String AX_SERVICE_URL= "http://10.71.0.115/ax_api/rest/findBy";
+    private final static String AX_LOCAL_URL= "http://localhost:8084/rest/findBy";
     private final PersonRepo person_Repo;
     private final PersonInfoRepo personInfoRepo;
 
@@ -142,5 +149,36 @@ public class PersonService {
             model.setPersonParent(personParent);
             personParent.setAddress(model);
         }
+    }
+
+    public String checkUnique(String lastName,
+                              String firstName,
+                              String middleName,
+                              String identityCardCode,
+                              String identityCardSeries,
+                              String identityCardNumber){
+
+
+        UriComponentsBuilder builder = UriComponentsBuilder
+                .fromUriString(AX_SERVICE_URL)
+                .queryParam("lastName",lastName)
+                .queryParam("firstName",firstName)
+                .queryParam("middleName", middleName)
+                .queryParam("identityCardCode",identityCardCode)
+                .queryParam("identityCardSeries", identityCardSeries)
+                .queryParam("identityCardNumber", identityCardNumber);
+
+
+        return sendRequest(builder.build().encode(Charset.defaultCharset()).toUri()).getBody();
+    }
+
+    private static ResponseEntity<String> sendRequest(URI uri){
+        RestTemplate template = new RestTemplate();
+        return template.getForEntity(uri,String.class);
+    }
+
+    private static ResponseEntity<String> checkAlive(){
+        RestTemplate template = new RestTemplate();
+        return template.getForEntity("http://localhost:8084/persist/hello",String.class);
     }
 }

@@ -16,6 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
+import javax.websocket.server.PathParam;
 import java.util.List;
 
 @RestController
@@ -168,5 +169,13 @@ public class ProfileController {
 //        personService.save(person);
 //    }
 
-
+    @GetMapping(value = "/checkUnique")
+    public String checkUnique(@PathParam("lastName") String lastName,
+                              @PathParam("firstName") String firstName,
+                              @PathParam("middleName") String middleName,
+                              @PathParam("identityCardCode") String identityCardCode,
+                              @PathParam("identityCardSeries") String identityCardSeries,
+                              @PathParam("identityCardNumber") String identityCardNumber){
+        return personService.checkUnique(lastName,firstName,middleName,identityCardCode,identityCardSeries,identityCardNumber);
+    }
 }
