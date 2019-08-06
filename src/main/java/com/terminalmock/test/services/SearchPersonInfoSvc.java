@@ -1,6 +1,7 @@
 package com.terminalmock.test.services;
 
 
+import com.terminalmock.test.dto.PersonTableDto;
 import com.terminalmock.test.entities.entity.PersonInfo;
 import com.terminalmock.test.repositories.entityrepo.PersonInfoRepo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +18,7 @@ import com.terminalmock.test.model.comparison.SearchSelect;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
+import java.util.List;
 
 
 import static com.terminalmock.test.repositories.specifications.SearchPersonInfoSpecification.*;
@@ -36,7 +38,8 @@ public class SearchPersonInfoSvc {
      * @param params SearchParams - свойства по структуре класса
      * @return Iterable<PersonInfo> - список найденных свидетельств
      */
-    public Iterable<PersonInfo> searchMedCerts(SearchParams params, HttpServletRequest request) {
+//    public Iterable<PersonInfo> searchMedCerts(SearchParams params, HttpServletRequest request) {
+     public List<PersonTableDto> searchMedCerts(SearchParams params, HttpServletRequest request) {
 
         Integer page = 0;
         Integer size = 20;
@@ -66,14 +69,29 @@ public class SearchPersonInfoSvc {
         }
 
         Pageable pages = PageRequest.of(page, size, direction, property);
+        //TODO заменить на List <personTableDto>
+        Iterable<PersonInfo> persons = personInfoRepo.findAll(specificationForSearch(params),pages);
+        List<PersonTableDto> personsDto = new ArrayList<>();
+        for (PersonInfo person : persons){
+            PersonTableDto dto = new PersonTableDto();
+            dto.setId(person.getId());
+            dto.setTab_personal_lastname(person.getTab_personal_lastname());
+            dto.setTab_personal_firstname(person.getTab_personal_firstname());
+            dto.setTab_personal_middlename(person.getTab_personal_middlename());
+            dto.setTab_personal_birthDate(person.getTab_personal_birthDate());
+            dto.setResultAcceptPerson(person.getPerson().getAcceptedPerson());
+            dto.setSaved(person.getPerson().getSaved());
+            personsDto.add(dto);
+        }
 
-        return personInfoRepo.findAll(specificationForSearch(params),pages);
+        return personsDto;
+
+//        return personInfoRepo.findAll(specificationForSearch(params),pages);
     }
 
     public SearchForm getEmptySearchParams(){
         return new SearchForm(true);
     }
-
 
 //внутренние процедуры
 

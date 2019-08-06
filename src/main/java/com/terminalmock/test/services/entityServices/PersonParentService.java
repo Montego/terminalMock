@@ -22,8 +22,8 @@ public class PersonParentService {
         return person_parentRepo.findAll();
     }
 
-    public void save(PersonParent person_parent_){
-        person_parentRepo.save(person_parent_);
+    public void save(PersonParent personParent) {
+        person_parentRepo.save(personParent);
     }
 
     public void delete(Long id) {

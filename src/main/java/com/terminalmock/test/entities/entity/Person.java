@@ -54,10 +54,9 @@ public class Person {
     @JsonManagedReference
     private List<PersonFutures> futures_info;
 
-//    @OneToMany(cascade = CascadeType.ALL)
-//    @JoinColumn(name="person_application_id")
-//    @JsonManagedReference
-//    private List<Application> applications;
+    @OneToOne(cascade=CascadeType.ALL, mappedBy= "person_axapta")
+    @JsonManagedReference
+    private AxaptaCode axaptaCode;
 
     @OneToOne(cascade=CascadeType.ALL, mappedBy= "person")
     @JsonManagedReference

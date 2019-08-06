@@ -45,19 +45,36 @@ public class PersonInfoService {
         PersonInfo personInfo = personInfoRepo.findById(id).orElse(null);
         if (personInfo != null){
             handleAddresses(personInfo.getPerson());
+            return personInfo.getPerson();
+        } else {
+            return null;
         }
-        return personInfo.getPerson();
     }
 
     public Application getApplicationsByPersonInfo(long id){
         PersonInfo personInfo = personInfoRepo.findById(id).orElse(null);
-        Person person = personInfo.getPerson();
-        return person.getApplication();
+        if(personInfo != null){
+            return personInfo.getPerson().getApplication();
+        }else {
+            return null;
+        }
     }
-
+//TODO check return
     public String getApplicationPersonName(long id){
         PersonInfo personInfo = personInfoRepo.findById(id).orElse(null);
-        return personInfo.getTab_personal_lastname() + " " + personInfo.getTab_personal_firstname() + " " + personInfo.getTab_personal_middlename();
+        String answer;
+        if(personInfo != null) {
+            if(personInfo.getTab_personal_lastname()!= null){
+               return answer = personInfo.getTab_personal_lastname()+ " " +
+                        personInfo.getTab_personal_firstname() +
+                        " " + personInfo.getTab_personal_middlename();
+            }else{
+                return null;
+            }
+        }else{
+            return null;
+        }
+
     }
 
 

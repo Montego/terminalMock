@@ -4,6 +4,7 @@ package com.terminalmock.test.services.dictionaryServices;
 import com.terminalmock.test.entities.dictionary.AcademyYear;
 import com.terminalmock.test.repositories.dictionaryrepo.AcademyYearRepo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -21,7 +22,7 @@ public class AcademyYearService {
         return academyYearRepo.findById(id).orElse(null);
     }
 
-    public List<AcademyYear> getAll() {
-        return academyYearRepo.findAll();
+    public Iterable<AcademyYear> getAll() {
+        return academyYearRepo.findAll(Sort.by("AcademyYearId").descending());
     }
 }

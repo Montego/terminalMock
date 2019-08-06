@@ -30,7 +30,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 //    private PasswordEncoder passwordEncoder;
 
     @Bean
-    public PasswordEncoder getPasswordEncoder(){
+    public PasswordEncoder getPasswordEncoder() {
         return new BCryptPasswordEncoder(8);
     }
 
@@ -43,17 +43,17 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http.formLogin().successHandler(simpleUrlAuthenticationSuccessHandler());
         http.logout().logoutSuccessHandler(logoutSuccessHandler());
 
-
         http
                 .authorizeRequests()
                 .antMatchers("/auth/**").permitAll();
 
-        http.authorizeRequests()
+        http
+                .authorizeRequests()
                 .antMatchers("/login*").anonymous();
 
         http
                 .authorizeRequests()
-                .antMatchers("/", "/registration").permitAll()
+                .antMatchers("/", "/registration", "/alive").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .formLogin().loginProcessingUrl("/auth/login")
@@ -70,9 +70,14 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(userService)
+        auth
+                .userDetailsService(userService)
                 .passwordEncoder(passwordEncoder());
+    }
 
+    @Bean
+    public UserDetailsService userDetailsService() {
+        return new MyUserDetailSvc();
     }
 
     @Bean
@@ -81,28 +86,23 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     @Bean
-    public AuthenticationFailureHandler authenticationFailureHandler(){
-        return new CustomAuthenticationFailureHandler();
-    }
-
-    @Bean
-    public UserDetailsService userDetailsService(){
-        return new MyUserDetailSvc();
-    }
-
-    @Bean
-    public AuthenticationEntryPoint authenticationEntryPoint(){
+    public AuthenticationEntryPoint authenticationEntryPoint() {
         return new CustomAuthenticationEntryPoint();
     }
 
     @Bean
-    public SimpleUrlAuthenticationSuccessHandler simpleUrlAuthenticationSuccessHandler(){
-        return new CustomSimpleUrlAuthenticationSuccessHandler();
+    public AuthenticationFailureHandler authenticationFailureHandler() {
+        return new CustomAuthenticationFailureHandler();
     }
 
     @Bean
-    public LogoutSuccessHandler logoutSuccessHandler(){
+    public LogoutSuccessHandler logoutSuccessHandler() {
         return new CustomLogoutSuccessHandler();
+    }
+
+    @Bean
+    public SimpleUrlAuthenticationSuccessHandler simpleUrlAuthenticationSuccessHandler() {
+        return new CustomSimpleUrlAuthenticationSuccessHandler();
     }
 
 

@@ -21,10 +21,6 @@ import java.util.ArrayList;
 @Getter
 public class SearchParams {
 
-    //region  Входные параметры отбора
-
-    //свойства основого сертификата
-
     private SearchSelect tab_personal_lastname;
     private SearchSelect tab_personal_firstname;
     private SearchSelect tab_personal_middlename;

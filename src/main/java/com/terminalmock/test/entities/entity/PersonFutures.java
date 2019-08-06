@@ -1,6 +1,7 @@
 package com.terminalmock.test.entities.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.terminalmock.test.entities.dictionary.Document;
 import com.terminalmock.test.entities.dictionary.Preference;
 import com.terminalmock.test.entities.enums.AttrType;
 import com.terminalmock.test.entities.enums.DocType;
@@ -32,7 +33,12 @@ public class PersonFutures {
     private String tab_features_serial;
     private String tab_features_number;
 
-    private String doc1;
+
+    @OneToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "doc1")
+    private Document doc1;
+    private String doc1_newName;
+
     private String doc1_serial;
     private String doc1_number;
     @ManyToOne(fetch = FetchType.EAGER)
@@ -43,7 +49,12 @@ public class PersonFutures {
     private String doc1_IssueBy;
     private String doc1_full_info;
 
-    private String doc2;
+
+    @OneToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "doc2")
+
+    private Document doc2;
+    private String doc2_newName;
     private String doc2_serial;
     private String doc2_number;
     @ManyToOne(fetch = FetchType.EAGER)
@@ -54,7 +65,12 @@ public class PersonFutures {
     private String doc2_IssueBy;
     private String doc2_full_info;
 
-    private String doc3;
+
+    @OneToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "doc3")
+
+    private Document doc3;
+    private String doc3_newName;
     private String doc3_serial;
     private String doc3_number;
     @ManyToOne(fetch = FetchType.EAGER)
@@ -71,6 +87,7 @@ public class PersonFutures {
     Person person;
 
     //конструктор для информативного заполения JSON
+
     public PersonFutures(boolean defValues) {
 
         if (defValues) {
@@ -80,11 +97,11 @@ public class PersonFutures {
             this.tab_features_selectedTypeDiploma       = new TypeDiploma();
             this.tab_features_serial                    = "";
             this.tab_features_number                    = "";
-            this.doc1                                   = "";
+            this.doc1                                   = new Document();
             this.tab_features_selectedDocType1          = new DocType();
-            this.doc2                                   = "";
+            this.doc2                                   = new Document();
             this.tab_features_selectedDocType2          = new DocType();
-            this.doc3                                   = "";
+            this.doc3                                   = new Document();
             this.tab_features_selectedDocType3          = new DocType();
             this.person                                 = new Person();
         }

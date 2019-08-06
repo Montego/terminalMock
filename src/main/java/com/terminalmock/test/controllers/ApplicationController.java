@@ -1,11 +1,13 @@
 package com.terminalmock.test.controllers;
 
-import com.terminalmock.test.dto.*;
+import com.terminalmock.test.dto.DocumentDto;
+import com.terminalmock.test.dto.ResultAplDto;
 import com.terminalmock.test.entities.entity.Application;
 import com.terminalmock.test.entities.view.Wizard;
-import com.terminalmock.test.repositories.entityrepo.ApplicationRepo;
-import com.terminalmock.test.repositories.entityrepo.PersonRepo;
-import com.terminalmock.test.services.dtoServices.*;
+import com.terminalmock.test.services.dtoServices.ApplicationNumberDtoService;
+import com.terminalmock.test.services.dtoServices.ApplicationTableDtoService;
+import com.terminalmock.test.services.dtoServices.ConditionsDtoService;
+import com.terminalmock.test.services.dtoServices.FillDocumentsDtoService;
 import com.terminalmock.test.services.entityServices.ApplicationService;
 import com.terminalmock.test.services.viewServices.WizardService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,50 +19,33 @@ import java.util.List;
 @RequestMapping("/profile")
 public class ApplicationController {
 
-    @Autowired
-    ConditionsDtoService conditionsDtoService;
-    @Autowired
-    WizardService wizardService;
-    @Autowired
-    ApplicationShortDtoService applicationShortDtoService;
-    @Autowired
-    ApplicationTableDtoService applicationTableDtoService;
-    @Autowired
-    ApplicationNumberDtoService applicationNumberDtoService;
-    @Autowired
-    FillDocumentsDtoService fillDocumentsDtoService;
-    @Autowired
-    ApplicationService applicationService;
-    @Autowired
-    ApplicationRepo applicationRepo;
+    private final ConditionsDtoService conditionsDtoService;
+    private final WizardService wizardService;
+    private final ApplicationTableDtoService applicationTableDtoService;
+    private final ApplicationNumberDtoService applicationNumberDtoService;
+    private final FillDocumentsDtoService fillDocumentsDtoService;
+    private final ApplicationService applicationService;
 
     @Autowired
-    PersonRepo personRepo;
+    public ApplicationController(ConditionsDtoService conditionsDtoService,
+                                 WizardService wizardService,
+                                 ApplicationTableDtoService applicationTableDtoService,
+                                 ApplicationNumberDtoService applicationNumberDtoService,
+                                 FillDocumentsDtoService fillDocumentsDtoService,
+                                 ApplicationService applicationService) {
+        this.conditionsDtoService = conditionsDtoService;
+        this.wizardService = wizardService;
+        this.applicationTableDtoService = applicationTableDtoService;
+        this.applicationNumberDtoService = applicationNumberDtoService;
+        this.fillDocumentsDtoService = fillDocumentsDtoService;
+        this.applicationService = applicationService;
+    }
 
-//    @GetMapping("/getEmptyApplication")
-//    public Application getEmptyApplication() {
-//        return new Application(true);
-//    }
-
-
-//    @GetMapping("/applicationByPerson/{id}")
-//    public Set<>
-
-//    @GetMapping("/applicationByPerson/{id}")
-//    public List<ApplicationShortDto> applicationByPerson(@PathVariable("id") Long id) {
-//        return applicationShortDtoService.getPersonApplications(personRepo.findById(id).get());
-//    }
 
     @PostMapping("/application")
     public Application saveApplication(@RequestBody Application application) {
-        return applicationRepo.save(application);
+        return applicationService.save(application);
     }
-
-//
-//    @GetMapping("/ways")
-//    public List<> getApplicationById(@PathVariable Long id) {
-//        return applicationService.getOne(id);
-//    }
 
     @GetMapping("/applicationById/{id}")
     public Application getApplicationById(@PathVariable Long id) {
@@ -72,15 +57,11 @@ public class ApplicationController {
     public String saveApplWithPersonConnect(
             @RequestBody Application application,
             @PathVariable Long id) {
-        applicationService.saveWithPersonConnect(application,id);
+        applicationService.saveWithPersonConnect(application, id);
         return "Сохранено";
 
     }
 
-    @GetMapping("/applicationTable/{id}")
-    public List<ApplicationTableDto> getApplicationsTableDto(@PathVariable Long id){
-        return applicationTableDtoService.getApplicationsTableDto(id);
-    }
 
     @GetMapping("/applicationNumber/{id}")
     public String getApplicationNumberByPersonInfo(@PathVariable Long id) {
@@ -93,12 +74,12 @@ public class ApplicationController {
     }
 
     @GetMapping("/conditions/{id}")
-    public ResultAplDto get(@PathVariable Long id){
+    public ResultAplDto get(@PathVariable Long id) {
         return conditionsDtoService.get(id);
     }
 
     @GetMapping("/fullConditions")
-    public List<Wizard> getAll(){
+    public List<Wizard> getAll() {
         return wizardService.getAll();
     }
 
