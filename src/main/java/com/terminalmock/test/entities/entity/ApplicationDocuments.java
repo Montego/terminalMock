@@ -1,6 +1,7 @@
 package com.terminalmock.test.entities.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.terminalmock.test.entities.dictionary.Document;
 import com.terminalmock.test.entities.enums.DocType;
 import lombok.*;
 
@@ -16,7 +17,12 @@ public class ApplicationDocuments {
     @GeneratedValue(strategy = GenerationType.AUTO)
     Long id;
 
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "document")
+    private Document selected_document;
+
     private String nameDoc;
+
     private String serialDoc;
     private String numberDoc;
     private String fullnameDoc;

@@ -80,6 +80,11 @@ public class PersonService {
                         person.getPerson_info().getTab_personal_firstname() + " " +
                         person.getPerson_info().getTab_personal_middlename()
         );
+        person.getPerson_info().setTab_personal_contactPersonNameGenitive(
+                        person.getPerson_info().getTab_personal_lastname_genitive() + " " +
+                        person.getPerson_info().getTab_personal_firstname_genitive() + " " +
+                        person.getPerson_info().getTab_personal_middlename_genitive()
+        );
         HandleAddresses(person);
         cleanFutureDocs(person);
         person_Repo.save(person);
