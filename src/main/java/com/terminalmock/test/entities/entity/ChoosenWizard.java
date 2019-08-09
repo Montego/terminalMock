@@ -43,6 +43,7 @@ public class ChoosenWizard {
 
     private boolean agree;
     private LocalDate agreeDate;
+    private String orderGroupType;
     private boolean chose;
     private boolean specialRight;
     //TODO тип?

@@ -89,6 +89,12 @@ public class DictionaryController {
         prefs.add(preference);
         return documentService.findAllByPreferences(prefs);
     }
+    @PostMapping("/documentByEduDoc/")
+    public List<Document> findDocumentByEduDoc(@RequestBody EduDoc eduDoc) {
+        List<EduDoc> eduDocs = new ArrayList<>();
+        eduDocs.add(eduDoc);
+        return documentService.findAllDocumentByEduDoc(eduDocs);
+    }
 
     @GetMapping("/eduDoc")
     public List<EduDoc> getListEduDoc() {

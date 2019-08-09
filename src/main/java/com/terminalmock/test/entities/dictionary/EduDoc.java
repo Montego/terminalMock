@@ -2,10 +2,8 @@ package com.terminalmock.test.entities.dictionary;
 
 import lombok.Data;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Data
@@ -20,4 +18,12 @@ public class EduDoc {
     private String namePrint;
     @Column(name = "\"NamePrintGen\"")
     private String namePrintGen;
+
+
+    @ManyToMany
+    @JoinTable(
+            name = "\"D_DocSettle\"",
+            joinColumns = { @JoinColumn(name = "\"EduDocId\"") },
+            inverseJoinColumns = { @JoinColumn(name = "\"DocumentId\"") })
+    private List<Document> documents_eduDocs;
 }

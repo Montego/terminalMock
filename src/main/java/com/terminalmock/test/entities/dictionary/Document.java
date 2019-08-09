@@ -44,4 +44,8 @@ public class Document {
     @JsonIgnore
     @ManyToMany(mappedBy = "documents")
     private List<Preference> preferences;
+
+    @JsonIgnore
+    @ManyToMany(mappedBy = "documents_eduDocs")
+    private List<EduDoc> eduDocs;
 }

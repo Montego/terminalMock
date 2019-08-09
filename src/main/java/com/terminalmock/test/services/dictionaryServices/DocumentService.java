@@ -2,6 +2,7 @@ package com.terminalmock.test.services.dictionaryServices;
 
 
 import com.terminalmock.test.entities.dictionary.Document;
+import com.terminalmock.test.entities.dictionary.EduDoc;
 import com.terminalmock.test.entities.dictionary.Preference;
 import com.terminalmock.test.repositories.dictionaryrepo.DocumentRepo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +29,10 @@ public class DocumentService {
 
     public List<Document> findAllByPreferences(Collection<Preference> preferences){
         return documentRepo.findAllByPreferences(preferences);
+    }
+
+    public List<Document> findAllDocumentByEduDoc(Collection<EduDoc> eduDocs){
+        return documentRepo.findAllByEduDocs(eduDocs);
     }
 
 //    public List<Document> findAllByPreferences(String id){
