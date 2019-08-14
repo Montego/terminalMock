@@ -31,7 +31,7 @@ public class ApplicationDocuments {
     private DocType docTypeDoc;
     private LocalDate dateOfIssueDoc;
     private int countDoc = 0;
-    private String IssuedByDoc;
+    private String issuedByDoc;
     private Boolean tab_document_auto;
 //    private String tab_document_selectedDocumentType;
 //    private int tab_document_count;
