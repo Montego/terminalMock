@@ -244,9 +244,21 @@ public class PersonInfo {
 //            this.person                                     = new Person();
 //        }
 //    }
-    @OneToMany(orphanRemoval = true, cascade = CascadeType.ALL, mappedBy = "person")
+    @OneToMany(orphanRemoval = true, mappedBy = "person")
     @JsonManagedReference
     private List<PersonAddress> addresses = new ArrayList<>();
+
+    public void setAddresses(List<PersonAddress> addresses){
+        this.addresses = new ArrayList<>();
+        this.addresses.addAll(addresses);
+    }
+
+    public List<PersonAddress> getAddresses(){
+        if (this.addresses == null){
+            this.addresses = new ArrayList<>();
+        }
+        return this.addresses;
+    }
 
     @Transient
     private List<AddressCellBasedDto> addressesDto = new ArrayList<>();

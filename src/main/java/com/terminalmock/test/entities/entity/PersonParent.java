@@ -73,7 +73,7 @@ public class PersonParent {
 
     }
 
-    @OneToOne(orphanRemoval = true, cascade = CascadeType.ALL, mappedBy = "personParent")
+    @OneToOne(orphanRemoval = true, cascade = CascadeType.ALL, mappedBy = "personParent", fetch = FetchType.EAGER)
     @JsonManagedReference
     private PersonParentAddress address;
 

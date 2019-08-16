@@ -12,8 +12,8 @@ import javax.persistence.*;
 @Entity
 @DiscriminatorValue("Person")
 public class PersonAddress extends Address{
-    @ManyToOne
-    @JoinColumn(name = "\"RefId\"")
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "\"RefId\"", nullable = false)
     @JsonBackReference
     private PersonInfo person;
 }

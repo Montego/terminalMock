@@ -12,8 +12,8 @@ import javax.persistence.*;
 @Entity
 @DiscriminatorValue("PersonParent")
 public class PersonParentAddress extends Address {
-    @OneToOne
-    @JoinColumn(name = "\"RefId\"")
+    @OneToOne(optional = false)
+    @JoinColumn(name = "\"RefId\"", nullable = false)
     @JsonBackReference
     private PersonParent personParent;
 }
