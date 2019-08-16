@@ -1,6 +1,8 @@
 package com.terminalmock.test.controllers;
 
 import com.terminalmock.test.entities.entity.address.AddressCellBasedDto;
+import com.terminalmock.test.entities.entity.address.PersonAddress;
+import com.terminalmock.test.entities.entity.address.PersonParentAddress;
 import com.terminalmock.test.services.entityServices.PersonInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,12 +19,16 @@ public class PersonController {
 
     @GetMapping("/addresses")
     public List<AddressCellBasedDto> getAddressesDto() {
+
+        PersonAddress address = new PersonAddress();
+        PersonParentAddress paddress = new PersonParentAddress();
+
         return personInfoService.getAddressesDto();
 
     }
 
     @GetMapping("/parentAddress")
-    public AddressCellBasedDto getParrentAddress() {
+    public AddressCellBasedDto getParentAddress() {
         return personInfoService.getParentAddressDto();
     }
 

@@ -12,6 +12,7 @@ import lombok.Setter;
 public class AddressCellBasedDto {
     private Integer addressId;
     private AddressType addressType;
+    private String refTable;
 
     private AddressCell countryRegion;
     private AddressCell aOLevel1;

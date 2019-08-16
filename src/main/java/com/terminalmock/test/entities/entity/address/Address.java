@@ -20,6 +20,8 @@ public abstract class Address {
     @Column(name = "\"EntrantFIASAddressId\"")
     private Integer entrantFIASAddressId;
 
+
+
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "\"AddressType\"")
     private AddressType addressType;

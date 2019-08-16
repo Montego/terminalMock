@@ -53,6 +53,8 @@ public class AddressService {
         dto.setAddressTxt(model.getAddressTxt());
         dto.setAddressTxtRandom(model.getAddressTxtRandom());
         dto.setAddressSearchText(model.getAddressSearchText());
+
+        dto.setRefTable( "com.terminalmock.test.entities.entity.address.PersonAddress".equals(model.getClass().getName()) ? "PersonAddress" : "ParentAddress");
         return dto;
     }
 
