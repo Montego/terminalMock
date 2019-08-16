@@ -97,7 +97,7 @@ public class PersonInfo {
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "educationLevel")
-    private EducationLevel tab_edu_military_educationLevel;
+    private EduLevel tab_edu_military_educationLevel;
 //    private String tab_edu_military_educationLevel;
 //change here
     private String tab_edu_military_univer;

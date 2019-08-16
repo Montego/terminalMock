@@ -12,12 +12,12 @@ import lombok.*;
 import javax.persistence.*;
 import java.time.LocalDate;
 
-@Data
+@Setter
+@Getter
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
 public class PersonEge {
-
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -27,7 +27,6 @@ public class PersonEge {
     private String tab_ege_middlename;
     //TODO change
     @ManyToOne(fetch = FetchType.EAGER)
-
     @JoinColumn(name = "identityCardCode")
     private IdentityCardCode tab_ege_selectedIdentityCardCode;
 
@@ -54,7 +53,7 @@ public class PersonEge {
     private boolean tab_ege_changePaspInf = false;
 
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name="person_ege_id" )
     @JsonBackReference
     Person person;
