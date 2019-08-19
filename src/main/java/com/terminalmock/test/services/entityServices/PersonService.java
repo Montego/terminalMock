@@ -87,9 +87,9 @@ public class PersonService {
         );
         HandleAddresses(person);
         cleanFutureDocs(person);
-        person_Repo.save(person);
+        Person savedPerson = person_Repo.save(person);
 
-        return person.getPerson_info().getId();
+        return savedPerson.getPerson_info().getId();
     }
 
     public void delete(Long id) {

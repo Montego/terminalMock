@@ -14,6 +14,7 @@ import lombok.Setter;
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 @Getter
@@ -244,7 +245,7 @@ public class PersonInfo {
 //            this.person                                     = new Person();
 //        }
 //    }
-    @OneToMany(orphanRemoval = true, mappedBy = "person")
+    @OneToMany(orphanRemoval = true, mappedBy = "person", cascade = CascadeType.ALL)
     @JsonManagedReference
     private List<PersonAddress> addresses = new ArrayList<>();
 
@@ -263,6 +264,17 @@ public class PersonInfo {
     @Transient
     private List<AddressCellBasedDto> addressesDto = new ArrayList<>();
 
+    public void setAddressesDto(Collection<AddressCellBasedDto> addressesDto){
+        this.addressesDto = new ArrayList<>();
+        this.addressesDto.addAll(addressesDto);
+    }
+
+    public List<AddressCellBasedDto> getAddressesDto(){
+        if (this.addressesDto == null){
+            this.addressesDto = new ArrayList<>();
+        }
+        return addressesDto;
+    }
     @Column(name = "\"modifiedBy\"")
     private String modifiedBy;
 }

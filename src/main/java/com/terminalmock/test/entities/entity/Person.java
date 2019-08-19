@@ -37,6 +37,13 @@ public class Person {
     @JsonManagedReference
     private Set<PersonParent> parents_info;
 
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinColumn(name="person_subjectScore")
+    @JsonManagedReference
+    private Set<SubjectScore> subjectScores;
+
+
+
 //    @OneToMany(cascade = CascadeType.ALL)
 //    @JoinColumn(name="person_personInfo_id")
 //    @JsonManagedReference
