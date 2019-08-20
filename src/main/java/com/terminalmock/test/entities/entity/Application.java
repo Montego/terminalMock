@@ -12,6 +12,8 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
 @Getter
@@ -55,7 +57,7 @@ public class Application {
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "application_wizard_id")
     @JsonManagedReference
-    private Set<ChoosenWizard> choosenWizards;
+    private List<ChoosenWizard> choosenWizards;
 
     @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "person_id")

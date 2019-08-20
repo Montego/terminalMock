@@ -7,6 +7,7 @@ import com.terminalmock.test.entities.entity.address.PersonAddress;
 import com.terminalmock.test.entities.entity.address.PersonParentAddress;
 import com.terminalmock.test.repositories.entityrepo.PersonInfoRepo;
 import com.terminalmock.test.repositories.entityrepo.PersonRepo;
+import com.terminalmock.test.repositories.entityrepo.PortalApplWizardRepository;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
@@ -26,10 +27,12 @@ public class PersonService {
     private final static String AX_LOCAL_URL= "http://localhost:8084/rest/findBy";
     private final PersonRepo person_Repo;
     private final PersonInfoRepo personInfoRepo;
+    private final PortalApplWizardRepository portalApplWizardRepository;
 
-    public PersonService(PersonRepo person_Repo, PersonInfoRepo personInfoRepo) {
+    public PersonService(PersonRepo person_Repo, PersonInfoRepo personInfoRepo, PortalApplWizardRepository portalApplWizardRepository) {
         this.person_Repo = person_Repo;
         this.personInfoRepo = personInfoRepo;
+        this.portalApplWizardRepository = portalApplWizardRepository;
     }
 
     public Person getOne(long id) {
@@ -87,6 +90,17 @@ public class PersonService {
         );
         HandleAddresses(person);
         cleanFutureDocs(person);
+
+        List<ChoosenWizard> choosenWizardsFromPerson = person.getApplication().getChoosenWizards();
+        for (ChoosenWizard choosenWizardsFromPerson1 : choosenWizardsFromPerson) {
+            int s = choosenWizardsFromPerson1.getPortalApplWizardId();
+
+            PortalApplWizard portalApplWizard = portalApplWizardRepository.findById(s).get();
+            choosenWizardsFromPerson1.setCompGroupsId(portalApplWizard.getCompGroupsId());
+            choosenWizardsFromPerson1.setCompGroupsLineId(portalApplWizard.getCompGroupsLineId());
+        }
+        person.getApplication().setChoosenWizards(choosenWizardsFromPerson);
+
         Person savedPerson = person_Repo.save(person);
 
         return savedPerson.getPerson_info().getId();

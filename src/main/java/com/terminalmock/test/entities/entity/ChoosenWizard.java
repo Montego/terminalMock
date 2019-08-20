@@ -67,6 +67,8 @@ public class ChoosenWizard {
     private DocType docTypeSpecialRight2;
     private LocalDate dateSpecialRight2;
 
+    private String compGroupsId;
+    private String compGroupsLineId;
 
     @JoinColumn(name="application_wizard_id")
     @ManyToOne(fetch = FetchType.EAGER)
