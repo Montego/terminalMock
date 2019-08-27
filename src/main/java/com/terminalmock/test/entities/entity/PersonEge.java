@@ -15,7 +15,7 @@ import java.time.LocalDate;
 @Setter
 @Getter
 @NoArgsConstructor
-@AllArgsConstructor
+//@AllArgsConstructor
 @Entity
 public class PersonEge {
 
