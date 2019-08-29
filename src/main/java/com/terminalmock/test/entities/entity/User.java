@@ -30,6 +30,8 @@ public class User implements UserDetails {
 
     private String email;
 
+//    private String activationCode;
+
     private boolean active;
 
     public boolean isAdmin() {

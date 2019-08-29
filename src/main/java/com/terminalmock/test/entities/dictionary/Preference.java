@@ -23,8 +23,14 @@ public class Preference {
     private String prefGroupId;
     @Column(name = "\"PrefDocQty\"")
     private int prefDocQty;
+
     @Column(name = "\"EducationLevel\"")
     private int educationLevel;
+//    @ManyToOne(fetch = FetchType.EAGER)
+//    @JoinColumn(name = "\"EducationLevel\"")
+//    private EduLevel educationLevel;
+
+
     @Column(name = "\"Points\"")
     private int points;
     @Column(name = "\"isMultipleSelect\"")
@@ -43,4 +49,12 @@ public class Preference {
             inverseJoinColumns = { @JoinColumn(name = "\"DocumentId\"") }
     )
     private List<Document> documents;
+
+//    @ManyToMany
+//    @JoinTable(
+//            name = "\"PreferenceByEduLevel\"",
+//            joinColumns = { @JoinColumn(name = "\"PreferenceId\"") },
+//            inverseJoinColumns = { @JoinColumn(name = "\"EduLevelId\"") }
+//    )
+//    private List<EduLevel> eduLevels;
 }

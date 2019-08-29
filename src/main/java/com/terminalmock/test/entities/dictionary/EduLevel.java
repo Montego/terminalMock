@@ -24,4 +24,8 @@ public class EduLevel {
     private int sort;
     @Column(name = "\"EducationLevel\"")
     private int educationLevel;
+
+//    @JsonIgnore
+//    @ManyToMany(mappedBy = "eduLevels")
+//    private List<Preference> preferences;
 }

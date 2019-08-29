@@ -58,6 +58,11 @@ public class DictionaryController {
         this.targOrgService = targOrgService;
     }
 
+    @PostMapping("/preferByEduLevel/{educationLev}")
+    public List<Preference> getListPreferenceByEduLevel(@PathVariable("educationLev") int educationLevel){
+        return preferenceService.getAllByEduLevel(educationLevel);
+    }
+
     @GetMapping("/academyYear")
     public Iterable<AcademyYear> getListAcademyYear() {
         return academyYearService.getAll();

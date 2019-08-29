@@ -16,7 +16,7 @@ public class EducationLevelService {
         this.educationLevelRepo = educationLevelRepo;
     }
 
-    public EducationLevel getOne(Long id) {
+    public EducationLevel getOne(int id) {
         return educationLevelRepo.findById(id).orElse(null);
     }
 
