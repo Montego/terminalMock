@@ -8,6 +8,7 @@ import com.terminalmock.test.repositories.enumsrepo.EducationLevelRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -31,6 +32,16 @@ public class PreferenceService {
     public List<Preference> getAllByEduLevel(int educationLevel){
         EducationLevel findedEducationLevel1 = educationLevelRepo.findById(educationLevel).get();
         int id = findedEducationLevel1.getId();
-        return preferenceRepo.findAllByEducationLevel(id);
+
+        List<Preference> preferencesByEducationLevel = preferenceRepo.findAllByEducationLevel(id);
+        List<Preference> preferencesAfter2015 = new ArrayList<>();
+        for(Preference result : preferencesByEducationLevel){
+            if(!result.getOlympYear().equals("2015")){
+                preferencesAfter2015.add(result);
+            }
+        }
+
+//        return preferenceRepo.findAllByEducationLevel(id);
+        return preferencesAfter2015;
     }
 }

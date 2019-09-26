@@ -23,8 +23,8 @@ import static com.terminalmock.test.services.entityServices.AddressService.conve
 
 @Service
 public class PersonService {
-    private final static String AX_SERVICE_URL= "http://10.71.0.115/ax_api/rest/findBy";
-    private final static String AX_LOCAL_URL= "http://localhost:8084/rest/findBy";
+    private final static String AX_SERVICE_URL = "http://10.71.0.115/ax_api/rest/findBy";
+    private final static String AX_LOCAL_URL = "http://localhost:8084/rest/findBy";
     private final PersonRepo person_Repo;
     private final PersonInfoRepo personInfoRepo;
     private final PortalApplWizardRepository portalApplWizardRepository;
@@ -79,12 +79,12 @@ public class PersonService {
         }
         person.getPerson_info().setModifiedBy(user.getAlias());
         person.getPerson_info().setTab_personal_name(
-                        person.getPerson_info().getTab_personal_lastname() + " " +
+                person.getPerson_info().getTab_personal_lastname() + " " +
                         person.getPerson_info().getTab_personal_firstname() + " " +
                         person.getPerson_info().getTab_personal_middlename()
         );
         person.getPerson_info().setTab_personal_contactPersonNameGenitive(
-                        person.getPerson_info().getTab_personal_lastname_genitive() + " " +
+                person.getPerson_info().getTab_personal_lastname_genitive() + " " +
                         person.getPerson_info().getTab_personal_firstname_genitive() + " " +
                         person.getPerson_info().getTab_personal_middlename_genitive()
         );
@@ -154,15 +154,15 @@ public class PersonService {
                               String middleName,
                               String identityCardCode,
                               String identityCardSeries,
-                              String identityCardNumber){
+                              String identityCardNumber) {
 
 
         UriComponentsBuilder builder = UriComponentsBuilder
                 .fromUriString(AX_SERVICE_URL)
-                .queryParam("lastName",lastName)
-                .queryParam("firstName",firstName)
+                .queryParam("lastName", lastName)
+                .queryParam("firstName", firstName)
                 .queryParam("middleName", middleName)
-                .queryParam("identityCardCode",identityCardCode)
+                .queryParam("identityCardCode", identityCardCode)
                 .queryParam("identityCardSeries", identityCardSeries)
                 .queryParam("identityCardNumber", identityCardNumber);
 
@@ -170,9 +170,9 @@ public class PersonService {
         return sendRequest(builder.build().encode(Charset.defaultCharset()).toUri()).getBody();
     }
 
-    private static ResponseEntity<String> sendRequest(URI uri){
+    private static ResponseEntity<String> sendRequest(URI uri) {
         RestTemplate template = new RestTemplate();
-        return template.getForEntity(uri,String.class);
+        return template.getForEntity(uri, String.class);
     }
 
     private static ResponseEntity<String> checkAlive() {
