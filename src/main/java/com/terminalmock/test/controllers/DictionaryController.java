@@ -162,4 +162,9 @@ public class DictionaryController {
         return targOrgService.getAll();
     }
 
+    @GetMapping("/preferenceSpecial")
+    public List<Preference> getPrefSpecial(){
+        return preferenceService.getAllByPrefType();
+    }
+
 }

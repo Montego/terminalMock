@@ -7,5 +7,6 @@ import java.util.List;
 
 public interface PreferenceRepo extends JpaRepository<Preference, String> {
     List<Preference> findAllByEducationLevel(int id);
+    List<Preference> findAllByPrefType(int id);
 
 }

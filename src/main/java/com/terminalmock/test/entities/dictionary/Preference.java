@@ -3,7 +3,6 @@ package com.terminalmock.test.entities.dictionary;
 import lombok.Data;
 
 import javax.persistence.*;
-import javax.print.Doc;
 import java.util.List;
 
 @Entity
@@ -42,7 +41,7 @@ public class Preference {
     @Column(name = "\"isManual\"")
     private int isManual;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "\"D_PreferenceByDoc\"",
             joinColumns = { @JoinColumn(name = "\"PreferenceId\"") },

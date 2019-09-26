@@ -44,4 +44,8 @@ public class PreferenceService {
 //        return preferenceRepo.findAllByEducationLevel(id);
         return preferencesAfter2015;
     }
+
+    public List<Preference> getAllByPrefType(){
+        return preferenceRepo.findAllByPrefType(1);
+    }
 }
