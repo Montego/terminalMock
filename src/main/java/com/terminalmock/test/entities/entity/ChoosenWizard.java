@@ -1,6 +1,8 @@
 package com.terminalmock.test.entities.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.terminalmock.test.entities.dictionary.Document;
+import com.terminalmock.test.entities.dictionary.Preference;
 import com.terminalmock.test.entities.dictionary.TargOrg;
 import com.terminalmock.test.entities.enums.DocType;
 import lombok.AllArgsConstructor;
@@ -47,9 +49,13 @@ public class ChoosenWizard {
     private boolean chose;
     private boolean specialRight;
     //TODO тип?
-    private String typeOfSpecialRight;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "TypeOfSpecialRight")
+    private Preference typeOfSpecialRight;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "ProofSpecialRight1")
+    private Document proofSpecialRight1;
 
-    private String proofSpecialRight1;
     private String descriptionSpecialRight1;
     private String serialSpecialRight1;
     private String numberSpecialRight1;
@@ -57,8 +63,9 @@ public class ChoosenWizard {
     @JoinColumn(name = "docType")
     private DocType docTypeSpecialRight1;
     private LocalDate dateSpecialRight1;
-
-    private String proofSpecialRight2;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "ProofSpecialRight2")
+    private Document proofSpecialRight2;
     private String descriptionSpecialRight2;
     private String serialSpecialRight2;
     private String numberSpecialRight2;
