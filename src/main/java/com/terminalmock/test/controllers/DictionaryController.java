@@ -1,12 +1,16 @@
 package com.terminalmock.test.controllers;
 
+import com.terminalmock.test.dto.SubjectDao;
 import com.terminalmock.test.entities.dictionary.*;
 import com.terminalmock.test.services.dictionaryServices.*;
+import javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/dictionary")
@@ -167,4 +171,14 @@ public class DictionaryController {
         return preferenceService.getAllByPrefType();
     }
 
+    @PostMapping("/preferenceOlymp")
+    public List<Preference> getPreferenceByOlymp(@RequestBody SubjectDao request) throws NotFoundException {
+        Optional<Subject> subjectOptional =  subjectService.findByName(request.getName());
+        if (subjectOptional.isPresent()){
+            List<Subject> subjects = Arrays.asList(subjectOptional.get());
+            return preferenceService.getAllByOlymp(subjects);
+        }
+
+        else throw new NotFoundException("NOT CORRECT SUBJECT");
+    }
 }

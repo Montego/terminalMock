@@ -2,6 +2,7 @@ package com.terminalmock.test.services.dictionaryServices;
 
 
 import com.terminalmock.test.entities.dictionary.Preference;
+import com.terminalmock.test.entities.dictionary.Subject;
 import com.terminalmock.test.entities.enums.EducationLevel;
 import com.terminalmock.test.repositories.dictionaryrepo.PreferenceRepo;
 import com.terminalmock.test.repositories.enumsrepo.EducationLevelRepo;
@@ -9,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 @Service
@@ -47,5 +49,9 @@ public class PreferenceService {
 
     public List<Preference> getAllByPrefType(){
         return preferenceRepo.findAllByPrefType(1);
+    }
+
+    public List<Preference> getAllByOlymp(Collection<Subject> subjects){
+        return preferenceRepo.findAllBySubjects(subjects);
     }
 }

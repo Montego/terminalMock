@@ -1,6 +1,8 @@
 package com.terminalmock.test.entities.dictionary;
 
 import lombok.Data;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 import javax.persistence.*;
 import java.util.List;
@@ -48,6 +50,15 @@ public class Preference {
             inverseJoinColumns = { @JoinColumn(name = "\"DocumentId\"") }
     )
     private List<Document> documents;
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    @Fetch(FetchMode.SELECT)
+    @JoinTable(
+            name = "\"D_PKSubjectsCompetitions\"",
+            joinColumns = {@JoinColumn(name = "\"PreferenceId\"")},
+            inverseJoinColumns = {@JoinColumn(name = "\"SubjectId\"")}
+    )
+    private List<Subject> subjects;
 
 //    @ManyToMany
 //    @JoinTable(
