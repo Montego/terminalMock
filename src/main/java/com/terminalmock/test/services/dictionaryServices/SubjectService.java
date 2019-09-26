@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class SubjectService {
@@ -22,5 +23,9 @@ public class SubjectService {
 
     public List<Subject> getAll() {
         return subjectRepo.findAll();
+    }
+
+    public Optional<Subject> findByName(String name){
+        return subjectRepo.findByName(name);
     }
 }
