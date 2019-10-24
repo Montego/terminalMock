@@ -7,11 +7,13 @@ import com.terminalmock.test.entities.entity.Person;
 import com.terminalmock.test.entities.entity.PersonInfo;
 import com.terminalmock.test.entities.entity.User;
 import com.terminalmock.test.entities.view.Wizard;
+import com.terminalmock.test.entities.view.WizardFIU;
 import com.terminalmock.test.model.comparison.SearchParams;
 import com.terminalmock.test.services.SearchPersonInfoSvc;
 import com.terminalmock.test.services.dtoServices.ConditionsDtoService;
 import com.terminalmock.test.services.entityServices.PersonInfoService;
 import com.terminalmock.test.services.entityServices.PersonService;
+import com.terminalmock.test.services.viewServices.WizardFIUService;
 import com.terminalmock.test.services.viewServices.WizardService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +31,8 @@ public class ProfileController {
     ConditionsDtoService conditionsDtoService;
     @Autowired
     WizardService wizardService;
+    @Autowired
+    WizardFIUService wizardFIUService;
     private final PersonService personService;
     private final PersonInfoService personInfoService;
     private final SearchPersonInfoSvc searchPersonInfoSvc;
@@ -39,7 +43,6 @@ public class ProfileController {
         this.personInfoService = personInfoService;
         this.searchPersonInfoSvc = searchPersonInfoSvc;
     }
-
 
     @PostMapping("/search/")
     public List<PersonTableDto> searching(@RequestBody SearchParams params, HttpServletRequest request) {
@@ -106,6 +109,10 @@ public class ProfileController {
     @GetMapping("/conditionsDto")
     public List<Wizard> getAll() {
         return wizardService.getAll();
+    }
+    @GetMapping("/conditionsDtoFIU")
+    public List<WizardFIU> getAllFIU() {
+        return wizardFIUService.getAll();
     }
 
     @GetMapping(value = "/checkUnique")

@@ -53,6 +53,7 @@ public class PersonEge {
     private boolean tab_ege_changePaspInf = false;
 
 
+//    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name="person_ege_id" )
     @JsonBackReference

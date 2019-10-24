@@ -39,7 +39,6 @@ public class UserService implements UserDetailsService {
 
     public User getCurrentUser(){
         return  ((User) SecurityContextHolder.getContext().getAuthentication().getPrincipal());
-
     }
 
     public List<User> findAll() {

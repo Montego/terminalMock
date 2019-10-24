@@ -27,6 +27,7 @@ public class Person {
     private String saved;
 //from evidence_ege tab
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+//    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     @JoinColumn(name="person_ege_id")
     @JsonManagedReference
     private Set<PersonEge> ege_info;
