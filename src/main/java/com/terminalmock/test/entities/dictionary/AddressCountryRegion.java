@@ -1,11 +1,9 @@
 package com.terminalmock.test.entities.dictionary;
 
+import com.terminalmock.test.entities.enums.EduCountryType;
 import lombok.Data;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Data
@@ -16,4 +14,10 @@ public class AddressCountryRegion {
     private String countryRegionId;
     @Column(name = "\"Name\"")
     private String name;
+
+//    @ManyToOne(fetch = FetchType.EAGER)
+//    @JoinColumn(name = "\"EduCountryType\"")
+    @Column(name = "\"EduCountryType\"" )
+    private String eduCountryType;
+//    private EduCountryType eduCountryType;
 }
