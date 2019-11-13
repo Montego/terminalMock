@@ -4,6 +4,7 @@ package com.terminalmock.test.services.dictionaryServices;
 import com.terminalmock.test.entities.dictionary.AddressCountryRegion;
 import com.terminalmock.test.repositories.dictionaryrepo.AddressCountryRegionRepo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -21,6 +22,6 @@ public class AddressCountryRegionService {
     }
 
     public List<AddressCountryRegion> getAll() {
-        return addressCountryRegionRepo.findAll();
+        return addressCountryRegionRepo.findAll(Sort.by(Sort.Direction.ASC, "name"));
     }
 }
